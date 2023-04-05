@@ -6,7 +6,7 @@
 
 ## Introdução / Introduction
  
-Escreva uma pequena introdução sobre o trabalho.
+Para o projeto de Bases de Dados, decidimos desenvolver um Sistema de Gestão de Ginásios. Nesta entrega temos a análise de requisitos, o Diagrama Entidade-Relacionamento e o Esquema Relacional para a base de dados a desenvolver no resto do projeto.  
 
 ## ​Análise de Requisitos / Requirements
 

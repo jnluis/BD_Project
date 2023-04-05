@@ -1,5 +1,5 @@
---USE Project;
---GO
+-- USE Project;
+-- GO
 
 IF OBJECT_ID('Ginasio.Exercicio', 'U') IS NOT NULL
 AND OBJECT_ID('Ginasio.Aula', 'U') IS NOT NULL
