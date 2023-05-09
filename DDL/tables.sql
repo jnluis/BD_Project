@@ -53,13 +53,13 @@ CREATE TABLE Ginasio.Staff(
     Lname       VARCHAR(50)     NOT NULL,
     Email       NVARCHAR(255),
     Telemovel   INT             NOT NULL    CHECK (Telemovel >= 900000000 AND Telemovel <= 999999999),
-    NIF         INT                         CHECK (NIF >= 100000000 AND NIF <= 999999999),
-    Morada      VARCHAR(100),
+    NIF         INT             NOT NULL    CHECK (NIF >= 100000000 AND NIF <= 999999999),
+    Morada      VARCHAR(100)    NOT NULL,
     Data_Nasc   DATE            NOT NULL,
     Salario     INT             NOT NULL    CHECK (Salario >= 0),
     Num_func    INT             NOT NULL,   
     Data_Contr  DATE            NOT NULL,
-    Horario_Lab TIME            NOT NULL,
+    Horario_Lab TIME            ,
     Gerente_Num INT             NOT NULL,
 
     PRIMARY KEY (Num_func)
