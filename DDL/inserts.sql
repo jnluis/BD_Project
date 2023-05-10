@@ -87,7 +87,7 @@ VALUES (123456789, 'Ana', 'Silva', 'ana.silva@example.com', 912345678, 205896325
        (684321987, 'Joaquim', 'Madeira', NULL, 981234569, 188745214, NULL, '1978-11-30'),
        (381987654, 'Armando', 'Batista', 'armando.batista@example.com', 982345670, NULL, 'Travessa das Oliveiras, 13', '1978-04-11'),
        (284567891, 'Armindo', 'Gaspar', 'armindo.gaspar@example.com', 981234570, 289658236, 'Rua Principal, 5', NULL),
-       (688912345, 'Rubén', 'Silvestre', NULL, 982345671, 283478963, 'Rua do Ver, ', '1970-09-23'),
+       (688912345, 'Rubén', 'Silvestre', NULL, 982345671, 283478963, 'Rua do Ver, 2', '1970-09-23'),
        (385678912, 'Rui', 'Sampaio', 'rui.sampaio@example.com', 981234571, 281458758, NULL, '1971-01-03'),
        (880123456, 'Maurício', 'Júnior', 'mauricio.júnior@example.com', 982345672, 285569856, NULL, '1976-05-17');
        (193456789, 'Diego', 'Tavares', 'diego.tavares@example.com', 992345678, 295896325, 'Rua Brasil, 1', NULL),
@@ -102,32 +102,64 @@ VALUES (123456789, 'Ana', 'Silva', 'ana.silva@example.com', 912345678, 205896325
 
 INSERT INTO Ginasio.Staff (CC, Fname, Lname, Email, Telemovel, NIF, Morada, Data_Nasc, Salario, Num_func, Data_Contr, Horario_Lab, Gerente_Num)
 VALUES (111222333, 'Maria', 'Santos', 'maria.santos@example.com', 912345678, 123456789, 'Rua das Flores, 1', '1990-01-01', 2500, 1001, '2022-01-15', '09:00:00', 1002),
-       (444555666, 'João', 'Silva', 'joao.silva@example.com', 931234567, 987654321, 'Rua do Sol, 2', '1985-06-20', 2800, 1002, '2021-09-10', '08:30:00', 1002),
-       (777888999, 'Andreia', 'Fernandes', 'andreia.fernandes@example.com', 931234568, 456789123, 'Avenida da Liberdade, 3', '1995-09-14', 2200, 1003, '2023-02-05', '10:00:00', 1002),
+       (444555666, 'João', 'Silva', 'joao.silva@example.com', 931234567, 987654321, 'Rua do Sol, 10', '1985-06-20', 3500, 1002, '2018-01-01', '08:30:00', 1002),
+       (777888999, 'Andreia', 'Fernandes', 'andreia.fernandes@example.com', 928234568, 456789123, 'Avenida da Liberdade, 3', '1995-09-14', 2200, 1003, '2023-02-05', '10:00:00', 1002),
        (999888777, 'Ricardo', 'Pereira', 'ricardo.pereira@example.com', 912345679, 789123456, 'Rua da Praia, 4', '1982-03-10', 3000, 1004, '2020-07-20', '08:00:00', 1002),
-       (222333444, 'Ana', 'Oliveira', NULL, 931234569, 654321987, 'Rua da Montanha, 5', '1998-12-31', 2600, 1005, '2022-03-25', '09:30:00', 1002),
-       (555444333, 'Pedro', 'Sousa', 'pedro.sousa@example.com', 912345670, 321987654, 'Travessa das Oliveiras, 6', '1988-08-08', 2400, 1006, '2023-04-05', NULL, 1002);
+       (222333444, 'Ana', 'Oliveira', NULL, 931234569, 654321987, 'Rua da Montanha, 5', '1998-12-31', 2600, 1005, '2022-03-25', '09:30:00', 1011),
+       (555444333, 'Pedro', 'Sousa', 'pedro.sousa@example.com', 912345670, 321987654, 'Travessa das Oliveiras, 6', '1990-08-08', 2400, 1006, '2023-04-05', NULL, 1011),
+       (555444444, 'Paulo', 'Gomes', 'paulo.gomes@example.com', 913555456, 9876543212, 'Rua dos Carvalhos, 6', '1977-05-10', 1800, 1007, '2019-05-01', '08:00:00', 1011),
+       (555444445, 'José', 'Oliveira', 'jose.oliveira@example.com', 927555789, 987645323, 'Rua Brasil, 4', '2000-10-10', 1000, 1008, '2021-03-15','08:00:00', 1011),
+       (555444446, 'Filipe', 'Almeida', 'filipe.almeida@example.com', 927555780, 986754323, 'Rua Principal, 6', '1999-10-05', 1000, 1009, '2021-03-15', '08:00:00',1011),
+       (555444447, 'Gabriel', 'Abreu', 'gabriel.abreu@example.com', 927555719, 978654323, 'Rua do Sol, 11', '1980-05-10', 2500, 1010, '2018-01-01','08:00:00', 1011),
+       (444555660, 'Mário', 'Silva', 'mario.silva@example.com', 931234568, 987654322, 'Rua de África, 1', '1993-04-20', 3500, 1011, '2018-01-01', '08:00:00', 1011),
+       (444555661, 'Madalena', 'Caetano', 'madalena.caetano@example.com', 931234560, 987654323, 'Rua do Sol, 10', '1983-05-13', 3000, 1012, '2018-01-01', '09:00:00', 1002),
+       (444555662, 'Isa', 'Rodrigues', 'isa.rodrigues@example.com', 931234561, 987654324, 'Rua de África, 4', '1989-06-14', 2000, 1013, '2019-02-01', '08:00:00', 1002),
+       (444555663, 'Diana', 'Ferreira', 'diana.ferreira@example.com', 931234562, 987654325, 'Rua de África, 7', '1992-07-15', 2800, 1014, '2018-06-01', NULL, 1002),
+       (444555664, 'Alexandra', 'Pimentel', 'alexandra.pimentel@example.com', 931234563, 987654326, 'Quinta do Monte, 7', '1993-08-16', 3000, 1015, '2018-01-01', NULL, 1002),
+       (444555665, 'Fernando', 'Couto', 'fernando.couto@example.com', 931234769, 987654327, 'Rua da Azeitona, 4', '1995-09-17', 2000, 1016, '2019-06-05', '05:30:00', 1002),
+       (444555666, 'Alexandre', 'Rei', 'alexandre.rei@example.com', 931234558, 987654328, 'Rua Principal, 7', '1998-10-18', 1950, 1017, '2020-07-07', '06:30:00', 1002),
+       (444555667, 'Rodrigo', 'Guedes', 'rodrigo.guedes@example.com', 931244568, 987654329, 'Rua do Pinheiro Grande, 5', '1999-11-19', 1800, 1018, '2021-10-15', '07:00:00', 1002);
+
 
 INSERT INTO Ginasio.Gerente (Num_func)
-VALUES (1002);
+VALUES (1002),
+      (1011);
 
 INSERT INTO Ginasio.Rececionista (Num_func)
 VALUES (1005),
-       (1006);
+       (1006),
+       (1007),
+       (1008),
+       (1009),
+       (1010);
 
 INSERT INTO Ginasio.Professor (Num_func)
 VALUES (1001),
        (1003),
-       (1004);
+       (1004),
+       (1012),
+       (1013),
+       (1014),
+       (1015),
+       (1016),
+       (1017),
+       (1018);
 
 INSERT INTO Ginasio.Certificacoes_Prof (Num_func, Certificacoes)
 VALUES (1004, 'Personal Trainer'),
        (1001, 'Treino Funcional'),
-       (1003, 'Pilates'),
+       (1003, 'Pilates'),  
        (1004, 'Musculação Avançada'),
        (1001, 'CrossFit'),
        (1003, 'Yoga'),
-       (1004, 'Boxe');
+       (1004, 'Boxe'),
+       (1012, 'Personal Trainer'),
+       (1013, 'Treino Funcional'),
+       (1014, 'Pilates'),  
+       (1015, 'Musculação Avançada'),
+       (1016, 'CrossFit'),
+       (1017, 'Yoga'),
+       (1018, 'Boxe');
 
 INSERT INTO Ginasio.Plano_Adesao (Tipo, CC_Cliente, Preco, Data_fim, Data_inicio, Num_Rec)
 VALUES ('Plano Básico', 123456789, 380.00, '2023-12-31', '2023-01-01', 1005),
