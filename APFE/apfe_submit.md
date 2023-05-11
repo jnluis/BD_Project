@@ -19,8 +19,8 @@ Nesta entrega temos a análise de requisitos, o Diagrama Entidade-Relacionamento
 * O cliente tem a opção de solicitar um plano de treino a um professor. Esse plano é definido por um ID, data de início, data de fim e número de treinos por semana. Para cada exercício, é necessário especificar o ID, nome e quando este é incluído num plano é possível definir o número de séries, número de repetições e tempo de execução. O exercício pode utilizar ou não um equipamento.
 * O equipamento é caracterizado por ID e nome.
 * O professor faz parte do staff, no entanto tem também de entregar as suas certificações.
-* O professor pode dar aulas no ginásio, que são identificadas por um ID. É registado em cada aula o número de inscrições e a sala onde se vai realizar. Cada aula pode ser realizada em vários horários diferentes. Cada horário é definido pela hora de início e fim e pelo dia da semana em que se vai realizar.
-* Cada sala é definida por um ID, número máximo de alunos e estado (ocupado ou livre).
+* O professor pode dar aulas no ginásio, que são identificadas por um ID. É registado em cada aula a sala onde se vai realizar. Cada aula pode ser realizada em vários horários diferentes. Cada horário é definido pela hora de início e fim e pelo dia da semana em que se vai realizar.
+* Cada sala é definida por um ID, número máximo de alunos e tipo.
 * O cliente pode inscrever-se em várias aulas desde que haja disponibilidade e a inscrição seja aceite.
 * O cliente tem a opção de fornecer feedback sobre o seu plano de treino ao treinador que o criou. Este feedback é caracterizado pela data e comentários associados.
 * Embora seja um membro do staff, o gerente tem a responsabilidade de gerir a equipa de funcionários.

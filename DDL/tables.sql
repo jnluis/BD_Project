@@ -52,15 +52,15 @@ CREATE TABLE Ginasio.Staff(
     Fname       VARCHAR(50)     NOT NULL,
     Lname       VARCHAR(50)     NOT NULL,
     Email       NVARCHAR(255),
-    Telemovel   INT             NOT NULL    CHECK (Telemovel >= 900000000 AND Telemovel <= 999999999),
-    NIF         INT             NOT NULL    CHECK (NIF >= 100000000 AND NIF <= 999999999),
+    Telemovel   BIGINT             NOT NULL    CHECK (Telemovel >= 900000000 AND Telemovel <= 999999999),
+    NIF         BIGINT             NOT NULL    CHECK (NIF >= 100000000 AND NIF <= 999999999),
     Morada      VARCHAR(100)    NOT NULL,
     Data_Nasc   DATE            NOT NULL,
-    Salario     INT             NOT NULL    CHECK (Salario >= 0),
+    Salario     DECIMAL(10, 2)  NOT NULL    CHECK (Salario >= 0),
     Num_func    INT             NOT NULL,   
     Data_Contr  DATE            NOT NULL,
     Horario_Lab TIME            ,
-    Gerente_Num INT             NOT NULL,
+    Gerente_Num INT             ,
 
     PRIMARY KEY (Num_func)
 );
@@ -111,7 +111,7 @@ CREATE TABLE Ginasio.Pagamento(
     Data_Pagamento DATE,
 
     PRIMARY KEY (ID),
-    FOREIGN KEY (CC_Cliente, Num_Rec) REFERENCES Ginasio.Plano_Adesao(CC_Cliente, Num_Rec),
+    FOREIGN KEY (CC_Cliente, Num_Rec) REFERENCES Ginasio.Plano_Adesao(CC_Cliente, Num_Rec), 
     FOREIGN KEY (CC_Cliente) REFERENCES Ginasio.Cliente(CC)
 );
 
@@ -130,8 +130,7 @@ CREATE TABLE Ginasio.Feedback(
 
 CREATE TABLE Ginasio.Aula(
     ID          INT    NOT NULL,
-    Sala_ID     INT,
-    Num_Insc    INT    NOT NULL,    
+    Sala_ID     INT,    
     ID_Professor     INT    NOT NULL,
     PRIMARY KEY (ID),
     FOREIGN KEY (ID_Professor) REFERENCES Ginasio.Professor(Num_func)
@@ -149,7 +148,7 @@ CREATE TABLE Ginasio.Aula_Horario(
 
 CREATE TABLE Ginasio.Sala(
     ID              INT             NOT NULL,
-    Estado          VARCHAR(50)     NOT NULL,
+    Tipo          VARCHAR(50)     NOT NULL,
     Num_Max_alunos  TINYINT         NOT NULL,
     
     PRIMARY KEY (ID)
@@ -208,12 +207,13 @@ CREATE TABLE Ginasio.Inscreve(
 CREATE TABLE Ginasio.Certificacoes_Prof(
     Num_func      INT         NOT NULL,
     Certificacoes VARCHAR(100)  NOT NULL,
+    PRIMARY KEY (Num_func, Certificacoes),
     FOREIGN KEY (Num_func) REFERENCES Ginasio.Professor(Num_func)
 );
 
 
-ALTER TABLE Ginasio.Staff ADD CONSTRAINT Gerente_Num FOREIGN KEY (Gerente_Num) REFERENCES Ginasio.Gerente(Num_func);
+ALTER TABLE Ginasio.Staff ADD CONSTRAINT Gerente_Num FOREIGN KEY (Gerente_Num) REFERENCES Ginasio.Gerente(Num_func) ON DELETE SET NULL ON UPDATE CASCADE;
 
-ALTER TABLE Ginasio.Aula ADD CONSTRAINT Sala_ID FOREIGN KEY (Sala_ID) REFERENCES Ginasio.Sala(ID);
+ALTER TABLE Ginasio.Aula ADD CONSTRAINT Sala_ID FOREIGN KEY (Sala_ID) REFERENCES Ginasio.Sala(ID) ON DELETE SET NULL ON UPDATE CASCADE;
 
-ALTER TABLE Ginasio.Exercicio ADD CONSTRAINT ID_Equipamento FOREIGN KEY (ID_Equipamento) REFERENCES Ginasio.Equipamento(ID);
+ALTER TABLE Ginasio.Exercicio ADD CONSTRAINT ID_Equipamento FOREIGN KEY (ID_Equipamento) REFERENCES Ginasio.Equipamento(ID) ON DELETE SET NULL ON UPDATE CASCADE;
