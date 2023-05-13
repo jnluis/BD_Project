@@ -12,19 +12,19 @@ using System.Net.NetworkInformation;
 
 namespace ProjetoBD
 {
-    public partial class Form1 : Form
+    public partial class Form2 : Form
     {
         private SqlConnection cn;
         private int currentClient;
         private bool adding;
 
-        public Form1()
+        public Form2()
         {
             InitializeComponent();
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form2_Load(object sender, EventArgs e)
         {
             cn = getSGBDConnection();
             if (!verifySGBDConnection())
@@ -84,14 +84,14 @@ namespace ProjetoBD
             {
                 Cliente C = new Cliente();
                 C.CC = reader["CC"].ToString();
-                C.Fname= reader["Fname"].ToString();
+                C.Fname = reader["Fname"].ToString();
                 C.Lname = reader["Lname"].ToString();
                 C.Email = reader["Email"].ToString();
                 C.NIF = reader["NIF"].ToString();
                 C.Morada = reader["Morada"].ToString();
                 C.Data_Nasc = reader["Data_Nasc"].ToString();
                 C.Telemovel = reader["Telemovel"].ToString();
-                listBox1 .Items.Add(C);
+                listBox1.Items.Add(C);
 
             }
 
@@ -145,7 +145,7 @@ namespace ProjetoBD
                 rows = cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
-            { 
+            {
                 throw new Exception("Erro a atualizar a base de dados. \nERROR MESSAGE: \n " + ex.Message);
             }
             finally
@@ -168,7 +168,7 @@ namespace ProjetoBD
             cmd.CommandText = "DELETE Ginasio.Cliente WHERE CC=@CC";
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@CC", CC);
-            cmd.Connection= cn;
+            cmd.Connection = cn;
 
             try
             {
@@ -192,7 +192,7 @@ namespace ProjetoBD
             txtMorada.ReadOnly = true;
             txtDataNasc.ReadOnly = true;
             txtEmail.ReadOnly = true;
-            txtTel.ReadOnly= true;
+            txtTel.ReadOnly = true;
             txtNIF.ReadOnly = true;
 
         }
@@ -399,6 +399,11 @@ namespace ProjetoBD
                 currentClient = listBox1.SelectedIndex;
                 ShowClient();
             }
+        }
+
+        private void Form2_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
