@@ -2,30 +2,30 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Net.NetworkInformation;
 
 namespace ProjetoBD
 {
-    public partial class Form1 : Form
+    public partial class ClientesForm : Form
     {
+
         private SqlConnection cn;
         private int currentClient;
         private bool adding;
 
-        public Form1()
+        public ClientesForm()
         {
             InitializeComponent();
-
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Clientes_Load(object sender, EventArgs e)
         {
+
             cn = getSGBDConnection();
             if (!verifySGBDConnection())
                 return;
@@ -53,11 +53,13 @@ namespace ProjetoBD
 
             currentClient = 0;
             ShowClient();
+
         }
+
         private SqlConnection getSGBDConnection()
         {
-            //return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
-            return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
+            return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
+            //return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
         }
 
         private bool verifySGBDConnection()
@@ -71,7 +73,7 @@ namespace ProjetoBD
             return cn.State == ConnectionState.Open;
         }
 
-        private void loadCustomersToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void loadCustomersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!verifySGBDConnection())
                 return;
@@ -84,14 +86,14 @@ namespace ProjetoBD
             {
                 Cliente C = new Cliente();
                 C.CC = reader["CC"].ToString();
-                C.Fname= reader["Fname"].ToString();
+                C.Fname = reader["Fname"].ToString();
                 C.Lname = reader["Lname"].ToString();
                 C.Email = reader["Email"].ToString();
                 C.NIF = reader["NIF"].ToString();
                 C.Morada = reader["Morada"].ToString();
                 C.Data_Nasc = reader["Data_Nasc"].ToString();
                 C.Telemovel = reader["Telemovel"].ToString();
-                listBox1 .Items.Add(C);
+                listBox1.Items.Add(C);
 
             }
 
@@ -108,7 +110,7 @@ namespace ProjetoBD
                 return;
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "INSERT INTO Ginasio.Cliente (CC, Fname, Lname, Email, Telemovel, NIF, Morada, Data_Nasc) " + "VALUES (@CC @Fname @Lname @Email @Telemovel @NIF @Morada @Data_Nasc)";
+            cmd.CommandText = "INSERT INTO Ginasio.Cliente (CC, Fname, Lname, Email, Telemovel, NIF, Morada, Data_Nasc) " + "VALUES (@CC, @Fname, @Lname, @Email, @Telemovel, @NIF, @Morada, @Data_Nasc)";
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@CC", C.CC);
             cmd.Parameters.AddWithValue("@Fname", C.Fname);
@@ -118,6 +120,24 @@ namespace ProjetoBD
             cmd.Parameters.AddWithValue("@NIF", C.NIF);
             cmd.Parameters.AddWithValue("@Morada", C.Morada);
             cmd.Parameters.AddWithValue("@Data_nasc", C.Data_Nasc);
+
+            if (verifySGBDConnection())
+            {
+                try
+                {
+                    cmd.Connection = cn;
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Cliente inserido com sucesso!");
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Ocorreu um erro ao inserir o cliente: " + ex.Message);
+                }
+                finally
+                {
+                    cn.Close();
+                }
+            }
         }
 
         private void UpdateClient(Cliente C)
@@ -145,7 +165,7 @@ namespace ProjetoBD
                 rows = cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
-            { 
+            {
                 throw new Exception("Erro a atualizar a base de dados. \nERROR MESSAGE: \n " + ex.Message);
             }
             finally
@@ -168,7 +188,7 @@ namespace ProjetoBD
             cmd.CommandText = "DELETE Ginasio.Cliente WHERE CC=@CC";
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@CC", CC);
-            cmd.Connection= cn;
+            cmd.Connection = cn;
 
             try
             {
@@ -192,7 +212,7 @@ namespace ProjetoBD
             txtMorada.ReadOnly = true;
             txtDataNasc.ReadOnly = true;
             txtEmail.ReadOnly = true;
-            txtTel.ReadOnly= true;
+            txtTel.ReadOnly = true;
             txtNIF.ReadOnly = true;
 
         }
@@ -289,21 +309,6 @@ namespace ProjetoBD
             return true;
         }
 
-        private void Label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void bttnAdd_Click(object sender, EventArgs e)
         {
             adding = true;
@@ -378,7 +383,7 @@ namespace ProjetoBD
                 if (currentClient == -1)
                 {
                     ClearFields();
-                    MessageBox.Show("There are no more contacts");
+                    MessageBox.Show("Não há mais clientes");
                 }
                 else
                 {
@@ -387,12 +392,12 @@ namespace ProjetoBD
             }
         }
 
-        private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBox1.SelectedIndex > -1)
             {
@@ -400,5 +405,13 @@ namespace ProjetoBD
                 ShowClient();
             }
         }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
+
+
+
 }

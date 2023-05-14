@@ -1,6 +1,5 @@
 C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.csproj.AssemblyReference.cache
 C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.csproj.SuggestedBindingRedirects.cache
-C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.Form1.resources
 C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.Properties.Resources.resources
 C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.csproj.GenerateResource.cache
 C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.csproj.CoreCompileInputs.cache
@@ -20,3 +19,7 @@ C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\B
 C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\BD- Bases de Dados\Práticas\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.csproj.CoreCompileInputs.cache
 C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\BD- Bases de Dados\Práticas\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.exe
 C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\BD- Bases de Dados\Práticas\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.pdb
+C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.Form2.resources
+C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.ClientesForm.resources
+C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.MenuForm.resources
+C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.StaffForm.resources
