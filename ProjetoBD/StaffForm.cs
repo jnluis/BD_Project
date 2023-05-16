@@ -61,7 +61,7 @@ namespace ProjetoBD
                 C.NGerente = reader["Gerente_Num"].ToString();
                 C.NFunc = reader["Num_func"].ToString();
                 C.Salario = reader["Salario"].ToString();
-                C.Horario = reader["Horario"].ToString();
+                C.Horario = reader["Horas_trab"].ToString();
                 C.Cargo = "Professor";
                 listProfs.Items.Add(C);
             }
@@ -87,7 +87,7 @@ namespace ProjetoBD
                 C.NGerente = reader["Gerente_Num"].ToString();
                 C.NFunc = reader["Num_func"].ToString();
                 C.Salario = reader["Salario"].ToString();
-                C.Horario = reader["Horario"].ToString();
+                C.Horario = reader["Horas_trab"].ToString();
                 C.Cargo = "Gerente";
                 listGerentes.Items.Add(C);
             }
@@ -113,7 +113,7 @@ namespace ProjetoBD
                 C.NGerente = reader["Gerente_Num"].ToString();
                 C.NFunc = reader["Num_func"].ToString();
                 C.Salario = reader["Salario"].ToString();
-                C.Horario = reader["Horario"].ToString();
+                C.Horario = reader["Horas_trab"].ToString();
                 C.Cargo = "Rececionista";
                 listRecepcionistas.Items.Add(C);
             }

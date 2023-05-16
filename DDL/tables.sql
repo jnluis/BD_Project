@@ -59,7 +59,7 @@ CREATE TABLE Ginasio.Staff(
     Salario     DECIMAL(10, 2)  NOT NULL    CHECK (Salario >= 0),
     Num_func    INT             NOT NULL,   
     Data_Contr  DATE            NOT NULL,
-    Horario     VARCHAR(30)            ,
+    Horas_trab TIME          ,
     Gerente_Num INT             ,
 
     PRIMARY KEY (Num_func)
@@ -137,12 +137,13 @@ CREATE TABLE Ginasio.Aula(
 );
 
 CREATE TABLE Ginasio.Aula_Horario(
+    ID_Horario  INT             NOT NULL,
     Aula_ID     INT             NOT NULL,
     Hora_Inicio TIME            NOT NULL,
     Hora_Fim    TIME            NOT NULL,
     Dia_Semana  VARCHAR(50)     NOT NULL,    
     
-    PRIMARY KEY (Aula_ID, Hora_Inicio, Hora_Fim, Dia_Semana),
+    PRIMARY KEY (ID_Horario),
     FOREIGN KEY (Aula_ID) REFERENCES Ginasio.Aula(ID)
 );
 
@@ -195,12 +196,12 @@ CREATE TABLE Ginasio.Inclui(
 );
 
 CREATE TABLE Ginasio.Inscreve(
-    ID_Aula     INT         NOT NULL,
+    ID_HAula     INT         NOT NULL,
     CC_Cliente  INT         NOT NULL,
     Estado      VARCHAR(50),
 
-    PRIMARY KEY (ID_Aula, CC_Cliente),
-    FOREIGN KEY (ID_Aula) REFERENCES Ginasio.Aula(ID),
+    PRIMARY KEY (ID_HAula, CC_Cliente),
+    FOREIGN KEY (ID_HAula) REFERENCES Ginasio.Aula_Horario(ID_Horario),
     FOREIGN KEY (CC_Cliente) REFERENCES Ginasio.Cliente(CC)
 ); 
 
