@@ -71,7 +71,7 @@
             this.btnRecepcionista = new System.Windows.Forms.RadioButton();
             this.panelCargo = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.labelCertificados = new System.Windows.Forms.Label();
             this.txtCertificados = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label16 = new System.Windows.Forms.Label();
@@ -138,7 +138,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1760, 36);
+            this.menuStrip1.Size = new System.Drawing.Size(1760, 30);
             this.menuStrip1.TabIndex = 213;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -149,25 +149,25 @@
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(52, 32);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(52, 26);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // loadStaffToolStripMenuItem
             // 
             this.loadStaffToolStripMenuItem.Name = "loadStaffToolStripMenuItem";
-            this.loadStaffToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.loadStaffToolStripMenuItem.Size = new System.Drawing.Size(191, 34);
             this.loadStaffToolStripMenuItem.Text = "Load Staff";
             this.loadStaffToolStripMenuItem.Click += new System.EventHandler(this.loadStaffToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(267, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(188, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(191, 34);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -539,16 +539,17 @@
             this.label14.TabIndex = 233;
             this.label14.Text = "Cargo:";
             // 
-            // label15
+            // labelCertificados
             // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label15.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.label15.Location = new System.Drawing.Point(1184, 567);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 5, 4, 2);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(220, 22);
-            this.label15.TabIndex = 234;
-            this.label15.Text = "Certificações";
+            this.labelCertificados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelCertificados.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.labelCertificados.Location = new System.Drawing.Point(1184, 567);
+            this.labelCertificados.Margin = new System.Windows.Forms.Padding(4, 5, 4, 2);
+            this.labelCertificados.Name = "labelCertificados";
+            this.labelCertificados.Size = new System.Drawing.Size(220, 22);
+            this.labelCertificados.TabIndex = 234;
+            this.labelCertificados.Text = "Certificações";
+            this.labelCertificados.Visible = false;
             // 
             // txtCertificados
             // 
@@ -561,6 +562,7 @@
             this.txtCertificados.ReadOnly = true;
             this.txtCertificados.Size = new System.Drawing.Size(482, 100);
             this.txtCertificados.TabIndex = 235;
+            this.txtCertificados.Visible = false;
             // 
             // contextMenuStrip1
             // 
@@ -651,7 +653,7 @@
             this.Controls.Add(this.listProfs);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.txtHorario);
-            this.Controls.Add(this.label15);
+            this.Controls.Add(this.labelCertificados);
             this.Controls.Add(this.txtCertificados);
             this.Controls.Add(this.panelCargo);
             this.Controls.Add(this.label13);
@@ -743,7 +745,7 @@
         private System.Windows.Forms.RadioButton btnRecepcionista;
         private System.Windows.Forms.Panel panelCargo;
         private System.Windows.Forms.Label label14;
-        internal System.Windows.Forms.Label label15;
+        internal System.Windows.Forms.Label labelCertificados;
         internal System.Windows.Forms.TextBox txtCertificados;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         internal System.Windows.Forms.Label label16;

@@ -59,7 +59,7 @@ CREATE TABLE Ginasio.Staff(
     Salario     DECIMAL(10, 2)  NOT NULL    CHECK (Salario >= 0),
     Num_func    INT             NOT NULL,   
     Data_Contr  DATE            NOT NULL,
-    Horario     VARCHAR(30)            ,
+    Horario_Lab TIME            ,
     Gerente_Num INT             ,
 
     PRIMARY KEY (Num_func)

@@ -208,6 +208,35 @@ namespace ProjetoBD
 
             return name;
         }
+        private string VerificarCertificacoes(string numFunc, string tableName)
+        {
+            SqlConnection cn = getSGBDConnection(); // Declare e inicialize a variável cn
+            if (!verifySGBDConnection())
+                return "";
+
+            string query = $"SELECT certificacoes FROM Ginasio.{tableName} WHERE Num_func = @numFunc";
+            SqlCommand cmd = new SqlCommand(query, cn);
+            cmd.Parameters.AddWithValue("@numFunc", numFunc);
+            StringBuilder result = new StringBuilder();
+
+            cn.Open();
+
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    string value = reader.GetString(0); // Obtém o valor da primeira coluna (índice 0)
+                    result.Append(value + ", "); // Concatena o valor à string result com uma vírgula e um espaço
+                }
+            }
+
+            cn.Close();
+
+            string concatenatedValues = result.ToString().TrimEnd(',', ' ');
+
+            return concatenatedValues;
+        }
+
 
         public void LockControls()
         {
@@ -324,14 +353,23 @@ namespace ProjetoBD
             if (isProfessor)
             {
                 btnProfessor.Select();
+                txtCertificados.Visible = true;
+                labelCertificados.Visible=true;
+
+                string certificados = VerificarCertificacoes(txtNfunc.Text, "Certificacoes_Prof");
+                txtCertificados.Text = certificados;
             }
             else if (isGerente)
             {
                 btnGerente.Select();
+                txtCertificados.Visible = false;
+                labelCertificados.Visible = false;
             }
             else if (isRecepcionista)
             {
                 btnRecepcionista.Select();
+                txtCertificados.Visible = false;
+                labelCertificados.Visible = false;
             }
 
             string nomeGerente = VerificarNomeGerente(txtNumGere.Text, "Staff");
@@ -504,10 +542,6 @@ namespace ProjetoBD
                     cn.Close();
                 }
             }
-
-
-
-
         }
 
         private void UpdateFunc(Staff C)
