@@ -20,7 +20,7 @@ namespace ProjetoBD
         private void btnClientes_Click(object sender, EventArgs e)
         {
             // Abrir a janela ou formulário de clientes
-            var clientesForm = new ClientesForm();
+            var clientesForm = new VerClientesForm();
             clientesForm.Show();
         }
 
@@ -38,5 +38,63 @@ namespace ProjetoBD
             classView.Show();
         }
 
+        private void MenuForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPlanoT_Click(object sender, EventArgs e)
+        {
+            var UDFPlanoTreino = new UDFPlanoTreino(1004);
+            UDFPlanoTreino.Show();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelCargo_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRecepcionista_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEntrar_Click(object sender, EventArgs e)
+        {
+
+            int ID = int.Parse(txtID.Text);
+
+            if (btnRecepcionista.Checked) { 
+            }
+            else if (btnCliente.Checked)
+            {
+                var ClientesForms = new ClientesForms();
+                ClientesForms.Show();
+            }
+            else if (btnGerente.Checked)
+            {
+
+            }
+            else if (btnProfessor.Checked)
+            {
+                var UDFPlanoTreino = new UDFPlanoTreino(ID);
+                UDFPlanoTreino.Show();
+            }
+        }
     }
 }

@@ -71,13 +71,19 @@
     <Compile Include="ClassView.Designer.cs">
       <DependentUpon>ClassView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Staff.cs" />
-    <Compile Include="Cliente.cs" />
-    <Compile Include="ClientesForm.cs">
+    <Compile Include="ClientesForms.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ClientesForm.Designer.cs">
-      <DependentUpon>ClientesForm.cs</DependentUpon>
+    <Compile Include="ClientesForms.Designer.cs">
+      <DependentUpon>ClientesForms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Staff.cs" />
+    <Compile Include="Cliente.cs" />
+    <Compile Include="VerClientesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerClientesForm.Designer.cs">
+      <DependentUpon>VerClientesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuForm.cs">
       <SubType>Form</SubType>
@@ -93,11 +99,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UDFPlanoTreino.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UDFPlanoTreino.Designer.cs">
+      <DependentUpon>UDFPlanoTreino.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ClassView.resx">
       <DependentUpon>ClassView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ClientesForm.resx">
-      <DependentUpon>ClientesForm.cs</DependentUpon>
+    <EmbeddedResource Include="VerClientesForm.resx">
+      <DependentUpon>VerClientesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuForm.resx">
       <DependentUpon>MenuForm.cs</DependentUpon>
@@ -113,6 +125,9 @@
     </Compile>
     <EmbeddedResource Include="StaffForm.resx">
       <DependentUpon>StaffForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UDFPlanoTreino.resx">
+      <DependentUpon>UDFPlanoTreino.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

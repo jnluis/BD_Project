@@ -1,6 +1,6 @@
 ﻿namespace ProjetoBD
 {
-    partial class ClientesForm
+    partial class VerClientesForm
     {
         /// <summary>
         /// Required designer variable.

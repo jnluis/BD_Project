@@ -35,6 +35,8 @@ namespace ProjetoBD
             SqlDataReader reader = cmd.ExecuteReader();
             listBox1.Items.Clear();
 
+            /*
+
             while (reader.Read())
             {
                 Cliente C = new Client(); // O QUE È SUPOSTO ESCREVER AQUI??? FAZER COMO O PAULO E A PARADINHA??? Não pode levar o nome da View senão queixa-se!
@@ -55,7 +57,7 @@ namespace ProjetoBD
 
             currentClient = 0;
             ShowClient();
-
+            */
         }
 
         private SqlConnection getSGBDConnection()

@@ -11,14 +11,14 @@ using System.Windows.Forms;
 
 namespace ProjetoBD
 {
-    public partial class ClientesForm : Form
+    public partial class VerClientesForm : Form
     {
 
         private SqlConnection cn;
         private int currentClient;
         private bool adding;
 
-        public ClientesForm()
+        public VerClientesForm()
         {
             InitializeComponent();
         }
@@ -58,8 +58,8 @@ namespace ProjetoBD
 
         private SqlConnection getSGBDConnection()
         {
-            //return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
-            return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
+            return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
+            //return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
         }
 
         private bool verifySGBDConnection()
