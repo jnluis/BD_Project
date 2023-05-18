@@ -2,41 +2,42 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Net.NetworkInformation;
 
 namespace ProjetoBD
 {
-    public partial class Form2 : Form
+    public partial class ClassView : Form
     {
+
         private SqlConnection cn;
         private int currentClient;
+        private int totalItems;
         private bool adding;
 
-        public Form2()
+        public ClassView()
         {
             InitializeComponent();
-
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void ClassView_Load(object sender, EventArgs e)
         {
+            totalItems = 0;
             cn = getSGBDConnection();
             if (!verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Ginasio.Cliente", cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Ginasio.Salas_AND_Aulas_VIEW", cn);
             SqlDataReader reader = cmd.ExecuteReader();
             listBox1.Items.Clear();
 
             while (reader.Read())
             {
-                Cliente C = new Cliente();
+                Cliente C = new Client(); // O QUE È SUPOSTO ESCREVER AQUI??? FAZER COMO O PAULO E A PARADINHA??? Não pode levar o nome da View senão queixa-se!
                 C.CC = reader["CC"].ToString();
                 C.Fname = reader["Fname"].ToString();
                 C.Lname = reader["Lname"].ToString();
@@ -45,15 +46,18 @@ namespace ProjetoBD
                 C.Morada = reader["Morada"].ToString();
                 C.Data_Nasc = reader["Data_Nasc"].ToString();
                 C.Telemovel = reader["Telemovel"].ToString();
+                //totalItems++;
                 listBox1.Items.Add(C);
             }
-
-            cn.Close();
+            //listBox1.Items.Add(totalItems.ToString());
+            //cn.Close();
 
 
             currentClient = 0;
             ShowClient();
+
         }
+
         private SqlConnection getSGBDConnection()
         {
             //return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
@@ -71,7 +75,7 @@ namespace ProjetoBD
             return cn.State == ConnectionState.Open;
         }
 
-        private void loadCustomersToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void loadCustomersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!verifySGBDConnection())
                 return;
@@ -108,7 +112,7 @@ namespace ProjetoBD
                 return;
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "INSERT INTO Ginasio.Cliente (CC, Fname, Lname, Email, Telemovel, NIF, Morada, Data_Nasc) " + "VALUES (@CC @Fname @Lname @Email @Telemovel @NIF @Morada @Data_Nasc)";
+            cmd.CommandText = "INSERT INTO Ginasio.Cliente (CC, Fname, Lname, Email, Telemovel, NIF, Morada, Data_Nasc) " + "VALUES (@CC, @Fname, @Lname, @Email, @Telemovel, @NIF, @Morada, @Data_Nasc)";
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@CC", C.CC);
             cmd.Parameters.AddWithValue("@Fname", C.Fname);
@@ -118,6 +122,24 @@ namespace ProjetoBD
             cmd.Parameters.AddWithValue("@NIF", C.NIF);
             cmd.Parameters.AddWithValue("@Morada", C.Morada);
             cmd.Parameters.AddWithValue("@Data_nasc", C.Data_Nasc);
+
+            if (verifySGBDConnection())
+            {
+                try
+                {
+                    cmd.Connection = cn;
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Cliente inserido com sucesso!");
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Ocorreu um erro ao inserir o cliente: " + ex.Message);
+                }
+                finally
+                {
+                    cn.Close();
+                }
+            }
         }
 
         private void UpdateClient(Cliente C)
@@ -223,21 +245,11 @@ namespace ProjetoBD
 
         public void ShowButtons()
         {
-            LockControls();
-            bttnAdd.Visible = true;
-            bttnDelete.Visible = true;
-            bttnEdit.Visible = true;
-            bttnOK.Visible = false;
-            bttnCancel.Visible = false;
+            LockControls(); 
         }
         public void HideButtons()
         {
             UnlockControls();
-            bttnAdd.Visible = false;
-            bttnDelete.Visible = false;
-            bttnEdit.Visible = false;
-            bttnOK.Visible = true;
-            bttnCancel.Visible = true;
         }
 
         public void ShowClient()
@@ -289,21 +301,6 @@ namespace ProjetoBD
             return true;
         }
 
-        private void Label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void bttnAdd_Click(object sender, EventArgs e)
         {
             adding = true;
@@ -314,20 +311,7 @@ namespace ProjetoBD
 
         private void bttnCancel_Click(object sender, EventArgs e)
         {
-            listBox1.Enabled = true;
-            if (listBox1.Items.Count > 0)
-            {
-                currentClient = listBox1.SelectedIndex;
-                if (currentClient < 0)
-                    currentClient = 0;
-                ShowClient();
-            }
-            else
-            {
-                ClearFields();
-                LockControls();
-            }
-            ShowButtons();
+
         }
 
         private void bttnEdit_Click(object sender, EventArgs e)
@@ -345,18 +329,7 @@ namespace ProjetoBD
 
         private void bttnOK_Click(object sender, EventArgs e)
         {
-            try
-            {
-                SaveClient();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            listBox1.Enabled = true;
-            int idx = listBox1.FindString(txtCC.Text);
-            listBox1.SelectedIndex = idx;
-            ShowButtons();
+
         }
 
         private void bttnDelete_Click(object sender, EventArgs e)
@@ -378,7 +351,7 @@ namespace ProjetoBD
                 if (currentClient == -1)
                 {
                     ClearFields();
-                    MessageBox.Show("There are no more contacts");
+                    MessageBox.Show("Não há mais clientes");
                 }
                 else
                 {
@@ -387,12 +360,12 @@ namespace ProjetoBD
             }
         }
 
-        private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBox1.SelectedIndex > -1)
             {
@@ -401,9 +374,47 @@ namespace ProjetoBD
             }
         }
 
-        private void Form2_Load_1(object sender, EventArgs e)
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void Label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDataNasc_TextChanged(object sender, EventArgs e)
         {
 
         }
     }
+
+
+
 }

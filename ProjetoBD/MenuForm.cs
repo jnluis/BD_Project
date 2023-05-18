@@ -30,5 +30,13 @@ namespace ProjetoBD
             var StaffForm = new StaffForm();
             StaffForm.Show();
         }
+
+        private void btnClassView_Click(object sender, EventArgs e)
+        {
+            // Abrir a janela ou formulário de clientes
+            var classView = new ClassView();
+            classView.Show();
+        }
+
     }
 }
