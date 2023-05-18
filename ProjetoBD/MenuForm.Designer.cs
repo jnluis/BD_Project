@@ -36,11 +36,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelCargo = new System.Windows.Forms.Panel();
+            this.btnCliente = new System.Windows.Forms.RadioButton();
             this.label14 = new System.Windows.Forms.Label();
             this.btnRecepcionista = new System.Windows.Forms.RadioButton();
             this.btnProfessor = new System.Windows.Forms.RadioButton();
             this.btnGerente = new System.Windows.Forms.RadioButton();
-            this.btnCliente = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.btnEntrar = new System.Windows.Forms.Button();
@@ -125,6 +125,18 @@
             this.panelCargo.TabIndex = 234;
             this.panelCargo.Paint += new System.Windows.Forms.PaintEventHandler(this.panelCargo_Paint);
             // 
+            // btnCliente
+            // 
+            this.btnCliente.AutoSize = true;
+            this.btnCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCliente.Location = new System.Drawing.Point(16, 13);
+            this.btnCliente.Name = "btnCliente";
+            this.btnCliente.Size = new System.Drawing.Size(114, 33);
+            this.btnCliente.TabIndex = 234;
+            this.btnCliente.TabStop = true;
+            this.btnCliente.Text = "Cliente";
+            this.btnCliente.UseVisualStyleBackColor = true;
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -170,18 +182,6 @@
             this.btnGerente.Text = "Gerente";
             this.btnGerente.UseVisualStyleBackColor = true;
             // 
-            // btnCliente
-            // 
-            this.btnCliente.AutoSize = true;
-            this.btnCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCliente.Location = new System.Drawing.Point(16, 13);
-            this.btnCliente.Name = "btnCliente";
-            this.btnCliente.Size = new System.Drawing.Size(114, 33);
-            this.btnCliente.TabIndex = 234;
-            this.btnCliente.TabStop = true;
-            this.btnCliente.Text = "Cliente";
-            this.btnCliente.UseVisualStyleBackColor = true;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -216,7 +216,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightBlue;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(637, 836);
             this.Controls.Add(this.btnEntrar);
             this.Controls.Add(this.txtID);
