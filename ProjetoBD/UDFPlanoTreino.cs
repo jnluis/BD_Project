@@ -16,7 +16,7 @@ namespace ProjetoBD
     public partial class UDFPlanoTreino : Form
     {
         private SqlConnection cn;
-        public int IDinical;
+        private int IDinical;
         public UDFPlanoTreino(int id)
         {
             InitializeComponent();
@@ -35,6 +35,10 @@ namespace ProjetoBD
 
             // Criar uma lista para armazenar os valores retornados
             List<int> ccClientes = new List<int>();
+
+            // Adicionar um item vazio à lista
+            ccClientes.Add(-1);
+
             SqlDataReader reader = cmd.ExecuteReader();
 
             // Ler os resultados da consulta e adicionar à lista
@@ -51,8 +55,6 @@ namespace ProjetoBD
             // Preencher a ComboBox com os valores da lista
             cBoxClientes.DataSource = ccClientes;
             cBoxClientes.DisplayMember = "CC_cliente";
-
-            cBoxClientes.SelectedIndex = -1;
         }
 
         private SqlConnection getSGBDConnection()
@@ -72,5 +74,103 @@ namespace ProjetoBD
             return cn.State == ConnectionState.Open;
         }
 
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            var PaginaInicialProfs = new PaginaInicialProfs(IDinical);
+            PaginaInicialProfs.Show();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void cBoxClientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string idCliente = "";
+
+            if (cBoxClientes.SelectedValue != null){
+                idCliente = cBoxClientes.SelectedValue.ToString();
+            }
+
+            lblAge.Visible= true;
+            lblIdade.Visible= true;
+            lblNCliente.Visible= true;
+            lblNome.Visible= true;
+            lblNTreino.Visible= true;
+
+            lblNCliente.Text= idCliente;
+
+
+            cn = getSGBDConnection();
+            if (!verifySGBDConnection())
+                return;
+
+            DataTable nome = new DataTable();
+
+            string name = "SELECT Fname, Lname FROM Ginasio.Cliente WHERE CC = @idCliente";
+            SqlCommand cmd = new SqlCommand(name, cn);
+            cmd.Parameters.AddWithValue("@idCliente", idCliente);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(nome);
+
+            foreach (DataRow row in nome.Rows)
+            {
+                string Fname = row["Fname"].ToString();
+                string Lanme = row["Lname"].ToString();
+                lblNome.Text = Fname + " " + Lanme;
+            }
+
+            string queryAnoNasc = "SELECT YEAR(Data_Nasc) AS Ano FROM Ginasio.Cliente WHERE CC = @idCliente";
+            cmd = new SqlCommand(queryAnoNasc, cn);
+            cmd.Parameters.AddWithValue("@idCliente", idCliente);
+
+            int anoNasc = 0;
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    if (!reader.IsDBNull(0))
+                    {
+                        anoNasc = reader.GetInt32(0);
+                    }
+                }
+            }
+
+            if (anoNasc != 0)
+            {
+                int anoAtual = DateTime.Now.Year;
+                int idade = anoAtual - anoNasc;
+
+                lblAge.Text = idade.ToString();
+            }
+
+            string dados = "SELECT * FROM Ginasio.funcPlanoTreinoCliente(@idCliente)";
+            cmd = new SqlCommand(dados , cn);
+            cmd.Parameters.AddWithValue("@idCliente", idCliente);
+
+            DataTable dt = new DataTable();
+
+            adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(dt);
+            tabelaExercicios.DataSource = dt;
+            tabelaExercicios.Visible = true;
+
+
+            string Ntreinos = "select Num_Treinos_Semanais from Ginasio.Plano_Treino where CC_Cliente = @idCliente";
+            cmd = new SqlCommand(Ntreinos, cn);
+            cmd.Parameters.AddWithValue("@idCliente", idCliente);
+
+            SqlDataReader read = cmd.ExecuteReader();
+            if (read.Read())
+            {
+                lblNTreino.Text = read["Num_Treinos_Semanais"].ToString();
+            }
+
+
+            cn.Close();
+
+        }
     }
 }

@@ -194,7 +194,7 @@
             // 
             // txtID
             // 
-            this.txtID.BackColor = System.Drawing.Color.Azure;
+            this.txtID.BackColor = System.Drawing.Color.White;
             this.txtID.Location = new System.Drawing.Point(354, 311);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(216, 26);
@@ -202,7 +202,7 @@
             // 
             // btnEntrar
             // 
-            this.btnEntrar.BackColor = System.Drawing.Color.Azure;
+            this.btnEntrar.BackColor = System.Drawing.Color.White;
             this.btnEntrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEntrar.Location = new System.Drawing.Point(354, 421);
             this.btnEntrar.Name = "btnEntrar";
@@ -231,6 +231,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MenuForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Power Fit";
             this.Load += new System.EventHandler(this.MenuForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

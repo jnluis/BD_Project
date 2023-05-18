@@ -92,8 +92,8 @@ namespace ProjetoBD
             }
             else if (btnProfessor.Checked)
             {
-                var UDFPlanoTreino = new UDFPlanoTreino(ID);
-                UDFPlanoTreino.Show();
+                var PaginaInicialProfs = new PaginaInicialProfs(ID);
+                PaginaInicialProfs.Show();
             }
         }
     }
