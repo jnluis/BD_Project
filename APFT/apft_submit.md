@@ -88,6 +88,9 @@ SELECT * FROM MY_TABLE ....;
 
 -- Insert new element
 INSERT INTO MY_TABLE ....;
+
+SELECT Nome FROM Ginasio.Exercicio ORDER BY Nome
+
 ```
 
 ...

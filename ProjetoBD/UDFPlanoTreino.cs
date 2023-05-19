@@ -16,7 +16,8 @@ namespace ProjetoBD
     public partial class UDFPlanoTreino : Form
     {
         private SqlConnection cn;
-        private int IDinical;
+        private int IDinical, idade;
+        private string nTreino, name, idCliente = "";
         public UDFPlanoTreino(int id)
         {
             InitializeComponent();
@@ -88,7 +89,6 @@ namespace ProjetoBD
 
         private void cBoxClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string idCliente = "";
 
             if (cBoxClientes.SelectedValue != null){
                 idCliente = cBoxClientes.SelectedValue.ToString();
@@ -119,7 +119,8 @@ namespace ProjetoBD
             {
                 string Fname = row["Fname"].ToString();
                 string Lanme = row["Lname"].ToString();
-                lblNome.Text = Fname + " " + Lanme;
+                name = Fname + " " + Lanme;
+                lblNome.Text = name;
             }
 
             string queryAnoNasc = "SELECT YEAR(Data_Nasc) AS Ano FROM Ginasio.Cliente WHERE CC = @idCliente";
@@ -141,7 +142,7 @@ namespace ProjetoBD
             if (anoNasc != 0)
             {
                 int anoAtual = DateTime.Now.Year;
-                int idade = anoAtual - anoNasc;
+                idade = anoAtual - anoNasc;
 
                 lblAge.Text = idade.ToString();
             }
@@ -165,12 +166,20 @@ namespace ProjetoBD
             SqlDataReader read = cmd.ExecuteReader();
             if (read.Read())
             {
-                lblNTreino.Text = read["Num_Treinos_Semanais"].ToString();
+                nTreino = read["Num_Treinos_Semanais"].ToString();
+                lblNTreino.Text = nTreino;
             }
 
 
             cn.Close();
 
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            var EditarPlanoTreino = new EditarPlanoTreino(name, idCliente, nTreino, idade, IDinical);
+            EditarPlanoTreino.Show();
         }
     }
 }

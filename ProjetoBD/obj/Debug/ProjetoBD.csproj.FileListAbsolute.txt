@@ -27,3 +27,5 @@ C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.ClassView.resour
 C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.UDFPlanoTreino.resources
 C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.VerClientesForm.resources
 C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.PaginaInicialProfs.resources
+C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.EditarPlanoTreino.resources
+C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.AddPlanoTreino.resources

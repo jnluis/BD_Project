@@ -128,5 +128,13 @@ namespace ProjetoBD
             var UDFPlanoTreino = new UDFPlanoTreino(IDinical);
             UDFPlanoTreino.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            var AddPlanoTreino = new AddPlanoTreino(IDinical);
+            AddPlanoTreino.Show();
+
+        }
     }
 }
