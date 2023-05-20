@@ -19,7 +19,6 @@ C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\B
 C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\BD- Bases de Dados\Práticas\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.pdb
 C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.MenuForm.resources
 C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.StaffForm.resources
-C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\BD- Bases de Dados\Práticas\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.ClientesForm.resources
 C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\BD- Bases de Dados\Práticas\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.MenuForm.resources
 C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\BD- Bases de Dados\Práticas\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.StaffForm.resources
 C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\BD- Bases de Dados\Práticas\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.ClassView.resources
@@ -29,3 +28,8 @@ C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.VerClientesForm.
 C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.PaginaInicialProfs.resources
 C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.EditarPlanoTreino.resources
 C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.AddPlanoTreino.resources
+C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\BD- Bases de Dados\Práticas\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.AddPlanoTreino.resources
+C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\BD- Bases de Dados\Práticas\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.EditarPlanoTreino.resources
+C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\BD- Bases de Dados\Práticas\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.PaginaInicialProfs.resources
+C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\BD- Bases de Dados\Práticas\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.VerClientesForm.resources
+C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\BD- Bases de Dados\Práticas\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.UDFPlanoTreino.resources

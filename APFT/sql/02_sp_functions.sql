@@ -97,3 +97,29 @@ GO
 
 --Test
 SELECT * FROM Ginasio.funcHorarioProfessor(1004);
+
+CREATE PROCEDURE Ginasio.CheckProfessorIDExists
+    @ProfessorID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF NOT EXISTS (SELECT 1 FROM Ginasio.Professor WHERE Num_func = @ProfessorID)
+	-- Os valores dos SELECTS estão trocados, mas para não mudar a SP, fiz a negação disto no validation
+    BEGIN
+        --SELECT 'Error: Professor ID does not exist' AS ErrorMessage;
+		SELECT 1
+    END
+    ELSE
+    BEGIN
+        -- Perform other actions if the professor ID exists
+        -- You can add your desired logic here
+        --SELECT 'Success: Professor ID exists' AS SuccessMessage;
+		SELECT 0
+    END
+END
+
+-- testar a SP CheckProfessorIDExists
+go
+EXEC Ginasio.CheckProfessorIDExists 1004;
+go
