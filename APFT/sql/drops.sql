@@ -1,0 +1,11 @@
+drop PROCEDURE Ginasio.InserirExercicioNumPlanoTreino
+
+drop PROCEDURE Ginasio.EliminarExercicioNumPlanoTreino
+
+drop FUNCTION Ginasio.funcPlanoTreinoCliente
+
+drop FUNCTION Ginasio.funcHorarioProfessor
+
+drop PROCEDURE Ginasio.CheckProfessorIDExists
+
+drop TRIGGER Ginasio.VerificarPagamento

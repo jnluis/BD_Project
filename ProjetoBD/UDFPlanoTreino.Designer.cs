@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UDFPlanoTreino));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cBoxClientes = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnVoltar = new System.Windows.Forms.Button();
@@ -134,10 +134,8 @@
             this.lblNCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNCliente.Location = new System.Drawing.Point(547, 56);
             this.lblNCliente.Name = "lblNCliente";
-            this.lblNCliente.Size = new System.Drawing.Size(210, 46);
+            this.lblNCliente.Size = new System.Drawing.Size(0, 46);
             this.lblNCliente.TabIndex = 3;
-            this.lblNCliente.Text = "Cliente n. ";
-            this.lblNCliente.Visible = false;
             // 
             // lblNome
             // 
@@ -148,10 +146,8 @@
             this.lblNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNome.Location = new System.Drawing.Point(361, 108);
             this.lblNome.Name = "lblNome";
-            this.lblNome.Size = new System.Drawing.Size(131, 46);
+            this.lblNome.Size = new System.Drawing.Size(0, 46);
             this.lblNome.TabIndex = 5;
-            this.lblNome.Text = "Nome";
-            this.lblNome.Visible = false;
             // 
             // lblIdade
             // 
@@ -165,7 +161,6 @@
             this.lblIdade.Size = new System.Drawing.Size(105, 37);
             this.lblIdade.TabIndex = 6;
             this.lblIdade.Text = "Idade:";
-            this.lblIdade.Visible = false;
             // 
             // lblAge
             // 
@@ -178,7 +173,6 @@
             this.lblAge.Name = "lblAge";
             this.lblAge.Size = new System.Drawing.Size(0, 37);
             this.lblAge.TabIndex = 7;
-            this.lblAge.Visible = false;
             // 
             // nTreinos
             // 
@@ -187,26 +181,22 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nTreinos.AutoSize = true;
             this.nTreinos.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nTreinos.Location = new System.Drawing.Point(984, 191);
+            this.nTreinos.Location = new System.Drawing.Point(1006, 191);
             this.nTreinos.Name = "nTreinos";
-            this.nTreinos.Size = new System.Drawing.Size(94, 37);
+            this.nTreinos.Size = new System.Drawing.Size(0, 37);
             this.nTreinos.TabIndex = 9;
-            this.nTreinos.Text = "N. de";
-            this.nTreinos.Visible = false;
             // 
             // lblNTreino
             // 
             this.lblNTreino.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNTreino.AutoSize = true;
             this.lblNTreino.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNTreino.Location = new System.Drawing.Point(646, 191);
             this.lblNTreino.Name = "lblNTreino";
             this.lblNTreino.Size = new System.Drawing.Size(379, 37);
             this.lblNTreino.TabIndex = 8;
             this.lblNTreino.Text = "N. de Treinos Semanais: ";
-            this.lblNTreino.Visible = false;
             // 
             // tabelaExercicios
             // 
@@ -221,23 +211,23 @@
             this.tabelaExercicios.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.tabelaExercicios.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.tabelaExercicios.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tabelaExercicios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tabelaExercicios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.tabelaExercicios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tabelaExercicios.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tabelaExercicios.DefaultCellStyle = dataGridViewCellStyle4;
             this.tabelaExercicios.Location = new System.Drawing.Point(369, 286);
             this.tabelaExercicios.Name = "tabelaExercicios";
             this.tabelaExercicios.RowHeadersWidth = 62;

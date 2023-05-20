@@ -9,6 +9,6 @@ AS
 		IF (Select Estado From Ginasio.Pagamento Where CC_Cliente = @idCliente) != 'Pago'
 			RAISERROR('Não é possível criar/editar o plano de Treino! O cliente tem o pagamento da subscrição pendente ou cancelado.', 16, 1);
 		ELSE
-			INSERT INTO Ginasio.PlanoTreino SELECT * FROM inserted;
+			INSERT INTO Ginasio.Plano_Treino SELECT * FROM inserted;
 END
 GO

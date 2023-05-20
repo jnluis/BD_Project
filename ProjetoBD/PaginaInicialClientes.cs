@@ -11,28 +11,24 @@ using System.Windows.Forms;
 
 namespace ProjetoBD
 {
-    public partial class PaginaInicialProfs : Form
+    public partial class PaginaInicialClientes : Form
     {
         private SqlConnection cn;
-        private int IDinical;
-        private string nomeProf;
-        public PaginaInicialProfs(int ID)
+        private int CC_Cliente;
+        private string nomeCliente;
+
+        public PaginaInicialClientes(int cc)
         {
+            this.CC_Cliente = cc;
             InitializeComponent();
-            IDinical = ID;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void label8_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PaginaInicialProfs_Load(object sender, EventArgs e)
+        private void PaginaIncialClientes_Load(object sender, EventArgs e)
         {
             cn = getSGBDConnection();
             if (!verifySGBDConnection())
@@ -40,47 +36,48 @@ namespace ProjetoBD
 
             DataTable resultado = new DataTable();
 
-            string sql = "SELECT * FROM Ginasio.funcHorarioProfessor(@IDinical)";
+            string sql = "SELECT * FROM Ginasio.funcAulasInscritas(@ccCliente)";
             SqlCommand cmd = new SqlCommand(sql, cn);
-            cmd.Parameters.AddWithValue("@IDinical", IDinical);
+            cmd.Parameters.AddWithValue("@ccCliente", CC_Cliente);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             adapter.Fill(resultado);
 
             foreach (DataRow row in resultado.Rows)
             {
+                string aula = row["Aula"].ToString();
                 string diaSemana = row["Dia_Semana"].ToString();
                 string horaInicio = row["Hora_Inicio"].ToString();
                 string horaFim = row["Hora_Fim"].ToString();
-                string tipo = row["Tipo"].ToString();
+                string estado = row["Estado"].ToString();
 
                 // Atribuir os valores às text boxes correspondentes com base no dia da semana
                 switch (diaSemana)
                 {
                     case "Segunda-feira":
-                        txtSegunda.Text += horaInicio + " - " + horaFim + ": " + tipo + '\n';
+                        txtSegunda.Text += horaInicio + " - " + horaFim + ": " + aula + "(" + estado + ")" + '\n';
                         break;
                     case "Terça-feira":
-                        txtTerca.Text += horaInicio + " - " + horaFim + ": " + tipo + '\n';
+                        txtTerca.Text += horaInicio + " - " + horaFim + ": " + aula + "(" + estado + ")" + '\n';
                         break;
                     case "Quarta-feira":
-                        txtQuarta.Text += horaInicio + " - " + horaFim + ": " + tipo + '\n';
+                        txtQuarta.Text += horaInicio + " - " + horaFim + ": " + aula + "(" + estado + ")" + '\n';
                         break;
                     case "Quinta-feira":
-                        txtQuinta.Text += horaInicio + " - " + horaFim + ": " + tipo + '\n';
+                        txtQuinta.Text += horaInicio + " - " + horaFim + ": " + aula + "(" + estado + ")" + '\n';
                         break;
                     case "Sexta-feira":
-                        txtSexta.Text += horaInicio + " - " + horaFim + ": " + tipo + '\n';
+                        txtSexta.Text += horaInicio + " - " + horaFim + ": " + aula + "(" + estado + ")" + '\n';
                         break;
                     case "Sábado":
-                        txtSabado.Text += horaInicio + " - " + horaFim + ": " + tipo + '\n';
+                        txtSabado.Text += horaInicio + " - " + horaFim + ": " + aula + "(" + estado + ")" + '\n';
                         break;
                 }
             }
             DataTable nome = new DataTable();
 
-            string name = "SELECT Fname, Lname FROM Ginasio.Staff WHERE Num_func = @IDinicial";
+            string name = "SELECT Fname, Lname FROM Ginasio.Cliente WHERE CC = @ccCliente";
             cmd = new SqlCommand(name, cn);
-            cmd.Parameters.AddWithValue("@IDinicial", IDinical);
+            cmd.Parameters.AddWithValue("@ccCliente", CC_Cliente);
             adapter = new SqlDataAdapter(cmd);
             adapter.Fill(nome);
 
@@ -88,11 +85,11 @@ namespace ProjetoBD
             {
                 string Fname = row["Fname"].ToString();
                 string Lanme = row["Lname"].ToString();
-                nomeProf = Fname + " " + Lanme;
-                lblNomeProf.Text = nomeProf;
+                nomeCliente = Fname + " " + Lanme;
+                lblNomeProf.Text = nomeCliente;
             }
 
-            lblNum.Text = IDinical.ToString();
+            lblNum.Text = CC_Cliente.ToString();
 
             cn.Close();
         }
@@ -114,36 +111,18 @@ namespace ProjetoBD
             return cn.State == ConnectionState.Open;
         }
 
-        private void txtQuarta_TextChanged(object sender, EventArgs e)
+        private void btnFeedback_Click(object sender, EventArgs e)
         {
-
+            this.Close();
+            var DarFeedback = new DarFeedback(CC_Cliente, nomeCliente);
+            DarFeedback.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnAlunos_Click(object sender, EventArgs e)
-        {
             this.Close();
-            var UDFPlanoTreino = new UDFPlanoTreino(IDinical);
-            UDFPlanoTreino.Show();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            var AddPlanoTreino = new AddPlanoTreino(IDinical);
-            AddPlanoTreino.Show();
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            this.Close();
-            var VerFeedbackForm = new VerFeedbackForm(IDinical, nomeProf);
-            VerFeedbackForm.Show();
+            var VerPlanoTreino = new VerPlanoTreino(CC_Cliente, nomeCliente);
+            VerPlanoTreino.Show();
         }
     }
 }

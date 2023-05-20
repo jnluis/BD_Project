@@ -29,14 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditarPlanoTreino));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblAge = new System.Windows.Forms.Label();
             this.lblIdade = new System.Windows.Forms.Label();
             this.lblNome = new System.Windows.Forms.Label();
             this.lblNCliente = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnDel = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblNTreino = new System.Windows.Forms.Label();
@@ -50,8 +52,6 @@
             this.txtReps = new System.Windows.Forms.TextBox();
             this.txtSeries = new System.Windows.Forms.TextBox();
             this.txtTempo = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnDel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabelaExercicios)).BeginInit();
@@ -68,7 +68,6 @@
             this.lblAge.Name = "lblAge";
             this.lblAge.Size = new System.Drawing.Size(0, 37);
             this.lblAge.TabIndex = 16;
-            this.lblAge.Visible = false;
             // 
             // lblIdade
             // 
@@ -92,10 +91,8 @@
             this.lblNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNome.Location = new System.Drawing.Point(361, 108);
             this.lblNome.Name = "lblNome";
-            this.lblNome.Size = new System.Drawing.Size(131, 46);
+            this.lblNome.Size = new System.Drawing.Size(0, 46);
             this.lblNome.TabIndex = 14;
-            this.lblNome.Text = "Nome";
-            this.lblNome.Visible = false;
             // 
             // lblNCliente
             // 
@@ -106,10 +103,8 @@
             this.lblNCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNCliente.Location = new System.Drawing.Point(547, 56);
             this.lblNCliente.Name = "lblNCliente";
-            this.lblNCliente.Size = new System.Drawing.Size(210, 46);
+            this.lblNCliente.Size = new System.Drawing.Size(0, 46);
             this.lblNCliente.TabIndex = 13;
-            this.lblNCliente.Text = "Cliente n. ";
-            this.lblNCliente.Visible = false;
             // 
             // label1
             // 
@@ -139,6 +134,30 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(330, 1013);
             this.panel1.TabIndex = 11;
+            // 
+            // btnDel
+            // 
+            this.btnDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDel.Location = new System.Drawing.Point(30, 288);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(268, 55);
+            this.btnDel.TabIndex = 6;
+            this.btnDel.Text = "Eliminar";
+            this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Visible = false;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Location = new System.Drawing.Point(30, 190);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(268, 55);
+            this.btnAdd.TabIndex = 5;
+            this.btnAdd.Text = "Adicionar";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Visible = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnVoltar
             // 
@@ -183,12 +202,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nTreinos.AutoSize = true;
             this.nTreinos.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nTreinos.Location = new System.Drawing.Point(984, 191);
+            this.nTreinos.Location = new System.Drawing.Point(1018, 191);
             this.nTreinos.Name = "nTreinos";
-            this.nTreinos.Size = new System.Drawing.Size(94, 37);
+            this.nTreinos.Size = new System.Drawing.Size(0, 37);
             this.nTreinos.TabIndex = 18;
-            this.nTreinos.Text = "N. de";
-            this.nTreinos.Visible = false;
             // 
             // tabelaExercicios
             // 
@@ -203,23 +220,23 @@
             this.tabelaExercicios.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.tabelaExercicios.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.tabelaExercicios.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tabelaExercicios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tabelaExercicios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.tabelaExercicios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tabelaExercicios.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tabelaExercicios.DefaultCellStyle = dataGridViewCellStyle8;
             this.tabelaExercicios.Location = new System.Drawing.Point(369, 272);
             this.tabelaExercicios.Name = "tabelaExercicios";
             this.tabelaExercicios.ReadOnly = true;
@@ -315,30 +332,6 @@
             this.txtTempo.Size = new System.Drawing.Size(453, 39);
             this.txtTempo.TabIndex = 28;
             this.txtTempo.Visible = false;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(30, 190);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(268, 55);
-            this.btnAdd.TabIndex = 5;
-            this.btnAdd.Text = "Adicionar";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Visible = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnDel
-            // 
-            this.btnDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDel.Location = new System.Drawing.Point(30, 288);
-            this.btnDel.Name = "btnDel";
-            this.btnDel.Size = new System.Drawing.Size(268, 55);
-            this.btnDel.TabIndex = 6;
-            this.btnDel.Text = "Eliminar";
-            this.btnDel.UseVisualStyleBackColor = true;
-            this.btnDel.Visible = false;
-            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // EditarPlanoTreino
             // 

@@ -79,8 +79,8 @@ namespace ProjetoBD
 
         private SqlConnection getSGBDConnection()
         {
-            //return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
-            return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
+            return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
+            //return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
         }
 
         private bool verifySGBDConnection()
@@ -116,8 +116,8 @@ namespace ProjetoBD
                 }
                 else if (btnCliente.Checked)
                 {
-                    var ClientesForms = new ClientesForms();
-                    ClientesForms.Show();
+                    var PaginaInicialClientes = new PaginaInicialClientes(ID);
+                    PaginaInicialClientes.Show();
                 }
                 else if (btnGerente.Checked)
                 {

@@ -187,6 +187,7 @@ namespace ProjetoBD
 
             lblAge.Text = idade.ToString();
             lblNCliente.Text = id;
+            MessageBox.Show(nome);
             lblNome.Text = nome;
             lblNTreino.Text = numT.ToString();
 

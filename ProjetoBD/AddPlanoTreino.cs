@@ -9,12 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Linq;
 
 namespace ProjetoBD
 {
     public partial class AddPlanoTreino : Form
     {
-        private int IDProf;
+        private int IDProf, idade;
         private string nTreinos, nomeCliente, IDCliente;
         private SqlConnection cn;
 
@@ -48,6 +50,11 @@ namespace ProjetoBD
             this.Close();
             var UDFPlanoTreino = new UDFPlanoTreino(IDProf);
             UDFPlanoTreino.Show();
+        }
+
+        private void tabelaExercicios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
         private bool verifySGBDConnection()
@@ -113,17 +120,44 @@ namespace ProjetoBD
                             // Execute o comando SQL
                             cmd.ExecuteNonQuery();
 
-                            cn.Close();
+                            string queryAnoNasc = "SELECT YEAR(Data_Nasc) AS Ano FROM Ginasio.Cliente WHERE CC = @idCliente";
+                            cmd = new SqlCommand(queryAnoNasc, cn);
+                            cmd.Parameters.AddWithValue("@idCliente", IDCliente);
+
+                            int anoNasc = 0;
+                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    if (!reader.IsDBNull(0))
+                                    {
+                                        anoNasc = reader.GetInt32(0);
+                                    }
+                                }
+                            }
+
+                            if (anoNasc != 0)
+                            {
+                                int anoAtual = DateTime.Now.Year;
+                                idade = anoAtual - anoNasc;
+                            }
+
+
+                            this.Close();
+                            var EditarPlanoTreino = new EditarPlanoTreino(nomeCliente, IDCliente, nTreinos, idade, IDProf);
+                            EditarPlanoTreino.Show();
                         }
                         else
                         {
                             MessageBox.Show("Esse cliente não existe.");
                         }
+
+                        cn.Close();
                     }
+
                 }
                 catch (SqlException ex)
                 {
-                    // Exibir a mensagem do trigger em um MessageBox
                     MessageBox.Show("ERRO: " + ex.Message);
                 }
             }

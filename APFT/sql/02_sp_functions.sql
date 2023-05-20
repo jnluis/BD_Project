@@ -98,6 +98,8 @@ GO
 --Test
 SELECT * FROM Ginasio.funcHorarioProfessor(1004);
 
+----- UDF Para ver o id inserido pertence a um professor -----
+GO
 CREATE PROCEDURE Ginasio.CheckProfessorIDExists
     @ProfessorID INT
 AS
@@ -118,8 +120,27 @@ BEGIN
 		SELECT 0
     END
 END
-
+GO
 -- testar a SP CheckProfessorIDExists
-go
 EXEC Ginasio.CheckProfessorIDExists 1004;
-go
+
+----- UDF Para o cliente ver as aulas em que está inscrito -----
+
+GO
+CREATE FUNCTION Ginasio.funcAulasInscritas (@CC_Cliente INT) RETURNS @table
+TABLE([Aula] VARCHAR(30), [Hora_Inicio] VARCHAR(5), [Hora_Fim] VARCHAR(5), [Dia_Semana] VARCHAR(25), [Estado] VARCHAR(15))
+AS
+BEGIN
+    INSERT @table
+    SELECT Tipo, Hora_Inicio, Hora_Fim, Dia_Semana, Estado 
+    FROM Ginasio.Aula_Horario 
+    JOIN Ginasio.Aula ON Aula_ID =ID 
+    JOIN Ginasio.Sala ON Sala_ID = Ginasio.Sala.ID 
+    JOIN Ginasio.Inscreve ON ID_HAula = ID_Horario
+    WHERE Ginasio.Cliente.CC = @CC_Cliente;
+    RETURN;
+END
+GO
+
+
+SELECT * FROM Ginasio.funcPlanoTreinoCliente(123456789);

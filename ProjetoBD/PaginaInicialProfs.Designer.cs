@@ -42,15 +42,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.lblNomeProf = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.lblNum = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnAlunos = new System.Windows.Forms.Button();
+            this.btnFeedback = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblNomeProf = new System.Windows.Forms.Label();
+            this.lblNum = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnAlunos = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -194,6 +194,42 @@
             this.label7.Text = "Horário";
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.btnFeedback);
+            this.panel1.Controls.Add(this.btnAlunos);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(332, 972);
+            this.panel1.TabIndex = 18;
+            // 
+            // btnFeedback
+            // 
+            this.btnFeedback.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFeedback.Location = new System.Drawing.Point(35, 376);
+            this.btnFeedback.Name = "btnFeedback";
+            this.btnFeedback.Size = new System.Drawing.Size(268, 55);
+            this.btnFeedback.TabIndex = 2;
+            this.btnFeedback.Text = "Ver FeedBacks";
+            this.btnFeedback.UseVisualStyleBackColor = true;
+            this.btnFeedback.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(332, 149);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // lblNomeProf
             // 
             this.lblNomeProf.AutoSize = true;
@@ -202,26 +238,6 @@
             this.lblNomeProf.Name = "lblNomeProf";
             this.lblNomeProf.Size = new System.Drawing.Size(0, 55);
             this.lblNomeProf.TabIndex = 14;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(348, 36);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(144, 55);
-            this.label8.TabIndex = 15;
-            this.label8.Text = "Prof. ";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(351, 106);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(66, 40);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "N.:";
             // 
             // lblNum
             // 
@@ -232,19 +248,15 @@
             this.lblNum.Size = new System.Drawing.Size(0, 40);
             this.lblNum.TabIndex = 16;
             // 
-            // panel1
+            // label9
             // 
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.btnAlunos);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(332, 972);
-            this.panel1.TabIndex = 18;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(351, 106);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(66, 40);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "N.:";
             // 
             // button2
             // 
@@ -257,16 +269,6 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(35, 376);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(268, 55);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Ver FeedBacks";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // btnAlunos
             // 
             this.btnAlunos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -278,16 +280,15 @@
             this.btnAlunos.UseVisualStyleBackColor = true;
             this.btnAlunos.Click += new System.EventHandler(this.btnAlunos_Click);
             // 
-            // pictureBox1
+            // label8
             // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(332, 149);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(348, 36);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(144, 55);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Prof. ";
             // 
             // PaginaInicialProfs
             // 
@@ -344,14 +345,14 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label lblNomeProf;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label lblNum;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnAlunos;
+        private System.Windows.Forms.Button btnFeedback;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblNomeProf;
+        private System.Windows.Forms.Label lblNum;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAlunos;
+        private System.Windows.Forms.Label label8;
     }
 }

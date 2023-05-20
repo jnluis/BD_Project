@@ -83,11 +83,23 @@
     <Compile Include="ClientesForms.Designer.cs">
       <DependentUpon>ClientesForms.cs</DependentUpon>
     </Compile>
+    <Compile Include="DarFeedback.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DarFeedback.Designer.cs">
+      <DependentUpon>DarFeedback.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditarPlanoTreino.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditarPlanoTreino.Designer.cs">
       <DependentUpon>EditarPlanoTreino.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaginaInicialClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaginaInicialClientes.Designer.cs">
+      <DependentUpon>PaginaInicialClientes.cs</DependentUpon>
     </Compile>
     <Compile Include="PaginaInicialProfs.cs">
       <SubType>Form</SubType>
@@ -123,14 +135,32 @@
     <Compile Include="UDFPlanoTreino.Designer.cs">
       <DependentUpon>UDFPlanoTreino.cs</DependentUpon>
     </Compile>
+    <Compile Include="VerFeedbackForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerFeedbackForm.Designer.cs">
+      <DependentUpon>VerFeedbackForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerPlanoTreino.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerPlanoTreino.Designer.cs">
+      <DependentUpon>VerPlanoTreino.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddPlanoTreino.resx">
       <DependentUpon>AddPlanoTreino.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClassView.resx">
       <DependentUpon>ClassView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DarFeedback.resx">
+      <DependentUpon>DarFeedback.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditarPlanoTreino.resx">
       <DependentUpon>EditarPlanoTreino.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaginaInicialClientes.resx">
+      <DependentUpon>PaginaInicialClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PaginaInicialProfs.resx">
       <DependentUpon>PaginaInicialProfs.cs</DependentUpon>
@@ -155,6 +185,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UDFPlanoTreino.resx">
       <DependentUpon>UDFPlanoTreino.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerFeedbackForm.resx">
+      <DependentUpon>VerFeedbackForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerPlanoTreino.resx">
+      <DependentUpon>VerPlanoTreino.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

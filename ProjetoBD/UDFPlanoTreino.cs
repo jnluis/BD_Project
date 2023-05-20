@@ -17,7 +17,7 @@ namespace ProjetoBD
     {
         private SqlConnection cn;
         private int IDinical, idade;
-        private string nTreino, name, idCliente = "";
+        private string nTreino, nomeCliente, idCliente = "";
         public UDFPlanoTreino(int id)
         {
             InitializeComponent();
@@ -60,8 +60,8 @@ namespace ProjetoBD
 
         private SqlConnection getSGBDConnection()
         {
-            //return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
-            return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
+            return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
+            //return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
         }
 
         private bool verifySGBDConnection()
@@ -94,11 +94,6 @@ namespace ProjetoBD
                 idCliente = cBoxClientes.SelectedValue.ToString();
             }
 
-            lblAge.Visible= true;
-            lblIdade.Visible= true;
-            lblNCliente.Visible= true;
-            lblNome.Visible= true;
-            lblNTreino.Visible= true;
 
             lblNCliente.Text= idCliente;
 
@@ -119,8 +114,8 @@ namespace ProjetoBD
             {
                 string Fname = row["Fname"].ToString();
                 string Lanme = row["Lname"].ToString();
-                name = Fname + " " + Lanme;
-                lblNome.Text = name;
+                nomeCliente = Fname + " " + Lanme;
+                lblNome.Text = nomeCliente;
             }
 
             string queryAnoNasc = "SELECT YEAR(Data_Nasc) AS Ano FROM Ginasio.Cliente WHERE CC = @idCliente";
@@ -178,7 +173,7 @@ namespace ProjetoBD
         private void btnEdit_Click(object sender, EventArgs e)
         {
             this.Close();
-            var EditarPlanoTreino = new EditarPlanoTreino(name, idCliente, nTreino, idade, IDinical);
+            var EditarPlanoTreino = new EditarPlanoTreino(nomeCliente, idCliente, nTreino, idade, IDinical);
             EditarPlanoTreino.Show();
         }
     }

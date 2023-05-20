@@ -33,3 +33,7 @@ C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\B
 C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\BD- Bases de Dados\Práticas\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.PaginaInicialProfs.resources
 C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\BD- Bases de Dados\Práticas\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.VerClientesForm.resources
 C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\BD- Bases de Dados\Práticas\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.UDFPlanoTreino.resources
+C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.VerFeedbackForm.resources
+C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.PaginaInicialClientes.resources
+C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.DarFeedback.resources
+C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.VerPlanoTreino.resources
