@@ -17,10 +17,12 @@ namespace ProjetoBD
         private SqlConnection cn;
         private int currentClient;
         private bool adding;
+        private int idRec;
 
-        public VerClientesForm()
+        public VerClientesForm(int idRec)
         {
             InitializeComponent();
+            this.idRec = idRec;
         }
 
         private void Clientes_Load(object sender, EventArgs e)
@@ -412,6 +414,18 @@ namespace ProjetoBD
         }
 
         private void Label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            var paginaInicialRececionistas = new PaginaInicialRececionistas(idRec);
+            paginaInicialRececionistas.Show();
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }

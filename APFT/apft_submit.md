@@ -85,11 +85,19 @@ A section for each form.
 ```sql
 -- Show data on the form
 SELECT * FROM MY_TABLE ....;
+SELECT Nome FROM Ginasio.Exercicio ORDER BY Nome
+SELECT Fname, Lname FROM Ginasio.Staff WHERE Num_func = @IDinicial
+Select * From Ginasio.Plano_Adesao Where Num_Rec = @numFunc
 
 -- Insert new element
 INSERT INTO MY_TABLE ....;
 
-SELECT Nome FROM Ginasio.Exercicio ORDER BY Nome
+INSERT INTO Ginasio.Plano_Adesao (Tipo, CC_Cliente, Preco, Data_Fim, Data_Inicio, Num_Rec) " + "VALUES (@tipo, @cc, @preco, @dataFim, @dataInicio, @numRec)
+INSERT INTO Ginasio.Cliente (CC, Fname, Lname, Email, Telemovel, NIF, Morada, Data_Nasc) " + "VALUES (@CC, @Fname, @Lname, @Email, @Telemovel, @NIF, @Morada, @Data_Nasc)
+UPDATE Ginasio.Cliente " + "SET Fname = @Fname, " + "Lname = @Lname, " + " Email = @Email, " + " Telemovel = @Telemovel, " + " NIF = @NIF, " + " Morada = @Morada, " + " Data_Nasc = @Data_Nasc " + "WHERE CC = @CC
+DELETE Ginasio.Cliente WHERE CC=@CC
+
+
 
 ```
 

@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuForm));
-            this.btnClientes = new System.Windows.Forms.Button();
             this.btnStaff = new System.Windows.Forms.Button();
             this.ClassView = new System.Windows.Forms.Button();
-            this.btnPlanoT = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelCargo = new System.Windows.Forms.Panel();
@@ -47,17 +45,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelCargo.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnClientes
-            // 
-            this.btnClientes.Location = new System.Drawing.Point(64, 565);
-            this.btnClientes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnClientes.Name = "btnClientes";
-            this.btnClientes.Size = new System.Drawing.Size(149, 105);
-            this.btnClientes.TabIndex = 0;
-            this.btnClientes.Text = "Clientes";
-            this.btnClientes.UseVisualStyleBackColor = true;
-            this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
             // btnStaff
             // 
@@ -80,16 +67,6 @@
             this.ClassView.Text = "View Classes";
             this.ClassView.UseVisualStyleBackColor = true;
             this.ClassView.Click += new System.EventHandler(this.btnClassView_Click);
-            // 
-            // btnPlanoT
-            // 
-            this.btnPlanoT.Location = new System.Drawing.Point(374, 565);
-            this.btnPlanoT.Name = "btnPlanoT";
-            this.btnPlanoT.Size = new System.Drawing.Size(166, 105);
-            this.btnPlanoT.TabIndex = 3;
-            this.btnPlanoT.Text = "Planos de Treino";
-            this.btnPlanoT.UseVisualStyleBackColor = true;
-            this.btnPlanoT.Click += new System.EventHandler(this.btnPlanoT_Click);
             // 
             // label1
             // 
@@ -224,10 +201,8 @@
             this.Controls.Add(this.panelCargo);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnPlanoT);
             this.Controls.Add(this.ClassView);
             this.Controls.Add(this.btnStaff);
-            this.Controls.Add(this.btnClientes);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MenuForm";
@@ -243,11 +218,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnClientes;
         private System.Windows.Forms.Button btnStaff;
         private System.Windows.Forms.Button ClassView;
-        private System.Windows.Forms.Button btnPlanoT;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panelCargo;

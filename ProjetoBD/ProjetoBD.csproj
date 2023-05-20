@@ -54,6 +54,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -76,6 +77,12 @@
     </Compile>
     <Compile Include="ClassView.Designer.cs">
       <DependentUpon>ClassView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CriarPlanoAdesao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CriarPlanoAdesao.Designer.cs">
+      <DependentUpon>CriarPlanoAdesao.cs</DependentUpon>
     </Compile>
     <Compile Include="DarFeedback.cs">
       <SubType>Form</SubType>
@@ -152,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ClassView.resx">
       <DependentUpon>ClassView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CriarPlanoAdesao.resx">
+      <DependentUpon>CriarPlanoAdesao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DarFeedback.resx">
       <DependentUpon>DarFeedback.cs</DependentUpon>

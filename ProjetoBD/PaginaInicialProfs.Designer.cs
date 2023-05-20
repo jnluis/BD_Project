@@ -43,14 +43,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.btnFeedback = new System.Windows.Forms.Button();
+            this.btnAlunos = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblNomeProf = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.lblNum = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnAlunos = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -208,6 +208,17 @@
             this.panel1.Size = new System.Drawing.Size(332, 972);
             this.panel1.TabIndex = 18;
             // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(35, 179);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(268, 85);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Criar Plano de Treino";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // btnFeedback
             // 
             this.btnFeedback.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -218,6 +229,17 @@
             this.btnFeedback.Text = "Ver FeedBacks";
             this.btnFeedback.UseVisualStyleBackColor = true;
             this.btnFeedback.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // btnAlunos
+            // 
+            this.btnAlunos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlunos.Location = new System.Drawing.Point(35, 296);
+            this.btnAlunos.Name = "btnAlunos";
+            this.btnAlunos.Size = new System.Drawing.Size(268, 55);
+            this.btnAlunos.TabIndex = 1;
+            this.btnAlunos.Text = "Ver Clientes";
+            this.btnAlunos.UseVisualStyleBackColor = true;
+            this.btnAlunos.Click += new System.EventHandler(this.btnAlunos_Click);
             // 
             // pictureBox1
             // 
@@ -239,6 +261,16 @@
             this.lblNomeProf.Size = new System.Drawing.Size(0, 55);
             this.lblNomeProf.TabIndex = 14;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(348, 36);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(144, 55);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Prof. ";
+            // 
             // lblNum
             // 
             this.lblNum.AutoSize = true;
@@ -257,38 +289,6 @@
             this.label9.Size = new System.Drawing.Size(66, 40);
             this.label9.TabIndex = 17;
             this.label9.Text = "N.:";
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(35, 179);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(268, 85);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Criar Plano de Treino";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // btnAlunos
-            // 
-            this.btnAlunos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAlunos.Location = new System.Drawing.Point(35, 296);
-            this.btnAlunos.Name = "btnAlunos";
-            this.btnAlunos.Size = new System.Drawing.Size(268, 55);
-            this.btnAlunos.TabIndex = 1;
-            this.btnAlunos.Text = "Ver Clientes";
-            this.btnAlunos.UseVisualStyleBackColor = true;
-            this.btnAlunos.Click += new System.EventHandler(this.btnAlunos_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(348, 36);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(144, 55);
-            this.label8.TabIndex = 15;
-            this.label8.Text = "Prof. ";
             // 
             // PaginaInicialProfs
             // 
@@ -348,11 +348,11 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnFeedback;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label lblNomeProf;
-        private System.Windows.Forms.Label lblNum;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnAlunos;
+        private System.Windows.Forms.Label lblNomeProf;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblNum;
+        private System.Windows.Forms.Label label9;
     }
 }
