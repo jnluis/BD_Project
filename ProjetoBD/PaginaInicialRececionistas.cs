@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ProjetoBD
 {
-    public partial class ClientesForms : Form
+    public partial class PaginaInicialRececionistas : Form
     {
-        public ClientesForms()
+        public PaginaInicialRececionistas()
         {
             InitializeComponent();
         }
