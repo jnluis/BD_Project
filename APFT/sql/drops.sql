@@ -6,6 +6,8 @@ drop FUNCTION Ginasio.funcPlanoTreinoCliente
 
 drop FUNCTION Ginasio.funcHorarioProfessor
 
-drop PROCEDURE Ginasio.CheckProfessorIDExists
+drop PROCEDURE Ginasio.CheckIDExists
 
 drop TRIGGER Ginasio.VerificarPagamento
+
+DROP VIEW IF EXISTS Ginasio.Salas_AND_Aulas_VIEW

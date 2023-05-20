@@ -36,7 +36,6 @@ namespace ProjetoBD
 
         private void btnClassView_Click(object sender, EventArgs e)
         {
-            // Abrir a janela ou formulário de clientes
             var classView = new ClassView();
             classView.Show();
         }
@@ -79,8 +78,8 @@ namespace ProjetoBD
 
         private SqlConnection getSGBDConnection()
         {
-            return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
-            //return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
+            //return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
+            return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
         }
 
         private bool verifySGBDConnection()
@@ -116,8 +115,34 @@ namespace ProjetoBD
                 }
                 else if (btnCliente.Checked)
                 {
-                    var PaginaInicialClientes = new PaginaInicialClientes(ID);
-                    PaginaInicialClientes.Show();
+                    SqlCommand command = new SqlCommand("Ginasio.CheckIDExists", cn);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Clear();
+                    command.Parameters.AddWithValue("@ID", ID);
+                    command.Parameters.AddWithValue("@IsClient", 1);
+                    int result = (int)command.ExecuteScalar();
+                    Boolean validation = Convert.ToBoolean(result);
+                    try
+                    {
+
+                        if (!validation)
+                        {
+                            var PaginaInicialClientes = new PaginaInicialClientes(ID);
+                            PaginaInicialClientes.Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Insira um ID de um cliente registado no ginásio", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Falha na SP CheckIDExists. \n MENSAGEM DE ERRO: \n" + ex.Message);
+                    }
+                    finally
+                    {
+                        cn.Close();
+                    }
                 }
                 else if (btnGerente.Checked)
                 {
@@ -125,10 +150,11 @@ namespace ProjetoBD
                 }
                 else if (btnProfessor.Checked)
                 {
-                    SqlCommand command = new SqlCommand("Ginasio.CheckProfessorIDExists", cn);
+                    SqlCommand command = new SqlCommand("Ginasio.CheckIDExists", cn);
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Clear();
-                    command.Parameters.AddWithValue("@ProfessorID", ID);
+                    command.Parameters.AddWithValue("@ID", ID);
+                    command.Parameters.AddWithValue("@IsClient", 0); // Esta verficação é um bit para dizer quando é cliente ou não
                     int result = (int)command.ExecuteScalar();
                     Boolean validation = Convert.ToBoolean(result);
                     try
@@ -146,7 +172,7 @@ namespace ProjetoBD
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception("Falha na SP CheckProfessorIDExists. \n MENSAGEM DE ERRO: \n" + ex.Message);
+                        throw new Exception("Falha na SP CheckIDExists. \n MENSAGEM DE ERRO: \n" + ex.Message);
                     }
                     finally
                     {

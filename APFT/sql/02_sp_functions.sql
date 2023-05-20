@@ -100,29 +100,54 @@ SELECT * FROM Ginasio.funcHorarioProfessor(1004);
 
 ----- UDF Para ver o id inserido pertence a um professor -----
 GO
-CREATE PROCEDURE Ginasio.CheckProfessorIDExists
-    @ProfessorID INT
+CREATE PROCEDURE Ginasio.CheckIDExists
+    @ID INT,
+	@IsClient BIT
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    IF NOT EXISTS (SELECT 1 FROM Ginasio.Professor WHERE Num_func = @ProfessorID)
-	-- Os valores dos SELECTS estão trocados, mas para não mudar a SP, fiz a negação disto no validation
+	IF @IsClient = 1
     BEGIN
-        --SELECT 'Error: Professor ID does not exist' AS ErrorMessage;
-		SELECT 1
+        IF NOT EXISTS (SELECT 1 FROM Ginasio.Cliente WHERE CC = @ID)
+        BEGIN
+            SELECT 1
+        END
+        ELSE
+        BEGIN
+            SELECT 0
+        END
     END
     ELSE
     BEGIN
-        -- Perform other actions if the professor ID exists
-        -- You can add your desired logic here
-        --SELECT 'Success: Professor ID exists' AS SuccessMessage;
-		SELECT 0
+        IF NOT EXISTS (SELECT 1 FROM Ginasio.Professor WHERE Num_func = @ID)
+        BEGIN
+            SELECT 1
+        END
+        ELSE
+        BEGIN
+            SELECT 0
+        END
     END
 END
+	----------------------------------
+ --   IF NOT EXISTS (SELECT 1 FROM Ginasio.Professor WHERE Num_func = @ProfessorID)
+	---- Os valores dos SELECTS estão trocados, mas para não mudar a SP, fiz a negação disto no validation
+ --   BEGIN
+ --       --SELECT 'Error: Professor ID does not exist' AS ErrorMessage;
+	--	SELECT 1
+ --   END
+ --   ELSE
+ --   BEGIN
+ --       -- Perform other actions if the professor ID exists
+ --       -- You can add your desired logic here
+ --       --SELECT 'Success: Professor ID exists' AS SuccessMessage;
+	--	SELECT 0
+ --   END
+--- END
 GO
 -- testar a SP CheckProfessorIDExists
-EXEC Ginasio.CheckProfessorIDExists 1004;
+EXEC Ginasio.CheckProfessorIDExists 1004, 1;
 
 ----- UDF Para o cliente ver as aulas em que está inscrito -----
 
@@ -137,7 +162,7 @@ BEGIN
     JOIN Ginasio.Aula ON Aula_ID =ID 
     JOIN Ginasio.Sala ON Sala_ID = Ginasio.Sala.ID 
     JOIN Ginasio.Inscreve ON ID_HAula = ID_Horario
-    WHERE Ginasio.Cliente.CC = @CC_Cliente;
+    WHERE CC_Cliente = @CC_Cliente;
     RETURN;
 END
 GO

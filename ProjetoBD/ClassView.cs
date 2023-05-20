@@ -16,7 +16,6 @@ namespace ProjetoBD
 
         private SqlConnection cn;
         private int currentClient;
-        private int totalItems;
         private bool adding;
 
         public ClassView()
@@ -26,38 +25,38 @@ namespace ProjetoBD
 
         private void ClassView_Load(object sender, EventArgs e)
         {
-            totalItems = 0;
             cn = getSGBDConnection();
             if (!verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Ginasio.Salas_AND_Aulas_VIEW", cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Ginasio.Salas_AND_Aulas_VIEW ORDER BY Sala_ID, CASE Dia_Semana WHEN 'Segunda-feira' THEN 1 WHEN 'Terça-feira' THEN 2 WHEN 'Quarta-feira' THEN 3 WHEN 'Quinta-feira' THEN 4 WHEN 'Sexta-feira' THEN 5 WHEN 'Sábado' THEN 6 WHEN 'Domingo' THEN 7 ELSE 8 END", cn);
             SqlDataReader reader = cmd.ExecuteReader();
             listBox1.Items.Clear();
 
-            /*
+
 
             while (reader.Read())
             {
-                Cliente C = new Client(); // O QUE È SUPOSTO ESCREVER AQUI??? FAZER COMO O PAULO E A PARADINHA??? Não pode levar o nome da View senão queixa-se!
-                C.CC = reader["CC"].ToString();
-                C.Fname = reader["Fname"].ToString();
-                C.Lname = reader["Lname"].ToString();
-                C.Email = reader["Email"].ToString();
-                C.NIF = reader["NIF"].ToString();
-                C.Morada = reader["Morada"].ToString();
-                C.Data_Nasc = reader["Data_Nasc"].ToString();
-                C.Telemovel = reader["Telemovel"].ToString();
-                //totalItems++;
+                Cliente C = new Cliente();
+                {
+                    C.CC = reader["Sala_ID"].ToString();
+                    C.Fname = reader["Fname"].ToString();
+                    C.Lname = reader["Lname"].ToString();
+                    C.Email = reader["Hora_Inicio"].ToString();
+                    C.NIF = reader["Hora_Fim"].ToString();
+                    C.Morada = reader["Dia_Semana"].ToString();
+                    C.Data_Nasc = reader["Tipo"].ToString();
+                    C.Telemovel = reader["Num_Max_alunos"].ToString();
+                    //totalItems++;
+                   
+                };
                 listBox1.Items.Add(C);
             }
-            //listBox1.Items.Add(totalItems.ToString());
-            //cn.Close();
-
 
             currentClient = 0;
             ShowClient();
-            */
+            cn.Close();
+
         }
 
         private SqlConnection getSGBDConnection()
@@ -256,7 +255,7 @@ namespace ProjetoBD
 
         public void ShowClient()
         {
-            if (listBox1.Items.Count == 0 | currentClient < 0)
+            if (listBox1.Items.Count == 0 | currentClient < 0) // MEXER AQUI PARA AS COISAS FICAREM POR ORDEM
                 return;
             Cliente cliente = new Cliente();
             cliente = (Cliente)listBox1.Items[currentClient];
