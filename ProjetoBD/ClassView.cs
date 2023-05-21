@@ -26,7 +26,7 @@ namespace ProjetoBD
 
         private void ClassView_Load(object sender, EventArgs e)
         {
-            AutualizarDados();
+            AtualizarDados();
         }
 
         private SqlConnection getSGBDConnection()
@@ -114,18 +114,25 @@ namespace ProjetoBD
 
             }
 
-            AutualizarDados();
+            
         }
 
         private void btnInscreve_Click(object sender, EventArgs e)
         {
             
             var InscreverAula = new InscreverAula(int.Parse(idAula));
+            InscreverAula.FormClosed += Edit_FormClosed;
             InscreverAula.Show();
 
+           
         }
 
-        private void AutualizarDados()
+        private void Edit_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            AtualizarDados();
+        }
+
+        private void AtualizarDados()
         {
             btnInscreve.Visible = false;
             cn = getSGBDConnection();

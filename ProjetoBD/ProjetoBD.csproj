@@ -90,6 +90,12 @@
     <Compile Include="DarFeedback.Designer.cs">
       <DependentUpon>DarFeedback.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditarPagamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarPagamento.Designer.cs">
+      <DependentUpon>EditarPagamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditarPlanoTreino.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DarFeedback.resx">
       <DependentUpon>DarFeedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarPagamento.resx">
+      <DependentUpon>EditarPagamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditarPlanoTreino.resx">
       <DependentUpon>EditarPlanoTreino.cs</DependentUpon>

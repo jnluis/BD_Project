@@ -16,6 +16,7 @@ namespace ProjetoBD
         private SqlConnection cn;
         private DataTable originalDataTable;
         private int idRec;
+        private int idPagamento;
         public Pagamentos(int idRec)
         {
             InitializeComponent();
@@ -25,6 +26,15 @@ namespace ProjetoBD
         private void tabelaPagamentos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             btnEdit.Visible = true;
+
+            if (e.RowIndex >= 0) // Verifica se uma linha válida foi selecionada
+            {
+                DataGridViewRow row = tabelaPagamentos.Rows[e.RowIndex];
+
+                idPagamento = int.Parse(row.Cells["ID"].Value.ToString());
+
+
+            }
         }
 
         private void FiltrarDataGridView(string valorFiltro)
@@ -108,19 +118,47 @@ namespace ProjetoBD
         {
             this.Close();
             var rececionista = new PaginaInicialRececionistas(idRec);
+            rececionista.Show();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            btnInscreve.Visible = true;
+            var edit = new EditarPagamento(idPagamento);
+            edit.FormClosed += Edit_FormClosed; 
+            edit.Show();
+        }
 
-            if (e.RowIndex >= 0) // Verifica se uma linha válida foi selecionada
-            {
-                DataGridViewRow row = tabelaClassView.Rows[e.RowIndex];
+        private void Edit_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            AtualizarPagina(); 
+        }
 
-                idAula = row.Cells["Nº da Aula"].Value.ToString();
+        private void AtualizarPagina()
+        {
+            tabelaPagamentos.Visible = true;
+            cn = getSGBDConnection();
+            if (!verifySGBDConnection())
+                return;
 
-            }
+            string query = "SELECT * FROM Ginasio.Pagamento";
+
+            SqlCommand command = new SqlCommand(query, cn);
+
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+            DataTable dataTable = new DataTable();
+
+            originalDataTable = dataTable;
+            tabelaPagamentos.DataSource = dataTable;
+
+            adapter.Fill(dataTable);
+
+            tabelaPagamentos.DataSource = dataTable;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
