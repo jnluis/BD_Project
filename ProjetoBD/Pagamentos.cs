@@ -24,7 +24,7 @@ namespace ProjetoBD
 
         private void tabelaPagamentos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            btnEdit.Visible = true;
         }
 
         private void FiltrarDataGridView(string valorFiltro)
@@ -108,6 +108,19 @@ namespace ProjetoBD
         {
             this.Close();
             var rececionista = new PaginaInicialRececionistas(idRec);
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            btnInscreve.Visible = true;
+
+            if (e.RowIndex >= 0) // Verifica se uma linha válida foi selecionada
+            {
+                DataGridViewRow row = tabelaClassView.Rows[e.RowIndex];
+
+                idAula = row.Cells["Nº da Aula"].Value.ToString();
+
+            }
         }
     }
 }
