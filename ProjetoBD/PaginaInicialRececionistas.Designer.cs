@@ -29,19 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaginaInicialRececionistas));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCriarPA = new System.Windows.Forms.Button();
+            this.btnPagamentos = new System.Windows.Forms.Button();
             this.btnClientes = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnPagamentos = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.lblNum = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lblNome = new System.Windows.Forms.Label();
             this.tabelaPlanosAdesao = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
-            this.btnCriarPA = new System.Windows.Forms.Button();
+            this.btnAulas = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabelaPlanosAdesao)).BeginInit();
@@ -50,6 +51,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.btnAulas);
             this.panel1.Controls.Add(this.btnCriarPA);
             this.panel1.Controls.Add(this.btnPagamentos);
             this.panel1.Controls.Add(this.btnClientes);
@@ -60,6 +62,28 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(332, 964);
             this.panel1.TabIndex = 2;
+            // 
+            // btnCriarPA
+            // 
+            this.btnCriarPA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCriarPA.Location = new System.Drawing.Point(32, 291);
+            this.btnCriarPA.Name = "btnCriarPA";
+            this.btnCriarPA.Size = new System.Drawing.Size(268, 55);
+            this.btnCriarPA.TabIndex = 6;
+            this.btnCriarPA.Text = "Criar Plano de Adesão";
+            this.btnCriarPA.UseVisualStyleBackColor = true;
+            this.btnCriarPA.Click += new System.EventHandler(this.btnCriarPA_Click);
+            // 
+            // btnPagamentos
+            // 
+            this.btnPagamentos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPagamentos.Location = new System.Drawing.Point(32, 376);
+            this.btnPagamentos.Name = "btnPagamentos";
+            this.btnPagamentos.Size = new System.Drawing.Size(268, 55);
+            this.btnPagamentos.TabIndex = 5;
+            this.btnPagamentos.Text = "Pagamentos";
+            this.btnPagamentos.UseVisualStyleBackColor = true;
+            this.btnPagamentos.Click += new System.EventHandler(this.btnPagamentos_Click);
             // 
             // btnClientes
             // 
@@ -82,17 +106,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(332, 149);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // btnPagamentos
-            // 
-            this.btnPagamentos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPagamentos.Location = new System.Drawing.Point(32, 376);
-            this.btnPagamentos.Name = "btnPagamentos";
-            this.btnPagamentos.Size = new System.Drawing.Size(268, 55);
-            this.btnPagamentos.TabIndex = 5;
-            this.btnPagamentos.Text = "Pagamentos";
-            this.btnPagamentos.UseVisualStyleBackColor = true;
-            this.btnPagamentos.Click += new System.EventHandler(this.btnPagamentos_Click);
             // 
             // label9
             // 
@@ -145,23 +158,23 @@
             this.tabelaPlanosAdesao.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.tabelaPlanosAdesao.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.tabelaPlanosAdesao.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tabelaPlanosAdesao.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tabelaPlanosAdesao.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tabelaPlanosAdesao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tabelaPlanosAdesao.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tabelaPlanosAdesao.DefaultCellStyle = dataGridViewCellStyle2;
             this.tabelaPlanosAdesao.Location = new System.Drawing.Point(374, 305);
             this.tabelaPlanosAdesao.Name = "tabelaPlanosAdesao";
             this.tabelaPlanosAdesao.RowHeadersWidth = 62;
@@ -181,16 +194,16 @@
             this.label7.TabIndex = 32;
             this.label7.Text = "Planos de Adesão:";
             // 
-            // btnCriarPA
+            // btnAulas
             // 
-            this.btnCriarPA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCriarPA.Location = new System.Drawing.Point(32, 291);
-            this.btnCriarPA.Name = "btnCriarPA";
-            this.btnCriarPA.Size = new System.Drawing.Size(268, 55);
-            this.btnCriarPA.TabIndex = 6;
-            this.btnCriarPA.Text = "Criar Plano de Adesão";
-            this.btnCriarPA.UseVisualStyleBackColor = true;
-            this.btnCriarPA.Click += new System.EventHandler(this.btnCriarPA_Click);
+            this.btnAulas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAulas.Location = new System.Drawing.Point(32, 455);
+            this.btnAulas.Name = "btnAulas";
+            this.btnAulas.Size = new System.Drawing.Size(268, 55);
+            this.btnAulas.TabIndex = 7;
+            this.btnAulas.Text = "Aulas";
+            this.btnAulas.UseVisualStyleBackColor = true;
+            this.btnAulas.Click += new System.EventHandler(this.btnAulas_Click);
             // 
             // PaginaInicialRececionistas
             // 
@@ -232,5 +245,6 @@
         private System.Windows.Forms.DataGridView tabelaPlanosAdesao;
         private System.Windows.Forms.Button btnCriarPA;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnAulas;
     }
 }

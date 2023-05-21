@@ -36,6 +36,8 @@ namespace ProjetoBD
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnInscreve = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tabelaClassView)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -47,6 +49,9 @@ namespace ProjetoBD
             this.tabelaClassView.AllowUserToDeleteRows = false;
             this.tabelaClassView.AllowUserToResizeColumns = false;
             this.tabelaClassView.AllowUserToResizeRows = false;
+            this.tabelaClassView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabelaClassView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tabelaClassView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.tabelaClassView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
@@ -68,36 +73,40 @@ namespace ProjetoBD
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.tabelaClassView.DefaultCellStyle = dataGridViewCellStyle2;
-            this.tabelaClassView.Location = new System.Drawing.Point(306, 251);
+            this.tabelaClassView.Location = new System.Drawing.Point(361, 314);
             this.tabelaClassView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabelaClassView.Name = "tabelaClassView";
             this.tabelaClassView.RowHeadersWidth = 62;
             this.tabelaClassView.RowTemplate.Height = 28;
-            this.tabelaClassView.Size = new System.Drawing.Size(1232, 455);
+            this.tabelaClassView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.tabelaClassView.Size = new System.Drawing.Size(1340, 537);
             this.tabelaClassView.TabIndex = 215;
             this.tabelaClassView.Visible = false;
+            this.tabelaClassView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tabelaClassView_CellContentClick);
             // 
             // panel1
             // 
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.btnInscreve);
             this.panel1.Controls.Add(this.btnVoltar);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(299, 852);
+            this.panel1.Size = new System.Drawing.Size(336, 1065);
             this.panel1.TabIndex = 216;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btnVoltar
             // 
             this.btnVoltar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVoltar.Location = new System.Drawing.Point(31, 775);
+            this.btnVoltar.Location = new System.Drawing.Point(35, 969);
             this.btnVoltar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(238, 44);
+            this.btnVoltar.Size = new System.Drawing.Size(268, 55);
             this.btnVoltar.TabIndex = 4;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.UseVisualStyleBackColor = true;
@@ -108,20 +117,48 @@ namespace ProjetoBD
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(295, 119);
+            this.pictureBox1.Size = new System.Drawing.Size(332, 149);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(362, 213);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(157, 55);
+            this.label7.TabIndex = 217;
+            this.label7.Text = "Aulas:";
+            // 
+            // btnInscreve
+            // 
+            this.btnInscreve.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnInscreve.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInscreve.Location = new System.Drawing.Point(35, 221);
+            this.btnInscreve.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnInscreve.Name = "btnInscreve";
+            this.btnInscreve.Size = new System.Drawing.Size(268, 55);
+            this.btnInscreve.TabIndex = 5;
+            this.btnInscreve.Text = "Fazer Inscrição";
+            this.btnInscreve.UseVisualStyleBackColor = true;
+            this.btnInscreve.Visible = false;
+            this.btnInscreve.Click += new System.EventHandler(this.btnInscreve_Click);
+            // 
             // ClassView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1535, 852);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(1727, 1065);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabelaClassView);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ClassView";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -139,5 +176,7 @@ namespace ProjetoBD
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnInscreve;
     }
 }

@@ -59,6 +59,11 @@ namespace ProjetoBD
             PaginaInicialClientes.Show();
         }
 
+        private void tabelaExercicios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         private SqlConnection getSGBDConnection()
         {
             //return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana

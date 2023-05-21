@@ -75,8 +75,8 @@ namespace ProjetoBD
 
         private SqlConnection getSGBDConnection()
         {
-            //return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
-            return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
+            return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
+            //return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
         }
 
         private bool verifySGBDConnection()
@@ -97,7 +97,9 @@ namespace ProjetoBD
 
         private void btnPagamentos_Click(object sender, EventArgs e)
         {
-
+            this.Close();
+            var pagamentos = new Pagamentos(idRec);
+            pagamentos.Show();
         }
 
         private void btnCriarPA_Click(object sender, EventArgs e)
@@ -105,6 +107,13 @@ namespace ProjetoBD
             this.Close();
             var CriarPA = new CriarPlanoAdesao(idRec);
             CriarPA.Show();
+        }
+
+        private void btnAulas_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            var ClassView = new ClassView(idRec);
+            ClassView.Show();
         }
     }
 }
