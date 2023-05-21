@@ -74,8 +74,8 @@ namespace ProjetoBD
 
         private SqlConnection getSGBDConnection()
         {
-            return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
-            //return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
+            //return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
+            return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
         }
 
         private bool verifySGBDConnection()
@@ -108,9 +108,34 @@ namespace ProjetoBD
             {
                 if (btnRecepcionista.Checked)
                 {
-                    var paginaInicialRececionistas = new PaginaInicialRececionistas(ID);
-                    paginaInicialRececionistas.Show();
+                    SqlCommand command = new SqlCommand("Ginasio.CheckIDExists", cn);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Clear();
+                    command.Parameters.AddWithValue("@ID", ID);
+                    command.Parameters.AddWithValue("@IsClient", 4);
+                    int result = (int)command.ExecuteScalar();
+                    Boolean validation = Convert.ToBoolean(result);
+                    try
+                    {
 
+                        if (!validation)
+                        {
+                            var paginaInicialRececionistas = new PaginaInicialRececionistas(ID);
+                            paginaInicialRececionistas.Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Insira um ID de um rececionista existeste", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Falha na SP CheckIDExists. \n MENSAGEM DE ERRO: \n" + ex.Message);
+                    }
+                    finally
+                    {
+                        cn.Close();
+                    }
                 }
                 else if (btnCliente.Checked)
                 {
@@ -145,15 +170,11 @@ namespace ProjetoBD
                 }
                 else if (btnGerente.Checked)
                 {
-
-                }
-                else if (btnProfessor.Checked)
-                {
                     SqlCommand command = new SqlCommand("Ginasio.CheckIDExists", cn);
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Clear();
                     command.Parameters.AddWithValue("@ID", ID);
-                    command.Parameters.AddWithValue("@IsClient", 0); // Esta verficação é um bit para dizer quando é cliente ou não
+                    command.Parameters.AddWithValue("@IsClient", 3);
                     int result = (int)command.ExecuteScalar();
                     Boolean validation = Convert.ToBoolean(result);
                     try
@@ -161,7 +182,38 @@ namespace ProjetoBD
 
                         if (!validation)
                         {
-                            var PaginaInicialProfs = new PaginaInicialProfs(ID);
+                            var paginaInicialRececionistas = new PaginaInicialRececionistas(ID); // TROCAR AQUI PARA A PÁGINA DOS CLIENTES
+                            paginaInicialRececionistas.Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Insira um ID válido para o gerente", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Falha na SP CheckIDExists. \n MENSAGEM DE ERRO: \n" + ex.Message);
+                    }
+                    finally
+                    {
+                        cn.Close();
+                    }
+                }
+                else if (btnProfessor.Checked)
+                {
+                    SqlCommand command = new SqlCommand("Ginasio.CheckIDExists", cn);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Clear();
+                    command.Parameters.AddWithValue("@ID", ID);
+                    command.Parameters.AddWithValue("@IsClient", 2); // Esta verficação é um TINYINT para dizer quando é cliente ou os outros tipos
+                    int result = (int)command.ExecuteScalar();
+                    Boolean validation = Convert.ToBoolean(result);
+                    try
+                    {
+                        
+                        if (!validation)
+                        {
+                            var PaginaInicialProfs = new PaginaInicialProfs(ID); // PORQUE NÃO FUNCIONAS???
                             PaginaInicialProfs.Show();
                         }
                         else

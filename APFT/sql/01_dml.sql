@@ -234,7 +234,6 @@ VALUES ('Semestral', 123456789, 180.00, '2024-01-01', '2023-07-01', 1005),
       ('Mensal', 648912345, 30, '2023-02-01', '2023-01-01', 1009),
       ('Anual', 344678912, 360, '2024-01-01', '2023-01-01', 1009),
       ('Mensal', 840123456, 30, '2023-02-01', '2023-01-01', 1009);
-         
 
 INSERT INTO Ginasio.Pagamento (ID, Valor, Metodo, Estado, Data_venc, Data_canc, CC_Cliente, Num_Rec, Data_Pagamento)
 VALUES
@@ -302,7 +301,7 @@ VALUES (123456789, 1004, 'Excelente professor! Sempre motivado e dedicado às au
        (221987654, 1015, 'A professora tem muita energia e transmite isso para os alunos.', '2023-05-01'),
        (876543210, 1004, 'O professor é comprometido e oferece sempre suporte individualizado.', '2023-04-20'),
        (765432109, 1016, 'Gosto muito das aulas com este professor. Ele é muito motivador.', '2023-05-09');
-
+	
 INSERT INTO Ginasio.Sala (ID, Tipo, Num_Max_alunos)
 VALUES
     (1, 'Musculação', 100),

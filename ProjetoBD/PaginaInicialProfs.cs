@@ -18,8 +18,8 @@ namespace ProjetoBD
         private string nomeProf;
         public PaginaInicialProfs(int ID)
         {
-            InitializeComponent();
-            IDinical = ID;
+            this.IDinical = ID;
+            InitializeComponent(); 
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
