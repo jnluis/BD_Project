@@ -15,8 +15,6 @@ namespace ProjetoBD
     {
 
         private SqlConnection cn;
-        private int currentClient;
-        private bool adding;
 
         public ClassView()
         {
@@ -29,107 +27,20 @@ namespace ProjetoBD
             if (!verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Ginasio.Salas_AND_Aulas_VIEW ORDER BY Sala_ID, CASE Dia_Semana WHEN 'Segunda-feira' THEN 1 WHEN 'Terça-feira' THEN 2 WHEN 'Quarta-feira' THEN 3 WHEN 'Quinta-feira' THEN 4 WHEN 'Sexta-feira' THEN 5 WHEN 'Sábado' THEN 6 WHEN 'Domingo' THEN 7 ELSE 8 END", cn);
+           string dados= ("SELECT * FROM Ginasio.Salas_AND_Aulas_VIEW ORDER BY [Número da Sala], CASE [Dia da semana] WHEN 'Segunda-feira' THEN 1 WHEN 'Terça-feira' THEN 2 WHEN 'Quarta-feira' THEN 3 WHEN 'Quinta-feira' THEN 4 WHEN 'Sexta-feira' THEN 5 WHEN 'Sábado' THEN 6 WHEN 'Domingo' THEN 7 ELSE 8 END");
 
-            SqlDataReader reader = cmd.ExecuteReader();
+            SqlCommand cmd = new SqlCommand(dados, cn);
 
+            DataTable dt = new DataTable();
 
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(dt);
+            tabelaClassView.DataSource = dt;
+            tabelaClassView.Visible = true;
 
-            while (reader.Read())
-            {
-                Cliente C = new Cliente();
-                {
-                    C.CC = reader["Sala_ID"].ToString();
-                    C.Fname = reader["Fname"].ToString();
-                    C.Lname = reader["Lname"].ToString();
-                    C.Email = reader["Hora_Inicio"].ToString();
-                    C.NIF = reader["Hora_Fim"].ToString();
-                    C.Morada = reader["Dia_Semana"].ToString();
-                    C.Data_Nasc = reader["Tipo"].ToString();
-                    C.Telemovel = reader["Num_Max_alunos"].ToString();
-                    //totalItems++;
-
-                    Label labelSala_ID = new Label
-                    {
-                        Font = new Font("Verdana", 9),
-                        Text = C.CC,
-                        ForeColor = Color.Black,
-                        AutoSize = true
-                    };
-                    tableLayoutPanel1.Controls.Add(labelSala_ID);
-
-                    Label labelTipo_Aula = new Label
-                    {
-                        Font = new Font("Verdana", 9),
-                        Text = C.Data_Nasc,
-                        ForeColor = Color.Black,
-                        AutoSize = true
-                    };
-                    tableLayoutPanel1.Controls.Add(labelTipo_Aula);
-
-                    Label labelMax_Alunos = new Label
-                    {
-                        Font = new Font("Verdana", 9),
-                        Text = C.Telemovel,
-                        ForeColor = Color.Black,
-                        AutoSize = true
-                    };
-                    tableLayoutPanel1.Controls.Add(labelMax_Alunos);
-
-                    Label labelHora_inicio = new Label
-                    {
-                        Font = new Font("Verdana", 9),
-                        Text = C.Email,
-                        ForeColor = Color.Black,
-                        AutoSize = true
-                    };
-                    tableLayoutPanel1.Controls.Add(labelHora_inicio);
-
-                    Label labelHora_fim = new Label
-                    {
-                        Font = new Font("Verdana", 9),
-                        Text = C.NIF,
-                        ForeColor = Color.Black,
-                        AutoSize = true
-                    };
-                    tableLayoutPanel1.Controls.Add(labelHora_fim);
-
-                    Label labelDia_Semana = new Label
-                    {
-                        Font = new Font("Verdana", 9),
-                        Text = C.Morada,
-                        ForeColor = Color.Black,
-                        AutoSize = true
-                    };
-                    tableLayoutPanel1.Controls.Add(labelDia_Semana);
-
-                    Label labelF_Name = new Label
-                    {
-                        Font = new Font("Verdana", 9),
-                        Text = C.Fname,
-                        ForeColor = Color.Black,
-                        AutoSize = true
-                    };
-                    tableLayoutPanel1.Controls.Add(labelF_Name);
-
-                    Label labelL_Name = new Label
-                    {
-                        Font = new Font("Verdana", 9),
-                        Text = C.Lname,
-                        ForeColor = Color.Black,
-                        AutoSize = true
-                    };
-                    tableLayoutPanel1.Controls.Add(labelL_Name);
-
-
-
-                };
-
-            }
-
-            currentClient = 0;
-            ShowClient();
             cn.Close();
+
+
 
         }
 
@@ -150,65 +61,6 @@ namespace ProjetoBD
             return cn.State == ConnectionState.Open;
         }
 
-        public void LockControls()
-        {
-            txtCC.ReadOnly = true;
-            txtFname.ReadOnly = true;
-            txtLname.ReadOnly = true;
-            txtMorada.ReadOnly = true;
-            txtDataNasc.ReadOnly = true;
-            txtEmail.ReadOnly = true;
-            txtTel.ReadOnly = true;
-            txtNIF.ReadOnly = true;
-
-        }
-        public void UnlockControls()
-        {
-            txtCC.ReadOnly = false;
-            txtFname.ReadOnly = false;
-            txtLname.ReadOnly = false;
-            txtMorada.ReadOnly = false;
-            txtDataNasc.ReadOnly = false;
-            txtEmail.ReadOnly = false;
-            txtTel.ReadOnly = false;
-            txtNIF.ReadOnly = false;
-
-        }
-
-        public void ClearFields()
-        {
-            txtCC.Text = "";
-            txtFname.Text = "";
-            txtLname.Text = "";
-            txtMorada.Text = "";
-            txtDataNasc.Text = "";
-            txtEmail.Text = "";
-            txtTel.Text = "";
-            txtNIF.Text = "";
-        }
-
-        public void ShowButtons()
-        {
-            LockControls(); 
-        }
-        public void HideButtons()
-        {
-            UnlockControls();
-        }
-
-        public void ShowClient()
-        {
-            Cliente cliente = new Cliente();
-            txtCC.Text = cliente.CC;
-            txtFname.Text = cliente.Fname;
-            txtLname.Text = cliente.Lname;
-            txtMorada.Text = cliente.Morada;
-            txtDataNasc.Text = cliente.Data_Nasc;
-            txtTel.Text = cliente.Telemovel;
-            txtEmail.Text = cliente.Email;
-            txtNIF.Text = cliente.NIF;
-
-        }
 
 
 
@@ -217,11 +69,6 @@ namespace ProjetoBD
             Application.Exit();
         }
 
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
 
         private void Label1_Click(object sender, EventArgs e)
         {
@@ -248,16 +95,6 @@ namespace ProjetoBD
 
         }
 
-        private void txtEmail_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtDataNasc_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -268,14 +105,12 @@ namespace ProjetoBD
 
         }
 
-        private void txtCC_TextChanged(object sender, EventArgs e)
+        private void btnVoltar_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
+            this.Close();
+            // deixei aqui dependendo para onde queremos ligar isto
+            //var MenuInicial = new MenuForm();
+            //MenuInicial.Show();
         }
     }
 

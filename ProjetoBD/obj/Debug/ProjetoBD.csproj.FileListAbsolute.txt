@@ -44,3 +44,4 @@ C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\B
 C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\BD- Bases de Dados\Práticas\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.PaginaInicialRececionistas.resources
 C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.PaginaInicialRececionistas.resources
 C:\LEI\2Ano\BD\Pratica\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.CriarPlanoAdesao.resources
+C:\Users\João Luís\OneDrive - Universidade de Aveiro\UA\2º Ano\2º semestre\BD- Bases de Dados\Práticas\BD_Project\ProjetoBD\obj\Debug\ProjetoBD.CriarPlanoAdesao.resources
