@@ -32,13 +32,32 @@ AS
 END
 GO
 
--- Verifica se algum professor ou rececionista tem salário superior ao seu gerente
-CREATE TRIGGER Ginasio.check_salary
-ON Ginasio.staff
-AFTER UPDATE
+-- Verificar se ainda há vagas disponíveis para inscrição na aula ---
+GO
+CREATE TRIGGER Ginasio.VerificarNInscritosAula
+ON Ginasio.Inscreve
+INSTEAD OF INSERT, UPDATE
 AS
-BEGIN
-	SET NOCOUNT ON;
+	BEGIN
+	DECLARE @idHaula as int
+	SELECT @idHaula = ID_HAula From inserted;
+		IF (SELECT COUNT(ID_HAula)
+			FROM Ginasio.Inscreve
+			WHERE Estado = 'Confirmada' AND ID_HAula = @idHaula) >= (
+			SELECT Sala.Num_Max_alunos
+			FROM Ginasio.Sala
+			JOIN Ginasio.Aula ON Sala.ID = Aula.Sala_ID
+			JOIN Ginasio.Aula_Horario ON Aula.ID = Aula_Horario.Aula_ID
+			JOIN inserted ON ID_Horario = inserted.ID_HAula
+		)
+			RAISERROR('Não há mais vagas disponíveis nesta aula.', 16, 1);
+		ELSE
+			INSERT INTO Ginasio.Inscreve
+			SELECT *
+			FROM inserted;
+END
+GO
+
 
 	IF EXISTS (SELECT * FROM inserted WHERE Salario > (SELECT Salario FROM Ginasio.staff WHERE Num_func = inserted.Gerente_Num))
 	BEGIN

@@ -96,6 +96,18 @@
     <Compile Include="EditarPlanoTreino.Designer.cs">
       <DependentUpon>EditarPlanoTreino.cs</DependentUpon>
     </Compile>
+    <Compile Include="InscreverAula.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InscreverAula.Designer.cs">
+      <DependentUpon>InscreverAula.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pagamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pagamentos.Designer.cs">
+      <DependentUpon>Pagamentos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +186,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditarPlanoTreino.resx">
       <DependentUpon>EditarPlanoTreino.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InscreverAula.resx">
+      <DependentUpon>InscreverAula.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pagamentos.resx">
+      <DependentUpon>Pagamentos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
