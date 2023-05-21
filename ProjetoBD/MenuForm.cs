@@ -27,8 +27,8 @@ namespace ProjetoBD
         private void btnStaff_Click(object sender, EventArgs e)
         {
             // Abrir a janela ou formulário de clientes
-            var StaffForm = new StaffForm();
-            StaffForm.Show();
+            var TestForm = new Form1();
+            TestForm.Show();
         }
 
         private void btnClassView_Click(object sender, EventArgs e)

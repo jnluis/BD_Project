@@ -135,5 +135,10 @@ namespace ProjetoBD
         {
             lblPreco.Text = "360";
         }
+
+        private void txtCC_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

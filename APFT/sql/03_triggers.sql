@@ -23,7 +23,6 @@ ON Ginasio.Plano_Adesao
 INSTEAD OF INSERT
 AS
 	BEGIN
-    -- Verificar se o pagamento está confirmado para todos os clientes inseridos nos planos de treino
 	DECLARE @idCliente as int
 	SELECT @idCliente = CC_Cliente From inserted;
 		IF (Select Count(CC_Cliente) From Ginasio.Plano_Adesao Where CC_Cliente = @idCliente) > 0
@@ -33,3 +32,20 @@ AS
 END
 GO
 
+-- Verifica se algum professor ou rececionista tem salário superior ao seu gerente
+CREATE TRIGGER Ginasio.check_salary
+ON Ginasio.staff
+AFTER UPDATE
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	IF EXISTS (SELECT * FROM inserted WHERE Salario > (SELECT Salario FROM Ginasio.staff WHERE Num_func = inserted.Gerente_Num))
+	BEGIN
+		RAISERROR('Error: Employee salary cannot be greater than manager salary.', 16, 1);
+		ROLLBACK TRAN;
+	END
+	ELSE
+		PRINT 'Success';
+END;
+GO
