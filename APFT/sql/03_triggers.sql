@@ -59,6 +59,14 @@ END
 GO
 
 
+-- Verifica se algum professor ou rececionista tem salário superior ao seu gerente
+CREATE TRIGGER Ginasio.check_salary
+ON Ginasio.staff
+AFTER UPDATE
+AS
+BEGIN
+	SET NOCOUNT ON;
+
 	IF EXISTS (SELECT * FROM inserted WHERE Salario > (SELECT Salario FROM Ginasio.staff WHERE Num_func = inserted.Gerente_Num))
 	BEGIN
 		RAISERROR('Error: Employee salary cannot be greater than manager salary.', 16, 1);
