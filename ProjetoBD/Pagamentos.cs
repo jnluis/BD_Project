@@ -16,7 +16,10 @@ namespace ProjetoBD
         private SqlConnection cn;
         private DataTable originalDataTable;
         private int idRec;
-        private int idPagamento;
+        private int idPagamento, ccCliente;
+        private double valor;
+        private DateTime dataPag, dataCanc, dataVenc;
+        private string estado, metodo;
         public Pagamentos(int idRec)
         {
             InitializeComponent();
@@ -32,8 +35,16 @@ namespace ProjetoBD
                 DataGridViewRow row = tabelaPagamentos.Rows[e.RowIndex];
 
                 idPagamento = int.Parse(row.Cells["ID"].Value.ToString());
+                valor = double.Parse(row.Cells["Valor"].Value.ToString());
+                metodo = row.Cells["Metodo"].Value.ToString();
+                estado = row.Cells["Estado"].Value.ToString();
+                dataVenc = DateTime.Parse(row.Cells["Data_venc"].Value.ToString());
+                if (DateTime.TryParse(row.Cells["Data_canc"].Value.ToString(), out dataCanc)){}
+                else{ dataCanc = DateTime.MinValue;}
+                if (DateTime.TryParse(row.Cells["Data_Pagamento"].Value.ToString(), out dataPag)) { }
+                else { dataPag = DateTime.MinValue; }
 
-
+                ccCliente = int.Parse(row.Cells["CC_Cliente"].Value.ToString());
             }
         }
 
@@ -88,8 +99,8 @@ namespace ProjetoBD
 
         private SqlConnection getSGBDConnection()
         {
-            //return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
-            return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
+            return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
+            //return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
         }
 
         private bool verifySGBDConnection()
@@ -123,7 +134,7 @@ namespace ProjetoBD
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            var edit = new EditarPagamento(idPagamento);
+            var edit = new EditarPagamento(idPagamento, ccCliente,idRec, valor, estado, dataPag,dataCanc,dataVenc,metodo);
             edit.FormClosed += Edit_FormClosed; 
             edit.Show();
         }

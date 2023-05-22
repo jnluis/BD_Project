@@ -98,7 +98,7 @@ GO
 --Test
 SELECT * FROM Ginasio.funcHorarioProfessor(1004);
 
------ UDF Para ver o id inserido pertence a um professor -----
+----- UDF Para ver o id inserido está correto -----
 GO
 CREATE PROCEDURE Ginasio.CheckIDExists
     @ID INT,
@@ -153,8 +153,8 @@ BEGIN
     END
 END
 GO
--- testar a SP CheckProfessorIDExists
-EXEC Ginasio.CheckProfessorIDExists 1004, 1;
+-- testar a SP funcHorarioProfessor
+EXEC Ginasio.CheckIDExists 1004, 1;
 
 ----- UDF Para o cliente ver as aulas em que está inscrito -----
 
