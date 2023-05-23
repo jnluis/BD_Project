@@ -182,8 +182,8 @@ namespace ProjetoBD
 
                         if (!validation)
                         {
-                            var paginaInicialRececionistas = new PaginaInicialRececionistas(ID); // TROCAR AQUI PARA A PÁGINA DOS CLIENTES
-                            paginaInicialRececionistas.Show();
+                            var paginaInicialGerentes = new PaginaInicialGerente(ID);
+                            paginaInicialGerentes.Show();
                         }
                         else
                         {
