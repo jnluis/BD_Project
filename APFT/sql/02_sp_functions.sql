@@ -209,3 +209,47 @@ BEGIN
     RETURN;
 END
 GO
+
+----- UDF para controlar o estado dos pagamentos -----
+
+CREATE FUNCTION Ginasio.EstadoPagamentos ()
+RETURNS @table TABLE ([Estado] VARCHAR(30), [Quantidade] INT)
+AS
+BEGIN
+    INSERT INTO @table
+    Select Estado, COUNT(Estado)
+    FROM Ginasio.Pagamento
+    GROUP BY Estado
+    RETURN;
+END
+GO
+
+
+----- UDF para ver média de salários por cargo -----
+
+CREATE FUNCTION Ginasio.MediasSalarios()
+RETURNS @MediasSalarios TABLE
+(
+    Cargo NVARCHAR(50),
+    MediaSalario DECIMAL(10, 2)
+)
+AS
+BEGIN
+    INSERT INTO @MediasSalarios (Cargo, MediaSalario)
+	SELECT 'Professores', AVG(Salario) AS MediaSalarioProfessores
+	FROM Ginasio.Staff as s
+	JOIN Ginasio.Professor as p ON s.Num_func = p.Num_func;
+
+    INSERT INTO @MediasSalarios (Cargo, MediaSalario)
+	SELECT 'Gerentes', AVG(Salario) AS MediaSalarioGerentes
+	FROM Ginasio.Staff as s
+	JOIN Ginasio.Gerente as g ON s.Num_func = g.Num_func;
+
+    INSERT INTO @MediasSalarios (Cargo, MediaSalario)
+	SELECT 'Rececionistas', AVG(Salario) AS MediaSalarioRececionistas
+	FROM Ginasio.Staff as s
+	JOIN Ginasio.Rececionista as r ON s.Num_func = r.Num_func;
+
+    RETURN;
+END;
+

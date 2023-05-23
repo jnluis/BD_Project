@@ -61,7 +61,7 @@ namespace ProjetoBD
                 C.NGerente = reader["Gerente_Num"].ToString();
                 C.NFunc = reader["Num_func"].ToString();
                 C.Salario = reader["Salario"].ToString();
-                C.Horario = reader["Horas_trab"].ToString();
+                C.Horario = reader["Horario_Lab"].ToString();
                 C.Cargo = "Professor";
                 listProfs.Items.Add(C);
             }
@@ -87,7 +87,7 @@ namespace ProjetoBD
                 C.NGerente = reader["Gerente_Num"].ToString();
                 C.NFunc = reader["Num_func"].ToString();
                 C.Salario = reader["Salario"].ToString();
-                C.Horario = reader["Horas_trab"].ToString();
+                C.Horario = reader["Horario_Lab"].ToString();
                 C.Cargo = "Gerente";
                 listGerentes.Items.Add(C);
             }
@@ -113,7 +113,7 @@ namespace ProjetoBD
                 C.NGerente = reader["Gerente_Num"].ToString();
                 C.NFunc = reader["Num_func"].ToString();
                 C.Salario = reader["Salario"].ToString();
-                C.Horario = reader["Horas_trab"].ToString();
+                C.Horario = reader["Horario_Lab"].ToString();
                 C.Cargo = "Rececionista";
                 listRecepcionistas.Items.Add(C);
             }
@@ -126,8 +126,8 @@ namespace ProjetoBD
 
         private SqlConnection getSGBDConnection()
         {
-            //return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
-            return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
+            return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
+            //return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
         }
 
         private bool verifySGBDConnection()
