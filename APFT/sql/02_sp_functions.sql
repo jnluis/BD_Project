@@ -55,50 +55,7 @@ BEGIN
 END
 GO
 
------ UDF Para ver o plano de treino de um cliente -----
-
-GO
-CREATE FUNCTION Ginasio.funcPlanoTreinoCliente (@CC_Cliente INT) RETURNS @table
-TABLE([Exercicio] VARCHAR(50), [Repetições] INT, [Séries] INT, [Tempo] VARCHAR(8), [Equipamento] VARCHAR(50))
-AS
-BEGIN
-    INSERT @table
-    SELECT Ginasio.Exercicio.Nome, Ginasio.Inclui.Num_Reps, Ginasio.Inclui.Num_Series, Ginasio.Inclui.Tempo, Ginasio.Equipamento.Nome
-    FROM Ginasio.Cliente
-    JOIN Ginasio.Plano_Treino ON Ginasio.Cliente.CC = Ginasio.Plano_Treino.CC_Cliente
-    JOIN Ginasio.Inclui ON Ginasio.Inclui.ID_PT = Ginasio.Plano_Treino.ID
-    JOIN Ginasio.Exercicio ON Ginasio.Exercicio.ID = Ginasio.Inclui.ID_Ex
-	JOIN Ginasio.Equipamento ON Ginasio.Equipamento.ID = Ginasio.Exercicio.ID_Equipamento
-    WHERE Ginasio.Cliente.CC = @CC_Cliente;
-
-    RETURN;
-END
-GO
-
-
-SELECT * FROM Ginasio.funcPlanoTreinoCliente(123456789);
-
------ UDF Para ver o horario de um professor -----
-
-GO
-CREATE FUNCTION Ginasio.funcHorarioProfessor (@IDProf INT) RETURNS @table
-TABLE([Hora_Inicio] VARCHAR(5), [Hora_Fim] VARCHAR(5), [Dia_Semana] VARCHAR(25), [Tipo] VARCHAR(15))
-AS
-BEGIN
-    INSERT @table
-    SELECT Hora_Inicio, Hora_Fim, Dia_Semana, Tipo
-    FROM Ginasio.Aula_Horario 
-    JOIN Ginasio.Aula ON Ginasio.Aula.ID = Ginasio.Aula_Horario.Aula_ID 
-    JOIN Ginasio.Sala ON Ginasio.Sala.ID = Ginasio.Aula.Sala_ID
-    WHERE ID_Professor = @IDProf;
-    RETURN;
-END
-GO
-
---Test
-SELECT * FROM Ginasio.funcHorarioProfessor(1004);
-
------ UDF Para ver o id inserido está correto -----
+----- SP Para ver o id inserido está correto -----
 GO
 CREATE PROCEDURE Ginasio.CheckIDExists
     @ID INT,
@@ -153,8 +110,51 @@ BEGIN
     END
 END
 GO
--- testar a SP funcHorarioProfessor
+-- testar a SP CheckIDExists
 EXEC Ginasio.CheckIDExists 1004, 1;
+
+----- UDF Para ver o plano de treino de um cliente -----
+
+GO
+CREATE FUNCTION Ginasio.funcPlanoTreinoCliente (@CC_Cliente INT) RETURNS @table
+TABLE([Exercicio] VARCHAR(50), [Repetições] INT, [Séries] INT, [Tempo] VARCHAR(8), [Equipamento] VARCHAR(50))
+AS
+BEGIN
+    INSERT @table
+    SELECT Ginasio.Exercicio.Nome, Ginasio.Inclui.Num_Reps, Ginasio.Inclui.Num_Series, Ginasio.Inclui.Tempo, Ginasio.Equipamento.Nome
+    FROM Ginasio.Cliente
+    JOIN Ginasio.Plano_Treino ON Ginasio.Cliente.CC = Ginasio.Plano_Treino.CC_Cliente
+    JOIN Ginasio.Inclui ON Ginasio.Inclui.ID_PT = Ginasio.Plano_Treino.ID
+    JOIN Ginasio.Exercicio ON Ginasio.Exercicio.ID = Ginasio.Inclui.ID_Ex
+	JOIN Ginasio.Equipamento ON Ginasio.Equipamento.ID = Ginasio.Exercicio.ID_Equipamento
+    WHERE Ginasio.Cliente.CC = @CC_Cliente;
+
+    RETURN;
+END
+GO
+
+
+SELECT * FROM Ginasio.funcPlanoTreinoCliente(123456789);
+
+----- UDF Para ver o horario de um professor -----
+
+GO
+CREATE FUNCTION Ginasio.funcHorarioProfessor (@IDProf INT) RETURNS @table
+TABLE([Hora_Inicio] VARCHAR(5), [Hora_Fim] VARCHAR(5), [Dia_Semana] VARCHAR(25), [Tipo] VARCHAR(15))
+AS
+BEGIN
+    INSERT @table
+    SELECT Hora_Inicio, Hora_Fim, Dia_Semana, Tipo
+    FROM Ginasio.Aula_Horario 
+    JOIN Ginasio.Aula ON Ginasio.Aula.ID = Ginasio.Aula_Horario.Aula_ID 
+    JOIN Ginasio.Sala ON Ginasio.Sala.ID = Ginasio.Aula.Sala_ID
+    WHERE ID_Professor = @IDProf;
+    RETURN;
+END
+GO
+
+--Test
+SELECT * FROM Ginasio.funcHorarioProfessor(1004);
 
 ----- UDF Para o cliente ver as aulas em que está inscrito -----
 
@@ -176,3 +176,36 @@ GO
 
 
 SELECT * FROM Ginasio.funcPlanoTreinoCliente(123456789);
+
+----- UDF para ver total de inscrições numa aula  -----
+
+CREATE FUNCTION Ginasio.Inscricoes ()
+RETURNS @table TABLE ([Aula] VARCHAR(30), [Número Inscrições] INT)
+AS
+BEGIN
+    INSERT INTO @table
+    SELECT Tipo, COUNT(Ginasio.Aula.ID)
+    FROM Ginasio.Aula 
+    JOIN Ginasio.Aula_Horario ON Aula_ID = ID
+    JOIN Ginasio.Inscreve ON ID_HAula = ID_Horario
+    JOIN Ginasio.Sala ON Ginasio.Sala.ID = Sala_ID
+    WHERE Estado = 'Confirmada'
+    GROUP BY Tipo
+
+    RETURN;
+END
+GO
+
+----- UDF para ver a quantidade de cada tipo de plano de adesao criados -----
+
+CREATE FUNCTION Ginasio.TiposPlanosAdesao ()
+RETURNS @table TABLE ([Tipo] VARCHAR(30), [Quantidade] INT)
+AS
+BEGIN
+    INSERT INTO @table
+    Select Tipo, COUNT(Tipo)
+    FROM Ginasio.Plano_Adesao
+    GROUP BY Tipo
+    RETURN;
+END
+GO
