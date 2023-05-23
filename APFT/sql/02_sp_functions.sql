@@ -85,8 +85,12 @@ BEGIN
     END CATCH;
 END
 GO
-EXEC Ginasio.EliminarCliente '901234567'
+
+EXEC Ginasio.EliminarCliente '901234567' -- Eliminei o cliente Diana Simões
 SELECT * FROM Ginasio.Cliente
+SELECT * FROM Ginasio.Plano_Treino
+WHERE ID_Professor ='1004'
+
 ----- SP Para ver o id inserido está correto -----
 GO
 CREATE PROCEDURE Ginasio.CheckIDExists
