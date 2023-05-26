@@ -53,11 +53,6 @@ Nesta entrega temos a análise de requisitos, o Diagrama Entidade-Relacionamento
 
 ![DER Diagram!](der.jpg "AnImage")
 
-### APFE 
-
-Descreva sumariamente as melhorias sobre a primeira entrega.
-Describe briefly the improvements made since the first delivery.
-
 ## ER - Esquema Relacional/Relational Schema
 
 ### Versão final/Final Version
@@ -66,8 +61,7 @@ Describe briefly the improvements made since the first delivery.
 
 ### APFE
 
-Descreva sumariamente as melhorias sobre a primeira entrega.
-Describe briefly the improvements made since the first delivery.
+As alterações em relação à última entrega incluíram a transformação do Feedback numa relação, em vez de uma tabela, e a definição do relacionamento 'is-a' como disjoint, no que diz respeito à entidade Staff, estabelecendo a exclusividade entre as especializações. Assim, um membro do staff pode ser apenas um Professor, um Rececionista ou um Gerente, não podendo ser definido como duas ou mais dessas especializações simultaneamente.
 
 ## ​SQL DDL - Data Definition Language
 
@@ -85,19 +79,9 @@ A section for each form.
 ```sql
 -- Show data on the form
 SELECT * FROM MY_TABLE ....;
-SELECT Nome FROM Ginasio.Exercicio ORDER BY Nome
-SELECT Fname, Lname FROM Ginasio.Staff WHERE Num_func = @IDinicial
-Select * From Ginasio.Plano_Adesao Where Num_Rec = @numFunc
 
 -- Insert new element
 INSERT INTO MY_TABLE ....;
-
-INSERT INTO Ginasio.Plano_Adesao (Tipo, CC_Cliente, Preco, Data_Fim, Data_Inicio, Num_Rec) " + "VALUES (@tipo, @cc, @preco, @dataFim, @dataInicio, @numRec)
-INSERT INTO Ginasio.Cliente (CC, Fname, Lname, Email, Telemovel, NIF, Morada, Data_Nasc) " + "VALUES (@CC, @Fname, @Lname, @Email, @Telemovel, @NIF, @Morada, @Data_Nasc)
-UPDATE Ginasio.Cliente " + "SET Fname = @Fname, " + "Lname = @Lname, " + " Email = @Email, " + " Telemovel = @Telemovel, " + " NIF = @NIF, " + " Morada = @Morada, " + " Data_Nasc = @Data_Nasc " + "WHERE CC = @CC
-DELETE Ginasio.Cliente WHERE CC=@CC
-
-
 
 ```
 
@@ -112,12 +96,18 @@ Justify the choices made.
 
 ## Índices/Indexes
 
-Descreva os indices criados. Junte uma cópia do SQL de criação do indice.
-Describe the indexes created. Attach a copy of the SQL to create the index.
+Foram utilizados índices para otimizar a velocidade de execução das pesquisas por nome de cliente e funcionário, e pelo do ID do cliente, exercício no plano de treino e professor. Apesar de nossa base de dados ser relativamente pequena, optamos por implementar essa estrutura nessas tabelas devido à sua alta frequência de uso.
 
 ```sql
--- Create an index to speed
-CREATE INDEX index_name ON table_name (column1, column2, ...);
+CREATE INDEX idxNomeCliente ON Ginasio.Cliente(Fname, Lname);
+
+CREATE INDEX idxNomeStaff ON Ginasio.Staff(Fname, Lname);
+
+CREATE INDEX idxCCliente ON Ginasio.Cliente(CC);
+
+CREATE INDEX idxExerciciosPlanoTreino ON Ginasio.Inclui(ID_Ex, ID_PT);
+
+CREATE INDEX idxNumFuncProfessor ON Ginasio.Professor(Num_func);
 ```
 
 ## SQL Programming: Stored Procedures, Triggers, UDF
@@ -130,7 +120,11 @@ CREATE INDEX index_name ON table_name (column1, column2, ...);
 
 ### Dados iniciais da dabase de dados/Database init data
 
-[Indexes File](sql/01_dml.sql "SQLFileQuestion")
+[Database Init File](sql/04_db_init.sql "SQLFileQuestion")
+
+### View utilizada
+
+[View File](sql/05_any_other_matter.sql "SQLFileQuestion")
 
 
 

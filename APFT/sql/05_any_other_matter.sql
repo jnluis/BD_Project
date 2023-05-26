@@ -1,4 +1,3 @@
--------------------- VIEW -------------------------------------
 -- View para mostrar o mapa das aulas -- 
 DROP VIEW IF EXISTS Ginasio.Salas_AND_Aulas_VIEW;
 GO
@@ -32,13 +31,6 @@ ORDER BY "Número da Sala", CASE "Dia da semana"
     WHEN 'Sexta-feira' THEN 5
     WHEN 'Sábado' THEN 6
     WHEN 'Domingo' THEN 7
-    ELSE 8 -- For any other value, assign it a higher sort order
+    ELSE 8 
 END;
 
--------------------- INDEXES -------------------------------------
-
-CREATE INDEX idxNomeCliente ON Ginasio.Cliente(Fname, Lname);
-CREATE INDEX idxCCliente ON Ginasio.Cliente(CC);
-CREATE INDEX idxExerciciosPlanoTreino ON Ginasio.Inclui(ID_Ex, ID_PT);
-CREATE INDEX idxNomeStaff ON Ginasio.Staff(Fname, Lname);
-CREATE INDEX idxNumFuncProfessor ON Ginasio.Professor(Num_func);
