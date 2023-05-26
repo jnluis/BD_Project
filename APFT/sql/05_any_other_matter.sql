@@ -1,4 +1,4 @@
-
+-------------------- VIEW -------------------------------------
 -- View para mostrar o mapa das aulas -- 
 DROP VIEW IF EXISTS Ginasio.Salas_AND_Aulas_VIEW;
 GO
@@ -20,9 +20,9 @@ JOIN Ginasio.Professor ON Aula.ID_Professor = Professor.Num_func
 JOIN Ginasio.Staff ON Professor.Num_func = Staff.Num_func
 LEFT JOIN Ginasio.Inscreve ON ID_HAula = ID_Horario AND Estado = 'Confirmada'
 GROUP BY Aula_Horario.ID_Horario, Aula.Sala_ID, Sala.Tipo, Sala.Num_Max_alunos, Aula_Horario.Hora_Inicio, Aula_Horario.Hora_Fim, Aula_Horario.Dia_Semana, Staff.Fname + ' ' + Staff.Lname;
+GO
 
-
--- ver as aulas por ordem crescente de sala e por dia da semana
+-- Exemplo: ver as aulas por ordem crescente de sala e por dia da semana
 SELECT * FROM Ginasio.Salas_AND_Aulas_VIEW
 ORDER BY "Número da Sala", CASE "Dia da semana"
     WHEN 'Segunda-feira' THEN 1
@@ -34,3 +34,11 @@ ORDER BY "Número da Sala", CASE "Dia da semana"
     WHEN 'Domingo' THEN 7
     ELSE 8 -- For any other value, assign it a higher sort order
 END;
+
+-------------------- INDEXES -------------------------------------
+
+CREATE INDEX idxNomeCliente ON Ginasio.Cliente(Fname, Lname);
+CREATE INDEX idxCCliente ON Ginasio.Cliente(CC);
+CREATE INDEX idxExerciciosPlanoTreino ON Ginasio.Inclui(ID_Ex, ID_PT);
+CREATE INDEX idxNomeStaff ON Ginasio.Staff(Fname, Lname);
+CREATE INDEX idxNumFuncProfessor ON Ginasio.Professor(Num_func);

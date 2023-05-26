@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuForm));
-            this.btnStaff = new System.Windows.Forms.Button();
-            this.ClassView = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelCargo = new System.Windows.Forms.Panel();
@@ -45,28 +43,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelCargo.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnStaff
-            // 
-            this.btnStaff.Location = new System.Drawing.Point(219, 565);
-            this.btnStaff.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnStaff.Name = "btnStaff";
-            this.btnStaff.Size = new System.Drawing.Size(149, 105);
-            this.btnStaff.TabIndex = 1;
-            this.btnStaff.Text = "Staff";
-            this.btnStaff.UseVisualStyleBackColor = true;
-            this.btnStaff.Click += new System.EventHandler(this.btnStaff_Click);
-            // 
-            // ClassView
-            // 
-            this.ClassView.Location = new System.Drawing.Point(64, 686);
-            this.ClassView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ClassView.Name = "ClassView";
-            this.ClassView.Size = new System.Drawing.Size(213, 92);
-            this.ClassView.TabIndex = 2;
-            this.ClassView.Text = "View Classes";
-            this.ClassView.UseVisualStyleBackColor = true;
-            this.ClassView.Click += new System.EventHandler(this.btnClassView_Click);
             // 
             // label1
             // 
@@ -172,9 +148,10 @@
             // txtID
             // 
             this.txtID.BackColor = System.Drawing.Color.White;
-            this.txtID.Location = new System.Drawing.Point(354, 311);
+            this.txtID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtID.Location = new System.Drawing.Point(354, 301);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(216, 26);
+            this.txtID.Size = new System.Drawing.Size(216, 35);
             this.txtID.TabIndex = 236;
             // 
             // btnEntrar
@@ -194,15 +171,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(637, 836);
+            this.ClientSize = new System.Drawing.Size(637, 556);
             this.Controls.Add(this.btnEntrar);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panelCargo);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.ClassView);
-            this.Controls.Add(this.btnStaff);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MenuForm";
@@ -218,8 +193,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnStaff;
-        private System.Windows.Forms.Button ClassView;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panelCargo;

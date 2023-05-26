@@ -72,6 +72,7 @@
     <Compile Include="AddPlanoTreino.Designer.cs">
       <DependentUpon>AddPlanoTreino.cs</DependentUpon>
     </Compile>
+    <Compile Include="BDConnection.cs" />
     <Compile Include="ClassView.cs">
       <SubType>Form</SubType>
     </Compile>

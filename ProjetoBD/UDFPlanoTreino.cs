@@ -18,6 +18,7 @@ namespace ProjetoBD
         private SqlConnection cn;
         private int IDinical, idade;
         private string nTreino, nomeCliente, idCliente = "";
+        public static BDConnection bdConnection = new BDConnection();
         public UDFPlanoTreino(int id)
         {
             InitializeComponent();
@@ -60,8 +61,7 @@ namespace ProjetoBD
 
         private SqlConnection getSGBDConnection()
         {
-            //return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
-            return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
+            return bdConnection.getSGBDConnection();
         }
 
         private bool verifySGBDConnection()

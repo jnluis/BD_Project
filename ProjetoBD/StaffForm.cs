@@ -16,10 +16,13 @@ namespace ProjetoBD
         private SqlConnection cn;
         private int currentFunc;
         private bool adding;
+        public static BDConnection bdConnection = new BDConnection();
+        private int idGerente;
 
-        public StaffForm()
+        public StaffForm(int Gerente)
         {
             InitializeComponent();
+            this.idGerente = Gerente;
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -34,9 +37,8 @@ namespace ProjetoBD
             }
         }
     
-        
 
-        private void StaffForm_Load(object sender, EventArgs e)
+        private void AtualizarData()
         {
             cn = getSGBDConnection();
             if (!verifySGBDConnection())
@@ -121,13 +123,19 @@ namespace ProjetoBD
             reader.Close();
 
             cn.Close();
+            
+        }
+        
+
+        private void StaffForm_Load(object sender, EventArgs e)
+        {
+            AtualizarData();
             currentFunc = 0;
         }
 
         private SqlConnection getSGBDConnection()
         {
-            return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
-            //return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
+            return bdConnection.getSGBDConnection();
         }
 
         private bool verifySGBDConnection()
@@ -143,35 +151,7 @@ namespace ProjetoBD
 
         private void loadStaffToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cn = getSGBDConnection();
-            if (!verifySGBDConnection())
-                return;
-
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Ginasio.Staff", cn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            listGerentes.Items.Clear();
-
-            while (reader.Read())
-            {
-                Staff C = new Staff();
-                C.CC = reader["CC"].ToString();
-                C.Fname = reader["Fname"].ToString();
-                C.Lname = reader["Lname"].ToString();
-                C.Email = reader["Email"].ToString();
-                C.NIF = reader["NIF"].ToString();
-                C.Morada = reader["Morada"].ToString();
-                C.Data_Nasc = reader["Data_Nasc"].ToString();
-                C.Telemovel = reader["Telemovel"].ToString();
-                C.Data_Contrat = reader["Data_Contr"].ToString();
-                C.NGerente = reader["Gerente_Num"].ToString();
-                C.NFunc = reader["Num_func"].ToString();
-                C.Salario = reader["Salario"].ToString();
-                C.Horario = reader["Horario"].ToString();
-                listGerentes.Items.Add(C);
-
-            }
-
-            cn.Close();
+            AtualizarData();
 
             currentFunc = 0;
 
@@ -255,7 +235,9 @@ namespace ProjetoBD
             txtNfunc.ReadOnly = true;
             txtCertificados.ReadOnly = true;
             txtHorario.ReadOnly = true;
-            panelCargo.Enabled = true;
+            listGerentes.Enabled = true;
+            listProfs.Enabled = true;
+            listRecepcionistas.Enabled = true;
         }
         public void UnlockControls()
         {
@@ -467,22 +449,22 @@ namespace ProjetoBD
                 return;
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "INSERT INTO Ginasio.Staff (CC, Fname, Lname, Email, Telemovel, NIF, Morada, Data_Nasc, Salario, Num_func, Data_Contr, Horario, Gerente_Num) " +
+            cmd.CommandText = "INSERT INTO Ginasio.Staff (CC, Fname, Lname, Email, Telemovel, NIF, Morada, Data_Nasc, Salario, Num_func, Data_Contr, Horario_Lab, Gerente_Num) " +
                               "VALUES (@CC, @Fname, @Lname, @Email, @Telemovel, @NIF, @Morada, @Data_Nasc, @Salario, @Num_func, @Data_Contr, @Horario, @Gerente_Num)";
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@CC", C.CC);
+            cmd.Parameters.AddWithValue("@CC", int.Parse(C.CC));
             cmd.Parameters.AddWithValue("@Fname", C.Fname);
             cmd.Parameters.AddWithValue("@Lname", C.Lname);
             cmd.Parameters.AddWithValue("@Email", C.Email);
-            cmd.Parameters.AddWithValue("@Telemovel", C.Telemovel);
-            cmd.Parameters.AddWithValue("@NIF", C.NIF);
+            cmd.Parameters.AddWithValue("@Telemovel", int.Parse(C.Telemovel));
+            cmd.Parameters.AddWithValue("@NIF", int.Parse(C.NIF));
             cmd.Parameters.AddWithValue("@Morada", C.Morada);
-            cmd.Parameters.AddWithValue("@Data_Nasc", C.Data_Nasc);
-            cmd.Parameters.AddWithValue("@Salario", C.Salario);
-            cmd.Parameters.AddWithValue("@Num_func", C.NFunc);
-            cmd.Parameters.AddWithValue("@Data_Contr", C.Data_Contrat);
-            cmd.Parameters.AddWithValue("@Horario", C.Horario);
-            cmd.Parameters.AddWithValue("@Gerente_Num", C.NGerente);
+            cmd.Parameters.AddWithValue("@Data_Nasc", DateTime.Parse(C.Data_Nasc));
+            cmd.Parameters.AddWithValue("@Salario", decimal.Parse(C.Salario));
+            cmd.Parameters.AddWithValue("@Num_func", int.Parse(C.NFunc));
+            cmd.Parameters.AddWithValue("@Data_Contr", DateTime.Parse(C.Data_Contrat));
+            cmd.Parameters.AddWithValue("@Horario",TimeSpan.Parse(C.Horario));
+            cmd.Parameters.AddWithValue("@Gerente_Num", int.Parse(C.NGerente));
 
 
             if (verifySGBDConnection())
@@ -542,6 +524,8 @@ namespace ProjetoBD
                     cn.Close();
                 }
             }
+
+            AtualizarData();
         }
 
         private void UpdateFunc(Staff C)
@@ -552,18 +536,18 @@ namespace ProjetoBD
                 return;
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "UPDATE Ginasio.Staff " + "SET Fname = @Fname, " + "Lname = @Lname, " + " Email = @Email, " + " Telemovel = @Telemovel, " + " Morada = @Morada, " + " Data_Nasc = @Data_Nasc, " + " Gerente_Num = @Gerente_Num, " + " Salario = @Salario, " + " Horario = @Horario " + "WHERE Num_func = @Num_func";
+            cmd.CommandText = "UPDATE Ginasio.Staff " + "SET Fname = @Fname, " + "Lname = @Lname, " + " Email = @Email, " + " Telemovel = @Telemovel, " + " Morada = @Morada, " + " Data_Nasc = @Data_Nasc, " + " Gerente_Num = @Gerente_Num, " + " Salario = @Salario, " + " Horario_Lab = @Horario " + "WHERE Num_func = @Num_func";
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@Num_Func", C.NFunc);
+            cmd.Parameters.AddWithValue("@Num_Func", int.Parse(C.NFunc));
             cmd.Parameters.AddWithValue("@Fname", C.Fname);
             cmd.Parameters.AddWithValue("@Lname", C.Lname);
             cmd.Parameters.AddWithValue("@Email", C.Email);
-            cmd.Parameters.AddWithValue("@Telemovel", C.Telemovel);
+            cmd.Parameters.AddWithValue("@Telemovel", int.Parse(C.Telemovel));
             cmd.Parameters.AddWithValue("@Morada", C.Morada);
-            cmd.Parameters.AddWithValue("@Data_nasc", C.Data_Nasc);
-            cmd.Parameters.AddWithValue("@Gerente_Num", C.NGerente);
-            cmd.Parameters.AddWithValue("@Horario", C.Horario);
-            cmd.Parameters.AddWithValue("@Salario", C.Salario);
+            cmd.Parameters.AddWithValue("@Data_nasc", DateTime.Parse(C.Data_Nasc));
+            cmd.Parameters.AddWithValue("@Gerente_Num", int.Parse(C.NGerente));
+            cmd.Parameters.AddWithValue("@Horario", TimeSpan.Parse(C.Horario));
+            cmd.Parameters.AddWithValue("@Salario", decimal.Parse(C.Salario));
             cmd.Connection = cn;
 
             try
@@ -583,6 +567,9 @@ namespace ProjetoBD
 
                 cn.Close();
             }
+
+            AtualizarData();
+
         }
 
         private void RemoveFunc(string Num_func, string cargo)
@@ -632,6 +619,8 @@ namespace ProjetoBD
             {
                 cn.Close();
             }
+
+            AtualizarData();
         }
 
         private void bttnAdd_Click(object sender, EventArgs e)
@@ -664,16 +653,16 @@ namespace ProjetoBD
             if (selectedList == null)
             {
                 ClearFields();
-                LockControls();
+                ShowButtons();
                 return;
             }
 
             currentFunc = selectedList.SelectedIndex;
             if (currentFunc < 0)
                 currentFunc = 0;
-
-            ShowFunc(selectedList);
             ShowButtons();
+            ShowFunc(selectedList);
+            
         }
 
         private void bttnEdit_Click(object sender, EventArgs e)
@@ -703,6 +692,8 @@ namespace ProjetoBD
             adding = false;
             HideButtons();
             selectedList.Enabled = false;
+            txtDataContrat.Enabled = false;
+            txtNfunc.Enabled = false;
         }
 
         private void bttnOK_Click(object sender, EventArgs e)
@@ -791,6 +782,13 @@ namespace ProjetoBD
                 currentFunc = listRecepcionistas.SelectedIndex;
                 ShowFunc(listRecepcionistas);
             }
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            var paginaInicialGerentes = new PaginaInicialGerente(idGerente);
+            paginaInicialGerentes.Show();
         }
     }
 }

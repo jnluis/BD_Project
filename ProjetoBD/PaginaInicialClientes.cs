@@ -16,6 +16,7 @@ namespace ProjetoBD
         private SqlConnection cn;
         private int CC_Cliente;
         private string nomeCliente;
+        public static BDConnection bdConnection = new BDConnection();
 
         public PaginaInicialClientes(int cc)
         {
@@ -96,8 +97,7 @@ namespace ProjetoBD
 
         private SqlConnection getSGBDConnection()
         {
-            return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
-            //return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
+            return bdConnection.getSGBDConnection();
         }
 
         private bool verifySGBDConnection()

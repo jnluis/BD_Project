@@ -1,5 +1,5 @@
 ----- SP para adicionar um exercício a um plano de treino -----
-
+GO
 CREATE PROCEDURE Ginasio.InserirExercicioNumPlanoTreino
     @Nome VARCHAR(50),
     @Tempo TIME,
@@ -28,8 +28,9 @@ BEGIN
     END CATCH;
 END
 GO
------ SP para eliminar um exercício a um plano de treino -----
 
+----- SP para eliminar um exercício a um plano de treino -----
+GO
 CREATE PROCEDURE Ginasio.EliminarExercicioNumPlanoTreino
     @Nome VARCHAR(50),
 	@idCliente INT
@@ -55,7 +56,8 @@ BEGIN
 END
 GO
 
----Inscreve, feedback, Plano Adesão, Plano_Treino SET NULL, Pagamento SET NULL e finalmente cliente
+--- SP para Eliminiar um cliente e garantir que todas as informações nas outras tabelas sobre esse cliente são também eliminadas---
+GO
 CREATE PROCEDURE Ginasio.EliminarCliente
 	@idCliente INT
 AS
@@ -65,9 +67,6 @@ BEGIN
     BEGIN TRANSACTION;
     
     BEGIN TRY
-		-- DECLARE @idPT INT = (SELECT CC_Cliente FROM Ginasio.Inscreve WHERE CC_Cliente = @idCliente);
-		--UPDATE Ginasio.Pagamento SET CC_Cliente=NULL WHERE CC_Cliente= @idCliente ; Não dá para dar update para NULL neste momento, porque as tabelas têm NOT NULL
-		--UPDATE Ginasio.Plano_Treino SET CC_Cliente=NULL WHERE CC_Cliente= @idCliente ;
 		DELETE FROM Ginasio.Plano_Treino WHERE CC_Cliente = @idCliente;
         DELETE FROM Ginasio.Inscreve WHERE CC_Cliente = @idCliente;
 		DELETE FROM Ginasio.Feedback WHERE CC_Cliente = @idCliente;
@@ -86,10 +85,7 @@ BEGIN
 END
 GO
 
-EXEC Ginasio.EliminarCliente '901234567' -- Eliminei o cliente Diana Simões
-SELECT * FROM Ginasio.Cliente
-
------ SP Para ver o id inserido está correto -----
+----- SP Para ver o id inserido quando de entra na base de dados está correto -----
 GO
 CREATE PROCEDURE Ginasio.CheckIDExists
     @ID INT,
@@ -144,11 +140,8 @@ BEGIN
     END
 END
 GO
--- testar a SP CheckIDExists
-EXEC Ginasio.CheckIDExists 1004, 1;
 
 ----- UDF Para ver o plano de treino de um cliente -----
-
 GO
 CREATE FUNCTION Ginasio.funcPlanoTreinoCliente (@CC_Cliente INT) RETURNS @table
 TABLE([Exercicio] VARCHAR(50), [Repetições] INT, [Séries] INT, [Tempo] VARCHAR(8), [Equipamento] VARCHAR(50))
@@ -167,11 +160,7 @@ BEGIN
 END
 GO
 
-
-SELECT * FROM Ginasio.funcPlanoTreinoCliente(123456789);
-
 ----- UDF Para ver o horario de um professor -----
-
 GO
 CREATE FUNCTION Ginasio.funcHorarioProfessor (@IDProf INT) RETURNS @table
 TABLE([Hora_Inicio] VARCHAR(5), [Hora_Fim] VARCHAR(5), [Dia_Semana] VARCHAR(25), [Tipo] VARCHAR(15))
@@ -187,11 +176,7 @@ BEGIN
 END
 GO
 
---Test
-SELECT * FROM Ginasio.funcHorarioProfessor(1004);
-
 ----- UDF Para o cliente ver as aulas em que está inscrito -----
-
 GO
 CREATE FUNCTION Ginasio.funcAulasInscritas (@CC_Cliente INT) RETURNS @table
 TABLE([Aula] VARCHAR(30), [Hora_Inicio] VARCHAR(5), [Hora_Fim] VARCHAR(5), [Dia_Semana] VARCHAR(25), [Estado] VARCHAR(15))
@@ -208,10 +193,8 @@ BEGIN
 END
 GO
 
-SELECT * FROM Ginasio.funcPlanoTreinoCliente(123456789);
-
 ----- UDF para ver total de inscrições numa aula  -----
-
+GO
 CREATE FUNCTION Ginasio.Inscricoes ()
 RETURNS @table TABLE ([Aula] VARCHAR(30), [Número Inscrições] INT)
 AS
@@ -230,7 +213,7 @@ END
 GO
 
 ----- UDF para ver a quantidade de cada tipo de plano de adesao criados -----
-
+GO
 CREATE FUNCTION Ginasio.TiposPlanosAdesao ()
 RETURNS @table TABLE ([Tipo] VARCHAR(30), [Quantidade] INT)
 AS
@@ -244,7 +227,7 @@ END
 GO
 
 ----- UDF para controlar o estado dos pagamentos -----
-
+GO
 CREATE FUNCTION Ginasio.EstadoPagamentos ()
 RETURNS @table TABLE ([Estado] VARCHAR(30), [Quantidade] INT)
 AS
@@ -257,9 +240,8 @@ BEGIN
 END
 GO
 
-
 ----- UDF para ver média de salários por cargo -----
-
+GO
 CREATE FUNCTION Ginasio.MediasSalarios()
 RETURNS @MediasSalarios TABLE
 (
@@ -285,4 +267,5 @@ BEGIN
 
     RETURN;
 END;
+GO
 

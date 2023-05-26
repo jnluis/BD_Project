@@ -1,12 +1,10 @@
-
 -- Verifica se o cliente tem o pagamento confirmado para criar o plano de treino ---
-
+GO
 CREATE TRIGGER Ginasio.VerificarPagamento
 ON Ginasio.Plano_Treino
 INSTEAD OF INSERT, Update
 AS
 	BEGIN
-    -- Verificar se o pagamento está confirmado para todos os clientes inseridos nos planos de treino
 	DECLARE @idCliente as int
 	SELECT @idCliente = CC_Cliente From inserted;
 		IF (Select Estado From Ginasio.Pagamento Where CC_Cliente = @idCliente) != 'Pago'
@@ -17,7 +15,7 @@ END
 GO
 
 -- Verifica se o cliente já tem um plano de adesao criado por outro funcionário ---
-
+GO
 CREATE TRIGGER Ginasio.VerificarClientePlanosAdesao
 ON Ginasio.Plano_Adesao
 INSTEAD OF INSERT
@@ -58,8 +56,8 @@ AS
 END
 GO
 
-
 -- Verifica se algum professor ou rececionista tem salário superior ao seu gerente
+GO
 CREATE TRIGGER Ginasio.check_salary
 ON Ginasio.staff
 AFTER UPDATE

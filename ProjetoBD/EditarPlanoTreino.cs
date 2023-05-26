@@ -18,6 +18,7 @@ namespace ProjetoBD
         private int idade, idProf;
         private SqlConnection cn;
         private string nomeEXdel;
+        public static BDConnection bdConnection = new BDConnection();
 
         private void tabelaExercicios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -147,8 +148,7 @@ namespace ProjetoBD
 
         private SqlConnection getSGBDConnection()
         {
-            //return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
-            return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
+            return bdConnection.getSGBDConnection();
         }
 
         private bool verifySGBDConnection()

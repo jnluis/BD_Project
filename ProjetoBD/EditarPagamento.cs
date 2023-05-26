@@ -18,7 +18,7 @@ namespace ProjetoBD
         private double valor;
         private DateTime dataPag, dataCanc, dataVenc;
         private string estado, metodo;
-
+        public static BDConnection bdConnection = new BDConnection();
         public EditarPagamento(int idPag, int ccCliente, int idRec, double Valor, string estado, DateTime dataPag, DateTime dataCanc, DateTime dataVenc, string metodo)
         {
             InitializeComponent();
@@ -115,8 +115,7 @@ namespace ProjetoBD
 
         private SqlConnection getSGBDConnection()
         {
-            return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
-            //return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
+            return bdConnection.getSGBDConnection();    
         }
 
         private bool verifySGBDConnection()

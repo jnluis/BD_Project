@@ -32,7 +32,6 @@ namespace ProjetoBD
                 if (value == null | String.IsNullOrEmpty(value))
                 {
                     throw new Exception("O número de funcionário não pode ser vazio.");
-                    return;
                 }
 
                 _nFunc = value;

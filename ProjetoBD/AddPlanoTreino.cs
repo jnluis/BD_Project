@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 using System.Xml.Linq;
+using System.Data.Common;
 
 namespace ProjetoBD
 {
@@ -19,6 +20,7 @@ namespace ProjetoBD
         private int IDProf, idade;
         private string nTreinos, nomeCliente, IDCliente;
         private SqlConnection cn;
+        public static BDConnection bdConnection = new BDConnection();
 
         public AddPlanoTreino(int idProf)
         {
@@ -29,8 +31,7 @@ namespace ProjetoBD
 
         private SqlConnection getSGBDConnection()
         {
-            //return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
-            return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
+            return bdConnection.getSGBDConnection();
         }
 
         private void txtCCcliente_TextChanged(object sender, EventArgs e)

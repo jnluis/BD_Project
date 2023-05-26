@@ -17,6 +17,7 @@ namespace ProjetoBD
     {
         private int nGerente;
         private SqlConnection cn;
+        public static BDConnection bdConnection = new BDConnection();
         public PaginaInicialGerente(int nGerente)
         {
             InitializeComponent();
@@ -181,8 +182,7 @@ namespace ProjetoBD
 
         private SqlConnection getSGBDConnection()
         {
-            return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
-            //return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
+            return bdConnection.getSGBDConnection();
         }
 
 
@@ -211,7 +211,7 @@ namespace ProjetoBD
         private void btnFunc_Click(object sender, EventArgs e)
         {
             this.Close();
-            var funcionarios = new StaffForm();
+            var funcionarios = new StaffForm(nGerente);
             funcionarios.Show();
         }
     }
