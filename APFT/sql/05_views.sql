@@ -24,13 +24,13 @@ GROUP BY Aula_Horario.ID_Horario, Aula.Sala_ID, Sala.Tipo, Sala.Num_Max_alunos, 
 
 -- ver as aulas por ordem crescente de sala e por dia da semana
 SELECT * FROM Ginasio.Salas_AND_Aulas_VIEW
-ORDER BY "N�mero da Sala", CASE "Dia da semana"
+ORDER BY "Número da Sala", CASE "Dia da semana"
     WHEN 'Segunda-feira' THEN 1
-    WHEN 'Ter�a-feira' THEN 2
+    WHEN 'Terça-feira' THEN 2
     WHEN 'Quarta-feira' THEN 3
     WHEN 'Quinta-feira' THEN 4
     WHEN 'Sexta-feira' THEN 5
-    WHEN 'S�bado' THEN 6
+    WHEN 'Sábado' THEN 6
     WHEN 'Domingo' THEN 7
     ELSE 8 -- For any other value, assign it a higher sort order
 END;

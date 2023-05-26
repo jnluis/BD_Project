@@ -366,33 +366,86 @@ namespace ProjetoBD
             ShowButtons();
         }
 
+        //private void bttnDelete_Click(object sender, EventArgs e)
+        //{
+        //    if (listBox1.SelectedIndex > -1)
+        //    {
+        //        try
+        //        {
+        //            RemoveClient(((Cliente)listBox1.SelectedItem).CC);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show(ex.Message);
+        //            return;
+        //        }
+        //        listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+        //        if (currentClient == listBox1.Items.Count)
+        //            currentClient = listBox1.Items.Count - 1;
+        //        if (currentClient == -1)
+        //        {
+        //            ClearFields();
+        //            MessageBox.Show("Não há mais clientes");
+        //        }
+        //        else
+        //        {
+        //            ShowClient();
+        //        }
+        //    }
+        //}
+
         private void bttnDelete_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex > -1)
-            {
+            // Get the client ID from the input field or any other source
+            int idCliente = int.Parse(txtCC.Text);
+
+            cn = getSGBDConnection();
+            if (!verifySGBDConnection())
+                return;
+
+            // Create a SqlConnection object
                 try
                 {
-                    RemoveClient(((Cliente)listBox1.SelectedItem).CC);
+                    // Create a SqlCommand object with the stored procedure name
+                    using (SqlCommand command = new SqlCommand("Ginasio.EliminarCliente", cn))
+                    {
+                        // Set the command type to stored procedure
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        // Add the @idCliente parameter and set its value
+                        command.Parameters.AddWithValue("@idCliente", idCliente);
+
+                    //RemoveClient(((Cliente)listBox1.SelectedItem).CC);
+
+                    listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+                    if (currentClient == listBox1.Items.Count)
+                        currentClient = listBox1.Items.Count - 1;
+                    if (currentClient == -1)
+                    {
+                        ClearFields();
+                        MessageBox.Show("Não há mais clientes");
+                    }
+                    else
+                    {
+                        ShowClient();
+                    }
+
+                    // Execute the stored procedure
+                    command.ExecuteNonQuery();
+
+                        // Display a success message
+                        MessageBox.Show("Client deleted successfully.");
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
-                    return;
+                    // Display an error message
+                    MessageBox.Show("An error occurred: " + ex.Message);
                 }
-                listBox1.Items.RemoveAt(listBox1.SelectedIndex);
-                if (currentClient == listBox1.Items.Count)
-                    currentClient = listBox1.Items.Count - 1;
-                if (currentClient == -1)
-                {
-                    ClearFields();
-                    MessageBox.Show("Não há mais clientes");
-                }
-                else
-                {
-                    ShowClient();
-                }
-            }
+            
+            cn.Close();
         }
+
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -55,6 +55,40 @@ BEGIN
 END
 GO
 
+---Inscreve, feedback, Plano Adesão, Plano_Treino SET NULL, Pagamento SET NULL e finalmente cliente
+CREATE PROCEDURE Ginasio.EliminarCliente
+	@idCliente INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    BEGIN TRANSACTION;
+    
+    BEGIN TRY
+		-- DECLARE @idPT INT = (SELECT CC_Cliente FROM Ginasio.Inscreve WHERE CC_Cliente = @idCliente);
+		--UPDATE Ginasio.Pagamento SET CC_Cliente=NULL WHERE CC_Cliente= @idCliente ; Não dá para dar update para NULL neste momento, porque as tabelas têm NOT NULL
+		--UPDATE Ginasio.Plano_Treino SET CC_Cliente=NULL WHERE CC_Cliente= @idCliente ;
+		DELETE FROM Ginasio.Plano_Treino WHERE CC_Cliente = @idCliente;
+        DELETE FROM Ginasio.Inscreve WHERE CC_Cliente = @idCliente;
+		DELETE FROM Ginasio.Feedback WHERE CC_Cliente = @idCliente;
+		DELETE FROM Ginasio.Pagamento WHERE CC_Cliente = @idCliente;
+		DELETE FROM Ginasio.Plano_Adesao WHERE CC_Cliente= @idCliente;
+		
+        DELETE FROM Ginasio.Cliente WHERE CC = @idCliente;
+
+        COMMIT;
+    END TRY
+    BEGIN CATCH
+		    DECLARE @ErrorMessage NVARCHAR(4000) = ERROR_MESSAGE();
+			PRINT 'Ocorreu um erro: ' + @ErrorMessage;
+		ROLLBACK;
+    END CATCH;
+END
+GO
+
+EXEC Ginasio.EliminarCliente '901234567' -- Eliminei o cliente Diana Simões
+SELECT * FROM Ginasio.Cliente
+
 ----- SP Para ver o id inserido está correto -----
 GO
 CREATE PROCEDURE Ginasio.CheckIDExists
@@ -173,7 +207,6 @@ BEGIN
     RETURN;
 END
 GO
-
 
 SELECT * FROM Ginasio.funcPlanoTreinoCliente(123456789);
 

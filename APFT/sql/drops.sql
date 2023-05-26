@@ -6,7 +6,11 @@ drop FUNCTION Ginasio.funcPlanoTreinoCliente
 
 drop FUNCTION Ginasio.funcHorarioProfessor
 
+drop FUNCTION Ginasio.funcAulasInscritas
+
 drop PROCEDURE Ginasio.CheckIDExists
+
+drop PROCEDURE Ginasio.EliminarCliente
 
 drop TRIGGER Ginasio.VerificarPagamento
 

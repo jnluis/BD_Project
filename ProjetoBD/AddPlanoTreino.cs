@@ -29,8 +29,8 @@ namespace ProjetoBD
 
         private SqlConnection getSGBDConnection()
         {
-            return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
-            //return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
+            //return new SqlConnection("data source= LAPTOP-L0GR83Q7\\SQLEXPRESS;integrated security=true;initial catalog=proj"); // BD da Diana
+            return new SqlConnection("data source= LAPTOP-TN3JSRQ8\\SQLEXPRESS;integrated security=true;initial catalog=master"); // BD do João
         }
 
         private void txtCCcliente_TextChanged(object sender, EventArgs e)
@@ -71,7 +71,7 @@ namespace ProjetoBD
         private void btnCreate_Click(object sender, EventArgs e)
         {
 
-            if(txtCCcliente.Text != null && txtNtreinos.Text != null && txtDataIn.Text != null)
+            if (txtCCcliente.Text != null && txtNtreinos.Text != null && txtDataIn.Text != null)
             {
                 cn = getSGBDConnection();
                 if (!verifySGBDConnection())
@@ -160,6 +160,9 @@ namespace ProjetoBD
                 {
                     MessageBox.Show("ERRO: " + ex.Message);
                 }
+            }
+            else { 
+                    MessageBox.Show("ERRO: não preencheu todos os campos!");
             }
 
         }
