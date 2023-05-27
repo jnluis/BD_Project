@@ -79,8 +79,8 @@
             this.label19 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label15 = new System.Windows.Forms.Label();
             this.btnVoltar = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
             this.panelCargo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -197,7 +197,7 @@
             this.Label5.Location = new System.Drawing.Point(712, 933);
             this.Label5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 2);
             this.Label5.Name = "Label5";
-            this.Label5.Size = new System.Drawing.Size(220, 43);
+            this.Label5.Size = new System.Drawing.Size(366, 43);
             this.Label5.TabIndex = 200;
             this.Label5.Text = "Data Nascimento";
             // 
@@ -600,16 +600,6 @@
             this.panel1.Size = new System.Drawing.Size(494, 1861);
             this.panel1.TabIndex = 245;
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(623, 107);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(311, 55);
-            this.label15.TabIndex = 246;
-            this.label15.Text = "Funcionários";
-            // 
             // btnVoltar
             // 
             this.btnVoltar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -621,6 +611,16 @@
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(623, 107);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(311, 55);
+            this.label15.TabIndex = 246;
+            this.label15.Text = "Funcionários";
             // 
             // StaffForm
             // 

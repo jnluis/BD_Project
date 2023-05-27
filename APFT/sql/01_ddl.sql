@@ -123,7 +123,7 @@ CREATE TABLE Ginasio.Feedback(
     Comentários     VARCHAR(800)    NOT NULL,
     [Data]          DATE            NOT NULL,
 
-    PRIMARY KEY (CC_Cliente, ID_Professor),
+    PRIMARY KEY (CC_Cliente, ID_Professor, [Data]),
     FOREIGN KEY (CC_Cliente) REFERENCES Ginasio.Cliente(CC),
     FOREIGN KEY (ID_Professor) REFERENCES Ginasio.Professor(Num_func)
 );

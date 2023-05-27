@@ -631,6 +631,9 @@ namespace ProjetoBD
             listGerentes.Enabled = false;
             listProfs.Enabled = false;
             listRecepcionistas.Enabled = false;
+            txtNfunc.Enabled = true;
+            txtCertificados.Visible = false;
+            labelCertificados.Visible = false;
         }
 
         private void bttnCancel_Click(object sender, EventArgs e)
