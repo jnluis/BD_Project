@@ -32,8 +32,7 @@ GO
 
 -- Verificar se ainda há vagas disponíveis para inscrição na aula ---
 GO
-CREATE TRIGGER Ginasio.VerificarNInscritosAula
-ON Ginasio.Inscreve
+CREATE TRIGGER Ginasio.VerificarNInscritosAula ON Ginasio.Inscreve
 INSTEAD OF INSERT, UPDATE
 AS
 	BEGIN
@@ -64,8 +63,8 @@ AFTER UPDATE
 AS
 BEGIN
 	SET NOCOUNT ON;
-
-	IF EXISTS (SELECT * FROM inserted WHERE Salario > (SELECT Salario FROM Ginasio.staff WHERE Num_func = inserted.Gerente_Num))
+	IF EXISTS (SELECT * FROM inserted WHERE Salario > 
+	(SELECT Salario FROM Ginasio.staff WHERE Num_func = inserted.Gerente_Num))
 	BEGIN
 		RAISERROR('Error: Employee salary cannot be greater than manager salary.', 16, 1);
 		ROLLBACK TRAN;

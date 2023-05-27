@@ -61,7 +61,8 @@ Nesta entrega temos a análise de requisitos, o Diagrama Entidade-Relacionamento
 
 ### APFE
 
-As alterações em relação à última entrega incluíram a transformação do Feedback numa relação, em vez de uma tabela, e a definição do relacionamento 'is-a' como disjoint, no que diz respeito à entidade Staff, estabelecendo a exclusividade entre as especializações. Assim, um membro do staff pode ser apenas um Professor, um Rececionista ou um Gerente, não podendo ser definido como duas ou mais dessas especializações simultaneamente.
+As alterações em relação à última entrega incluram a transformação do Feedback numa relação, em vez de uma tabela, e a definição do relacionamento 'is-a' como disjoint, no que diz respeito à entidade Staff, estabelecendo a exclusividade entre as especializações. Com isto, um membro do staff pode ser apenas um Professor, um Rececionista ou um Gerente, não podendo ser definido como duas ou mais dessas especializações simultaneamente.
+Por último acrescentámos à relação Subscreve um atributo Data.
 
 ## ​SQL DDL - Data Definition Language
 
@@ -89,10 +90,14 @@ INSERT INTO MY_TABLE ....;
 
 ## Normalização/Normalization
 
+Ao avaliarmos o nosso sistema, percebemos que ele já se encontrava na terceira forma normal. No entanto, isto deveu-se ao facto de termos tido o cuidado de colocar numa tabela à parte os atributos que antes eram multi-valor, garantindo assim a sua atomicidade.
+````
+Retirar isto depois!
 Descreva os passos utilizados para minimizar a duplicação de dados / redução de espaço.
 Justifique as opções tomadas.
 Describe the steps used to minimize data duplication / space reduction.
 Justify the choices made.
+````
 
 ## Índices/Indexes
 
@@ -118,7 +123,7 @@ CREATE INDEX idxNumFuncProfessor ON Ginasio.Professor(Num_func);
 
 ## Outras notas/Other notes
 
-### Dados iniciais da dabase de dados/Database init data
+### Dados iniciais da base de dados/Database init data
 
 [Database Init File](sql/04_db_init.sql "SQLFileQuestion")
 

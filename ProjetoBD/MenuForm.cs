@@ -214,7 +214,7 @@ namespace ProjetoBD
                         
                         if (!validation)
                         {
-                            var PaginaInicialProfs = new PaginaInicialProfs(ID); // PORQUE NÃO FUNCIONAS???
+                            var PaginaInicialProfs = new PaginaInicialProfs(ID); 
                             PaginaInicialProfs.Show();
                         }
                         else
