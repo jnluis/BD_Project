@@ -80,7 +80,6 @@ A section for each form.
 ```sql
 -- Uso da SP CheckIDExists para verificar se o ID é válido
 Ginasio.CheckIDExists
-
 ```
 ![Screenshot Pagina Inicial Cliente!](screenshots/screenshot_2.jpg "AnImage")
 
@@ -142,6 +141,83 @@ INSERT INTO Ginasio.Rececionista (Num_func) VALUES (@Num_func)
 UPDATE Ginasio.Staff " + "SET Fname = @Fname, " + "Lname = @Lname, " + " Email = @Email, " + " Telemovel = @Telemovel, " + " Morada = @Morada, " + " Data_Nasc = @Data_Nasc, " + " Gerente_Num = @Gerente_Num, " + " Salario = @Salario, " + " Horario_Lab = @Horario " + "WHERE Num_func = @Num_func
 ```
 
+![Screenshot Pagina Inicial Professor!](screenshots/screenshot_7.jpg "AnImage")
+```sql
+-- UDF Para ver o horario de um professor
+SELECT * FROM Ginasio.funcHorarioProfessor(@IDinical)
+
+-- Mostrar nome do funcionário
+SELECT Fname, Lname FROM Ginasio.Staff WHERE Num_func = @IDinicial
+```
+
+![Screenshot Ver Feedback!](screenshots/screenshot_8.jpg "AnImage")
+```sql
+-- Mostrar o feedback associado aquele professor, mostrando o nº de CC, o nome e a data do feedback por parte do cliente.
+Select CC_Cliente, Fname, Lname, Comentários, [Data] from Ginasio.Feedback join Ginasio.Cliente on CC= CC_Cliente where ID_Professor = @idProf
+```
+![Screenshot Add Plano Treino!](screenshots/screenshot_9.jpg "AnImage")
+```sql
+-- Ao carregar no botão "Criar Plano":
+-- Selecionar o nome
+Select Fname, Lname From Ginasio.Cliente Where CC = @ccCliente
+
+-- O QUE TÀS A FAZER AQUIIIII????????????????????
+SELECT MAX(ID) FROM Ginasio.Plano_Treino
+
+-- Inserir dados
+INSERT INTO Ginasio.Plano_Treino(ID, Data_Inicio, Data_Fim, Num_Treinos_Semanais, ID_Professor, CC_Cliente) VALUES (@ID, @DataIn, @DataFim, @nTreinos, @idProf, @idCliente)
+
+-- Seleção dos dados para posteriormente ser calculada a idade dos clientes
+SELECT YEAR(Data_Nasc) AS Ano FROM Ginasio.Cliente WHERE CC = @idCliente
+```
+
+![Screenshot Editar Plano Treino!](screenshots/screenshot_10.jpg "AnImage")
+```sql
+-- Chamar a Stored Procedure para inserir um exercício (Elevação dos joelhos selecionado)
+Ginasio.InserirExercicioNumPlanoTreino
+
+-- Stored Procedure para eliminar um exercício (o exercício tem de estar selecionado)
+Ginasio.EliminarExercicioNumPlanoTreino
+
+-- Preencher a tabela com os dados do plano de treino através de uma UDF
+SELECT * FROM Ginasio.funcPlanoTreinoCliente(@idCliente)
+
+-- Obter a lsita de exercícios (lista da direita) ordenada por ordem alfabética
+SELECT Nome FROM Ginasio.Exercicio ORDER BY Nome
+```
+
+![Screenshot Ver Plano Treino!](screenshots/screenshot_11.jpg "AnImage")
+```sql
+-- Obter todos os números de cliente associados aquele professor (para aparecer no dropdown do canto superior direito)
+SELECT CC_cliente FROM Ginasio.Professor JOIN Ginasio.Plano_Treino ON Ginasio.Professor.Num_func = Ginasio.Plano_Treino.ID_Professor WHERE Ginasio.Professor.Num_func = @IDinical
+
+-- UDF para ver o plano de treino de um cliente
+SELECT * FROM Ginasio.funcPlanoTreinoCliente(@idCliente)
+```
+
+![Screenshot Pagina Inicial Rececionista!](screenshots/screenshot_12.jpg "AnImage")
+```sql
+-- Obter o nome do rececionista
+SELECT Fname, Lname FROM Ginasio.Staff WHERE Num_func = @IDinicial
+
+-- Ver os planos de adesão criados por aquele rececionista
+Select * From Ginasio.Plano_Adesao Where Num_Rec = @numFunc
+```
+
+![Screenshot Ver Clientes no Rececionista!](screenshots/screenshot_13.jpg "AnImage")
+```sql
+-- Ver dados
+SELECT * FROM Ginasio.Cliente
+
+-- Atualizar dados
+UPDATE Ginasio.Cliente " + "SET Fname = @Fname, " + "Lname = @Lname, " + " Email = @Email, " + " Telemovel = @Telemovel, " + " NIF = @NIF, " + " Morada = @Morada, " + " Data_Nasc = @Data_Nasc " + "WHERE CC = @CC
+
+-- Inserir um novo cliente
+INSERT INTO Ginasio.Cliente (CC, Fname, Lname, Email, Telemovel, NIF, Morada, Data_Nasc) " + "VALUES (@CC, @Fname, @Lname, @Email, @Telemovel, @NIF, @Morada, @Data_Nasc)
+
+-- Eliminar Cliente através de uma Stored Procedure
+Ginasio.EliminarCliente
+```
 ...
 
 ## Normalização/Normalization
