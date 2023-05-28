@@ -286,7 +286,6 @@ namespace ProjetoBD
         {
             LockControls();
             bttnAdd.Visible = true;
-            bttnDelete.Visible = true;
             bttnEdit.Visible = true;
             bttnOK.Visible = false;
             bttnCancel.Visible = false;
@@ -295,7 +294,6 @@ namespace ProjetoBD
         {
             UnlockControls();
             bttnAdd.Visible = false;
-            bttnDelete.Visible = false;
             bttnEdit.Visible = false;
             bttnOK.Visible = true;
             bttnCancel.Visible = true;
@@ -426,19 +424,6 @@ namespace ProjetoBD
             else
             {
                 UpdateFunc(func);
-                if (func.Cargo == "Gerente")
-                {
-                    listGerentes.Items[currentFunc] = func;
-
-                }
-                else if (func.Cargo == "Rececionista")
-                {
-                    listRecepcionistas.Items[currentFunc] = func;
-                }
-                else if (func.Cargo == "Professor")
-                {
-                    listProfs.Items.Add(func);
-                }
             }
             return true;
         }
@@ -452,7 +437,7 @@ namespace ProjetoBD
             cmd.CommandText = "INSERT INTO Ginasio.Staff (CC, Fname, Lname, Email, Telemovel, NIF, Morada, Data_Nasc, Salario, Num_func, Data_Contr, Horario_Lab, Gerente_Num) " +
                               "VALUES (@CC, @Fname, @Lname, @Email, @Telemovel, @NIF, @Morada, @Data_Nasc, @Salario, @Num_func, @Data_Contr, @Horario, @Gerente_Num)";
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@CC", int.Parse(C.CC));
+            cmd.Parameters.AddWithValue("@CC", C.CC);
             cmd.Parameters.AddWithValue("@Fname", C.Fname);
             cmd.Parameters.AddWithValue("@Lname", C.Lname);
             cmd.Parameters.AddWithValue("@Email", C.Email);
@@ -465,28 +450,6 @@ namespace ProjetoBD
             cmd.Parameters.AddWithValue("@Data_Contr", DateTime.Parse(C.Data_Contrat));
             cmd.Parameters.AddWithValue("@Horario",TimeSpan.Parse(C.Horario));
             cmd.Parameters.AddWithValue("@Gerente_Num", int.Parse(C.NGerente));
-
-
-            if (verifySGBDConnection())
-            {
-                try
-                {
-                    cmd.Connection = cn;
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Funcionário inserido com sucesso!");
-                }
-                catch (SqlException ex)
-                {
-                    // Lida com exceções do SQL Server aqui
-                    MessageBox.Show("Ocorreu um erro ao inserir o Funcionário: " + ex.Message);
-                }
-                finally
-                {
-                    cn.Close();
-                }
-            }
-
-            cmd.Parameters.Clear(); 
 
             if (C.Cargo == "Professor")
             {
@@ -516,7 +479,6 @@ namespace ProjetoBD
                 }
                 catch (SqlException ex)
                 {
-                    // Lida com exceções do SQL Server aqui
                     MessageBox.Show("Ocorreu um erro ao inserir o Funcionário: " + ex.Message);
                 }
                 finally
@@ -524,6 +486,8 @@ namespace ProjetoBD
                     cn.Close();
                 }
             }
+
+            cmd.Parameters.Clear();
 
             AtualizarData();
         }
@@ -572,57 +536,6 @@ namespace ProjetoBD
 
         }
 
-        private void RemoveFunc(string Num_func, string cargo)
-        {
-            if (!verifySGBDConnection())
-                return;
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = cn;
-
-            try
-            {
-                // Delete from the specific table
-                if (cargo == "Professor")
-                {
-                    cmd.CommandText = "DELETE FROM Ginasio.Professor WHERE Num_func = @Num_func";
-                }
-                else if (cargo == "Gerente")
-                {
-                    cmd.CommandText = "DELETE FROM Ginasio.Gerente WHERE Num_func = @Num_func";
-                }
-                else if (cargo == "Rececionista")
-                {
-                    cmd.CommandText = "DELETE FROM Ginasio.Rececionista WHERE Num_func = @Num_func";
-                }
-                else
-                {
-                    throw new ArgumentException("Cargo inválido.");
-                }
-
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@Num_func", Num_func);
-
-                cmd.ExecuteNonQuery();
-
-                // Delete from the Staff table
-                cmd.CommandText = "DELETE FROM Ginasio.Staff WHERE Num_func = @Num_func";
-                cmd.ExecuteNonQuery();
-
-                MessageBox.Show("Funcionário removido com sucesso!");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Erro ao remover funcionário da base de dados. \nMENSAGEM DE ERRO: \n" + ex.Message);
-            }
-            finally
-            {
-                cn.Close();
-            }
-
-            AtualizarData();
-        }
-
         private void bttnAdd_Click(object sender, EventArgs e)
         {
             adding = true;
@@ -634,6 +547,7 @@ namespace ProjetoBD
             txtNfunc.Enabled = true;
             txtCertificados.Visible = false;
             labelCertificados.Visible = false;
+            txtDataContrat.Enabled= true;
         }
 
         private void bttnCancel_Click(object sender, EventArgs e)
@@ -716,53 +630,6 @@ namespace ProjetoBD
 
             ShowButtons();
         }
-
-        private void bttnDelete_Click(object sender, EventArgs e)
-        {
-            ListBox selectedList = null;
-
-            if (listGerentes.SelectedIndex > -1)
-            {
-                selectedList = listGerentes;
-            }
-            else if (listProfs.SelectedIndex > -1)
-            {
-                selectedList = listProfs;
-            }
-            else if (listRecepcionistas.SelectedIndex > -1)
-            {
-                selectedList = listRecepcionistas;
-            }
-            else
-            {
-                return; // Nenhum item selecionado em nenhuma lista
-            }
-
-            try
-            {
-                RemoveFunc(((Staff)selectedList.SelectedItem).NFunc, ((Staff)selectedList.SelectedItem).Cargo);
-                selectedList.Items.RemoveAt(selectedList.SelectedIndex);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return;
-            }
-
-            if (currentFunc == selectedList.Items.Count)
-                currentFunc = selectedList.Items.Count - 1;
-
-            if (currentFunc == -1)
-            {
-                ClearFields();
-                MessageBox.Show("Não há mais funcionários");
-            }
-            else
-            {
-                ShowFunc(selectedList);
-            }
-        }
-
         private void listProfs_SelectedIndexChanged(object sender, EventArgs e)
         {
             listGerentes.ClearSelected();

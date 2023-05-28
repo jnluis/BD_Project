@@ -75,15 +75,71 @@ A section for each form.
 
 ### Formulario exemplo/Example Form
 
-![Exemplo Screenshot!](screenshots/screenshot_1.jpg "AnImage")
+![Screenshot Menu!](screenshots/screenshot_1.jpg "AnImage")
 
 ```sql
--- Show data on the form
-SELECT * FROM MY_TABLE ....;
+-- Uso da SP CheckIDExists para verificar se o ID é válido
+Ginasio.CheckIDExists
 
--- Insert new element
-INSERT INTO MY_TABLE ....;
+```
+![Screenshot Pagina Inicial Cliente!](screenshots/screenshot_2.jpg "AnImage")
 
+```sql
+-- Uso de uma UDF para ver as aulas em que o cliente estava inscrito
+SELECT * FROM Ginasio.funcAulasInscritas(@ccCliente)
+
+-- Mostrar nome do cliente
+SELECT Fname, Lname FROM Ginasio.Cliente WHERE CC = @ccCliente
+```
+
+![Screenshot Ver plano de treino!](screenshots/screenshot_3.jpg "AnImage")
+
+```sql
+-- Uso de uma UDF para ver o plano de treino
+SELECT * FROM Ginasio.funcPlanoTreinoCliente(@idCliente)
+```
+
+![Screenshot Pagina Dar Feedback!](screenshots/screenshot_4.jpg "AnImage")
+
+```sql
+-- Uso da SP CheckIDExists para verificar se o ID do professor é válido
+Ginasio.CheckIDExists
+
+-- Inserir dados na tabela Feedback
+INSERT INTO Ginasio.Feedback(CC_Cliente, ID_Professor, Comentários, Data) Values (@cc, @idProf, @comment, @data)
+```
+
+![Screenshot Pagina Inicial Gerente!](screenshots/screenshot_5.jpg "AnImage")
+
+```sql
+-- Uso de UDFs para ver estatisticas de numero de incrições em aulas, tipos de planos de adesão, estados de pagamentos e médias de salário
+SELECT * FROM Ginasio.Inscricoes()
+SELECT * FROM Ginasio.TiposPlanosAdesao()
+SELECT * FROM Ginasio.EstadoPagamentos()
+SELECT * FROM Ginasio.MediasSalarios()
+```
+
+![Screenshot Staff!](screenshots/screenshot_6.jpg "AnImage")
+
+```sql
+-- Ver dados
+SELECT * FROM Ginasio.Staff Join Ginasio.Professor On Ginasio.Professor.Num_func = Ginasio.Staff.Num_func
+SELECT * FROM Ginasio.Staff Join Ginasio.Rececionista On Ginasio.Rececionista.Num_func = Ginasio.Staff.Num_func
+SELECT * FROM Ginasio.Staff Join Ginasio.Gerente On Ginasio.Gerente.Num_func = Ginasio.Staff.Num_func
+SELECT COUNT(*) FROM Ginasio.{tableName} WHERE Num_func = @NumFuncionario
+SELECT Fname + ' ' + Lname FROM Ginasio.{tableName} WHERE Num_func = @numGerente
+SELECT certificacoes FROM Ginasio.{tableName} WHERE Num_func = @numFunc
+
+--Inserir dados
+INSERT INTO Ginasio.Staff (CC, Fname, Lname, Email, Telemovel, NIF, Morada, Data_Nasc, Salario, Num_func, Data_Contr, Horario_Lab, Gerente_Num) 
+VALUES (@CC, @Fname, @Lname, @Email, @Telemovel, @NIF, @Morada, @Data_Nasc, @Salario, @Num_func, @Data_Contr, @Horario, @Gerente_Num)
+
+INSERT INTO Ginasio.Professor (Num_func) VALUES (@Num_func)
+INSERT INTO Ginasio.Gerente (Num_func) VALUES (@Num_func)
+INSERT INTO Ginasio.Rececionista (Num_func) VALUES (@Num_func)
+
+-- Atualizar dados
+UPDATE Ginasio.Staff " + "SET Fname = @Fname, " + "Lname = @Lname, " + " Email = @Email, " + " Telemovel = @Telemovel, " + " Morada = @Morada, " + " Data_Nasc = @Data_Nasc, " + " Gerente_Num = @Gerente_Num, " + " Salario = @Salario, " + " Horario_Lab = @Horario " + "WHERE Num_func = @Num_func
 ```
 
 ...

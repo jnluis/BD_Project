@@ -51,7 +51,6 @@
             this.txtDataNasc = new System.Windows.Forms.TextBox();
             this.txtMorada = new System.Windows.Forms.TextBox();
             this.txtFname = new System.Windows.Forms.TextBox();
-            this.bttnDelete = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtNfunc = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -303,17 +302,6 @@
             this.txtFname.ReadOnly = true;
             this.txtFname.Size = new System.Drawing.Size(238, 42);
             this.txtFname.TabIndex = 196;
-            // 
-            // bttnDelete
-            // 
-            this.bttnDelete.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.bttnDelete.Location = new System.Drawing.Point(1422, 1203);
-            this.bttnDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.bttnDelete.Name = "bttnDelete";
-            this.bttnDelete.Size = new System.Drawing.Size(144, 49);
-            this.bttnDelete.TabIndex = 209;
-            this.bttnDelete.Text = "Delete";
-            this.bttnDelete.Click += new System.EventHandler(this.bttnDelete_Click);
             // 
             // label4
             // 
@@ -666,7 +654,6 @@
             this.Controls.Add(this.txtDataNasc);
             this.Controls.Add(this.txtMorada);
             this.Controls.Add(this.txtFname);
-            this.Controls.Add(this.bttnDelete);
             this.Name = "StaffForm";
             this.Text = "Staff Form";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -704,7 +691,6 @@
         internal System.Windows.Forms.TextBox txtDataNasc;
         internal System.Windows.Forms.TextBox txtMorada;
         internal System.Windows.Forms.TextBox txtFname;
-        private System.Windows.Forms.Button bttnDelete;
         internal System.Windows.Forms.Label label4;
         internal System.Windows.Forms.TextBox txtNfunc;
         internal System.Windows.Forms.Label label9;

@@ -75,26 +75,32 @@ namespace ProjetoBD
                 return;
 
             string estado = "";
-            DateTime? data = null;
+            DateTime? dataCanc = null;
+            DateTime? dataPag = null;
 
             if (rdbtnCancelado.Checked)
             {
                 estado = "Cancelado";
-                data = dateCanc.Value.Date;
-            }else if (rdbtnPago.Checked){
+                dataCanc = dateCanc.Value.Date;
+                dataPag = null;
+            }
+            else if (rdbtnPago.Checked){
                 estado = "Pago";
-                data = datePag.Value.Date;
+                dataPag = datePag.Value.Date;
+                dataCanc = null;
             }else if (rdbtnPendente.Checked)
             {
                 estado = "Pendente";
+                dataPag =  null;
+                dataCanc = null;
             }
 
             string query = "UPDATE Ginasio.Pagamento SET Estado = @estado, Data_Pagamento = @dataPag, Data_canc = @dataCanc WHERE ID = @idPag";
             using (SqlCommand command = new SqlCommand(query, cn))
             {
                 command.Parameters.AddWithValue("@estado", estado);
-                command.Parameters.AddWithValue("@dataPag", data);
-                command.Parameters.AddWithValue("@dataCanc", data);
+                command.Parameters.AddWithValue("@dataPag", (object)dataPag ?? DBNull.Value);
+                command.Parameters.AddWithValue("@dataCanc", (object)dataCanc ?? DBNull.Value);
                 command.Parameters.AddWithValue("@idPag", idPag);
 
                 int rowsAffected = command.ExecuteNonQuery();

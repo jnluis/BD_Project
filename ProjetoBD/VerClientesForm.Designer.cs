@@ -169,7 +169,7 @@
             this.Label5.Location = new System.Drawing.Point(113, 679);
             this.Label5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 2);
             this.Label5.Name = "Label5";
-            this.Label5.Size = new System.Drawing.Size(217, 42);
+            this.Label5.Size = new System.Drawing.Size(332, 42);
             this.Label5.TabIndex = 177;
             this.Label5.Text = "Data Nascimento";
             this.Label5.Click += new System.EventHandler(this.Label5_Click);

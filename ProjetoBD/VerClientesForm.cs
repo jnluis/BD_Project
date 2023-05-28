@@ -119,9 +119,9 @@ namespace ProjetoBD
             cmd.Parameters.AddWithValue("@Lname", C.Lname);
             cmd.Parameters.AddWithValue("@Email", C.Email);
             cmd.Parameters.AddWithValue("@Telemovel", C.Telemovel);
-            cmd.Parameters.AddWithValue("@NIF", C.NIF);
-            cmd.Parameters.AddWithValue("@Morada", C.Morada);
-            cmd.Parameters.AddWithValue("@Data_nasc", C.Data_Nasc);
+            cmd.Parameters.AddWithValue("@NIF", (object)C.NIF ?? DBNull.Value);
+            cmd.Parameters.AddWithValue("@Morada", (object)C.Morada ?? DBNull.Value);
+            cmd.Parameters.AddWithValue("@Data_nasc", DateTime.Parse(C.Data_Nasc));
 
             if (verifySGBDConnection())
             {
@@ -159,7 +159,7 @@ namespace ProjetoBD
             cmd.Parameters.AddWithValue("@Telemovel", C.Telemovel);
             cmd.Parameters.AddWithValue("@NIF", C.NIF);
             cmd.Parameters.AddWithValue("@Morada", C.Morada);
-            cmd.Parameters.AddWithValue("@Data_nasc", C.Data_Nasc);
+            cmd.Parameters.AddWithValue("@Data_nasc", DateTime.Parse(C.Data_Nasc));
             cmd.Connection = cn;
 
             try
@@ -366,33 +366,6 @@ namespace ProjetoBD
             ShowButtons();
         }
 
-        //private void bttnDelete_Click(object sender, EventArgs e)
-        //{
-        //    if (listBox1.SelectedIndex > -1)
-        //    {
-        //        try
-        //        {
-        //            RemoveClient(((Cliente)listBox1.SelectedItem).CC);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show(ex.Message);
-        //            return;
-        //        }
-        //        listBox1.Items.RemoveAt(listBox1.SelectedIndex);
-        //        if (currentClient == listBox1.Items.Count)
-        //            currentClient = listBox1.Items.Count - 1;
-        //        if (currentClient == -1)
-        //        {
-        //            ClearFields();
-        //            MessageBox.Show("Não há mais clientes");
-        //        }
-        //        else
-        //        {
-        //            ShowClient();
-        //        }
-        //    }
-        //}
 
         private void bttnDelete_Click(object sender, EventArgs e)
         {
@@ -480,7 +453,7 @@ namespace ProjetoBD
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
-
+             
         }
     }
 
