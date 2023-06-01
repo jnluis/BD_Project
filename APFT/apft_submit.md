@@ -74,6 +74,7 @@ Uma secção por formulário.
 A section for each form.
 
 ### Formulario exemplo/Example Form
+### Menu
 
 ![Screenshot Menu!](screenshots/screenshot_1.jpg "AnImage")
 
@@ -81,6 +82,8 @@ A section for each form.
 -- Uso da SP CheckIDExists para verificar se o ID é válido
 Ginasio.CheckIDExists
 ```
+### Página do Cliente
+
 ![Screenshot Pagina Inicial Cliente!](screenshots/screenshot_2.jpg "AnImage")
 
 ```sql
@@ -107,6 +110,8 @@ Ginasio.CheckIDExists
 -- Inserir dados na tabela Feedback
 INSERT INTO Ginasio.Feedback(CC_Cliente, ID_Professor, Comentários, Data) Values (@cc, @idProf, @comment, @data)
 ```
+
+### Página do Gerente
 
 ![Screenshot Pagina Inicial Gerente!](screenshots/screenshot_5.jpg "AnImage")
 
@@ -140,7 +145,7 @@ INSERT INTO Ginasio.Rececionista (Num_func) VALUES (@Num_func)
 -- Atualizar dados
 UPDATE Ginasio.Staff " + "SET Fname = @Fname, " + "Lname = @Lname, " + " Email = @Email, " + " Telemovel = @Telemovel, " + " Morada = @Morada, " + " Data_Nasc = @Data_Nasc, " + " Gerente_Num = @Gerente_Num, " + " Salario = @Salario, " + " Horario_Lab = @Horario " + "WHERE Num_func = @Num_func
 ```
-
+### Página do Professor
 ![Screenshot Pagina Inicial Professor!](screenshots/screenshot_7.jpg "AnImage")
 ```sql
 -- UDF Para ver o horario de um professor
@@ -194,7 +199,7 @@ SELECT CC_cliente FROM Ginasio.Professor JOIN Ginasio.Plano_Treino ON Ginasio.Pr
 -- UDF para ver o plano de treino de um cliente
 SELECT * FROM Ginasio.funcPlanoTreinoCliente(@idCliente)
 ```
-
+### Página do Rececionista
 ![Screenshot Pagina Inicial Rececionista!](screenshots/screenshot_12.jpg "AnImage")
 ```sql
 -- Obter o nome do rececionista
@@ -218,6 +223,63 @@ INSERT INTO Ginasio.Cliente (CC, Fname, Lname, Email, Telemovel, NIF, Morada, Da
 -- Eliminar Cliente através de uma Stored Procedure
 Ginasio.EliminarCliente
 ```
+
+![Screenshot Criar plano de adesão!](screenshots/screenshot_14.jpg "AnImage")
+
+```sql
+-- Inserir um novo plano de adesão
+INSERT INTO Ginasio.Plano_Adesao (Tipo, CC_Cliente, Preco, Data_Fim, Data_Inicio, Num_Rec) " + "VALUES (@tipo, @cc, @preco, @dataFim, @dataInicio, @numRec)
+
+--Quando o plano de adesão é guardado para um cliente que já tenha um plano, o seguinte trigger é ativado:
+Ginasio.VerificarClientePlanosAdesao
+```
+
+![Screenshot Pagamentos Rececionista!](screenshots/screenshot_15.jpg "AnImage")
+```sql
+-- Ver os dados.
+-- Para ser possível ver em tabela, usámos um data grid view.
+-- Esta permite ordenar por colunas, carregando na coluna em questão.
+SELECT * FROM Ginasio.Pagamento
+```
+```csharp
+// Para ser possível filtrar os dados, usámos um data view:
+dataView.RowFilter = $"Estado = '{valorFiltro}'";
+tabelaPagamentos.DataSource = dataView.ToTable();
+```
+#### Carregando no botão "Editar":
+
+![Screenshot Editar Pagamento Rececionista!](screenshots/screenshot_16.jpg "AnImage")
+#### A página guarda o contexto da página anterior (ou seja, que estado estava selecionado, o método, etc)
+```sql
+-- Atualizar os dados
+UPDATE Ginasio.Pagamento SET Estado = @estado, Data_Pagamento = @dataPag, Data_canc = @dataCanc WHERE ID = @idPag
+```
+
+![Screenshot View Pagamentos Rececionista!](screenshots/screenshot_17.jpg "AnImage")
+
+```sql
+--- Ver os dados relativos às aulas através de uma View
+--- Foi feita a organização dos dados por número da sala
+--- e por dia da semana, esta fora da View
+SELECT * FROM Ginasio.Salas_AND_Aulas_VIEW ORDER BY [Número da Sala],
+CASE [Dia da semana] 
+WHEN 'Segunda-feira' THEN 1 
+WHEN 'Terça-feira' THEN 2 
+WHEN 'Quarta-feira' THEN 3 
+WHEN 'Quinta-feira' THEN 4 
+WHEN 'Sexta-feira' THEN 5 
+WHEN 'Sábado' THEN 6 
+WHEN 'Domingo' THEN 7 
+ELSE 8 END
+```
+#### Carregando no botão "Fazer Inscrição"_
+
+![Screenshot Fazer Inscrição View Rececionista!](screenshots/screenshot_18.jpg "AnImage")
+
+```sql
+--- Inserir os dados para fazer a inscrição na aula
+INSERT INTO Ginasio.Inscreve (ID_HAula, CC_Cliente, Estado) VALUES (@nAula, @cc, @estado)
+```
 ...
 
 ## Normalização/Normalization
@@ -233,7 +295,7 @@ Justify the choices made.
 
 ## Índices/Indexes
 
-Foram utilizados índices para otimizar a velocidade de execução das pesquisas por nome de cliente e funcionário, e pelo do ID do cliente, exercício no plano de treino e professor. Apesar de nossa base de dados ser relativamente pequena, optamos por implementar essa estrutura nessas tabelas devido à sua alta frequência de uso.
+Foram utilizados índices para otimizar a velocidade de execução das pesquisas por nome de cliente e funcionário, e pelo ID do cliente, exercício no plano de treino e professor. Apesar da nossa base de dados ser relativamente pequena, optámos por implementar essa estrutura nessas tabelas devido à sua alta frequência de uso.
 
 ```sql
 CREATE INDEX idxNomeCliente ON Ginasio.Cliente(Fname, Lname);
