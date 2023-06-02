@@ -4,32 +4,10 @@
 - João Luís, NMEC: 107403
 - Diana Miranda, NMEC: 107457
 
-# Instructions - TO REMOVE
-
-Este template é flexível.
-É sugerido seguir a estrutura, links de ficheiros e imagens, mas adicione ou remova conteúdo sempre que achar necessário.
-
----
-
-This template is flexible.
-It is suggested to follow the structure, file links and images but add more content where necessary.
-
-The files should be organized with the following nomenclature:
-
-- sql\01_ddl.sql: mandatory for DDL
-- sql\02_sp_functions.sql: mandatory for Store Procedure, Functions,... 
-- sql\03_triggers.sql: mandatory for triggers
-- sql\04_db_init.sql: scripts to init the database (i.e. inserts etc.)
-- sql\05_any_other_matter.sql: any other scripts.
-
-Por favor remova esta secção antes de submeter.
-
-Please remove this section before submitting.
-
 ## Introdução / Introduction
  
-Para o projeto de Bases de Dados, decidimos desenvolver um Sistema de Gestão de Ginásios. Com este sistema, pretendemos proporcionar aos gestores do ginásio uma ferramenta eficaz para gerir todas as operações de forma mais eficiente e assertiva.
-Nesta entrega temos a análise de requisitos, o Diagrama Entidade-Relacionamento e o Esquema Relacional para a base de dados a desenvolver no resto do projeto.  
+Para o nosso projeto de Bases de Dados, estamos a desenvolver um Sistema de Gestão de um Ginásio. O principal objetivo deste sistema é proporcionar aos gerentes, clientes e recepcionistas uma ferramenta eficiente e assertiva para gerir todas as operações necessárias de forma otimizada.
+Nesta entrega temos a análise de requisitos, o Diagrama Entidade-Relacionamento o Esquema Relacional, os ficheiros para criação e inicialização da base de dados, os ficheiros com as funções necessárias para consulta, inserção, atualização e remoção de dados da base de dados e também o código com a implementação de uma interface para realizar todas estas operações.
 
 ## ​Análise de Requisitos / Requirements
 
@@ -61,7 +39,7 @@ Nesta entrega temos a análise de requisitos, o Diagrama Entidade-Relacionamento
 
 ### APFE
 
-As alterações em relação à última entrega incluram a transformação do Feedback numa relação, em vez de uma tabela, e a definição do relacionamento 'is-a' como disjoint, no que diz respeito à entidade Staff, estabelecendo a exclusividade entre as especializações. Com isto, um membro do staff pode ser apenas um Professor, um Rececionista ou um Gerente, não podendo ser definido como duas ou mais dessas especializações simultaneamente.
+As alterações em relação à última entrega incluram a transformação do Feedback numa relação, em vez de uma entidade, e a definição do relacionamento 'is-a' como disjoint, no que diz respeito à entidade Staff, estabelecendo a exclusividade entre as especializações. Com isto, um membro do staff pode ser apenas um Professor, um Rececionista ou um Gerente, não podendo ser definido como duas ou mais dessas especializações simultaneamente.
 Por último acrescentámos à relação Subscreve um atributo Data.
 
 ## ​SQL DDL - Data Definition Language
@@ -162,12 +140,8 @@ Select CC_Cliente, Fname, Lname, Comentários, [Data] from Ginasio.Feedback join
 ```
 ![Screenshot Add Plano Treino!](screenshots/screenshot_9.jpg "AnImage")
 ```sql
--- Ao carregar no botão "Criar Plano":
 -- Selecionar o nome
 Select Fname, Lname From Ginasio.Cliente Where CC = @ccCliente
-
--- O QUE TÀS A FAZER AQUIIIII????????????????????
-SELECT MAX(ID) FROM Ginasio.Plano_Treino
 
 -- Inserir dados
 INSERT INTO Ginasio.Plano_Treino(ID, Data_Inicio, Data_Fim, Num_Treinos_Semanais, ID_Professor, CC_Cliente) VALUES (@ID, @DataIn, @DataFim, @nTreinos, @idProf, @idCliente)
@@ -284,18 +258,11 @@ INSERT INTO Ginasio.Inscreve (ID_HAula, CC_Cliente, Estado) VALUES (@nAula, @cc,
 
 ## Normalização/Normalization
 
-Ao avaliarmos o nosso sistema, percebemos que ele já se encontrava na terceira forma normal. No entanto, isto deveu-se ao facto de termos tido o cuidado de colocar numa tabela à parte os atributos que antes eram multi-valor, garantindo assim a sua atomicidade.
-````
-Retirar isto depois!
-Descreva os passos utilizados para minimizar a duplicação de dados / redução de espaço.
-Justifique as opções tomadas.
-Describe the steps used to minimize data duplication / space reduction.
-Justify the choices made.
-````
+Ao avaliarmos o nosso sistema, percebemos que ele já se encontrava na terceira forma normal. Isto deve-se ao fato de termos sido cuidadosos ao avaliar o Diagrama de Entidade e Relacionamento (DER) para criar o Esquema Relacional. Desde o início, tivemos o cuidado de garantir que as tabelas possuíssem atributos atómicos, não suportassem relações dentro de relações e não tivessem dependências parciais.
 
 ## Índices/Indexes
 
-Foram utilizados índices para otimizar a velocidade de execução das pesquisas por nome de cliente e funcionário, e pelo ID do cliente, exercício no plano de treino e professor. Apesar da nossa base de dados ser relativamente pequena, optámos por implementar essa estrutura nessas tabelas devido à sua alta frequência de uso.
+Para otimizar a velocidade de execução das pesquisas por nome e ID de cliente e funcionário, bem como as pesquisas por exercício num plano de treino, utilizamos índices. Embora a nossa base de dados seja relativamente pequena, decidimos implementar esta estrutura nestas tabelas devido seu uso frequente.
 
 ```sql
 CREATE INDEX idxNomeCliente ON Ginasio.Cliente(Fname, Lname);
@@ -324,6 +291,9 @@ CREATE INDEX idxNumFuncProfessor ON Ginasio.Professor(Num_func);
 ### View utilizada
 
 [View File](sql/05_any_other_matter.sql "SQLFileQuestion")
+
+### Para executar o nosso programa:
+A ligação ao servidor de SQL é feita na página BDConnection.cs, para executar o nosso programa é necessário atualizar essa ligação para a correta.
 
 
 
