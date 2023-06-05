@@ -39,7 +39,7 @@ Nesta entrega temos a análise de requisitos, o Diagrama Entidade-Relacionamento
 
 ### APFE
 
-As alterações em relação à última entrega incluram a transformação do Feedback numa relação, em vez de uma entidade, e a definição do relacionamento 'is-a' como disjoint, no que diz respeito à entidade Staff, estabelecendo a exclusividade entre as especializações. Com isto, um membro do staff pode ser apenas um Professor, um Rececionista ou um Gerente, não podendo ser definido como duas ou mais dessas especializações simultaneamente.
+As alterações em relação à última entrega incluiram a transformação do Feedback numa relação, em vez de uma entidade, e a definição do relacionamento 'is-a' como disjoint, no que diz respeito à entidade Staff, estabelecendo a exclusividade entre as especializações. Com isto, um membro do staff pode ser apenas um Professor, um Rececionista ou um Gerente, não podendo ser definido como duas ou mais dessas especializações simultaneamente.
 Por último acrescentámos à relação Subscreve um atributo Data.
 
 ## ​SQL DDL - Data Definition Language
@@ -47,9 +47,6 @@ Por último acrescentámos à relação Subscreve um atributo Data.
 [SQL DDL File](sql/01_ddl.sql "SQLFileQuestion")
 
 ## SQL DML - Data Manipulation Language
-
-Uma secção por formulário.
-A section for each form.
 
 ### Formulario exemplo/Example Form
 ### Menu
@@ -161,7 +158,7 @@ Ginasio.EliminarExercicioNumPlanoTreino
 -- Preencher a tabela com os dados do plano de treino através de uma UDF
 SELECT * FROM Ginasio.funcPlanoTreinoCliente(@idCliente)
 
--- Obter a lsita de exercícios (lista da direita) ordenada por ordem alfabética
+-- Obter a lista de exercícios (lista da direita) ordenada por ordem alfabética
 SELECT Nome FROM Ginasio.Exercicio ORDER BY Nome
 ```
 
@@ -246,7 +243,7 @@ WHEN 'Sábado' THEN 6
 WHEN 'Domingo' THEN 7 
 ELSE 8 END
 ```
-#### Carregando no botão "Fazer Inscrição"_
+#### Carregando no botão "Fazer Inscrição"
 
 ![Screenshot Fazer Inscrição View Rececionista!](screenshots/screenshot_18.jpg "AnImage")
 
@@ -254,15 +251,14 @@ ELSE 8 END
 --- Inserir os dados para fazer a inscrição na aula
 INSERT INTO Ginasio.Inscreve (ID_HAula, CC_Cliente, Estado) VALUES (@nAula, @cc, @estado)
 ```
-...
 
 ## Normalização/Normalization
 
-Ao avaliarmos o nosso sistema, percebemos que ele já se encontrava na terceira forma normal. Isto deve-se ao fato de termos sido cuidadosos ao avaliar o Diagrama de Entidade e Relacionamento (DER) para criar o Esquema Relacional. Desde o início, tivemos o cuidado de garantir que as tabelas possuíssem atributos atómicos, não suportassem relações dentro de relações e não tivessem dependências parciais.
+Ao avaliarmos o nosso sistema, percebemos que ele já se encontrava na terceira forma normal. Isto deve-se ao facto de termos sido cuidadosos ao avaliar o Diagrama de Entidade e Relacionamento (DER) para criar o Esquema Relacional. Desde o início, tivemos o cuidado de garantir que as tabelas possuíssem atributos atómicos, não suportassem relações dentro de relações e não tivessem dependências parciais.
 
 ## Índices/Indexes
 
-Para otimizar a velocidade de execução das pesquisas por nome e ID de cliente e funcionário, bem como as pesquisas por exercício num plano de treino, utilizamos índices. Embora a nossa base de dados seja relativamente pequena, decidimos implementar esta estrutura nestas tabelas devido seu uso frequente.
+Para otimizar a velocidade de execução das pesquisas por nome e ID de cliente e funcionário, bem como as pesquisas por exercício num plano de treino, utilizámos índices. Embora a nossa base de dados seja relativamente pequena, decidimos implementar esta estrutura nestas tabelas devido seu uso frequente.
 
 ```sql
 CREATE INDEX idxNomeCliente ON Ginasio.Cliente(Fname, Lname);
