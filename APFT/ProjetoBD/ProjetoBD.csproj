@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{67CF1C35-E8B9-4068-B5B6-B6DBA5FB67C5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ProjetoBD</RootNamespace>
+    <AssemblyName>ProjetoBD</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddPlanoTreino.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPlanoTreino.Designer.cs">
+      <DependentUpon>AddPlanoTreino.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BDConnection.cs" />
+    <Compile Include="ClassView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClassView.Designer.cs">
+      <DependentUpon>ClassView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CriarPlanoAdesao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CriarPlanoAdesao.Designer.cs">
+      <DependentUpon>CriarPlanoAdesao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DarFeedback.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DarFeedback.Designer.cs">
+      <DependentUpon>DarFeedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditarPagamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarPagamento.Designer.cs">
+      <DependentUpon>EditarPagamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditarPlanoTreino.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarPlanoTreino.Designer.cs">
+      <DependentUpon>EditarPlanoTreino.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InscreverAula.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InscreverAula.Designer.cs">
+      <DependentUpon>InscreverAula.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pagamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pagamentos.Designer.cs">
+      <DependentUpon>Pagamentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaginaInicialClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaginaInicialClientes.Designer.cs">
+      <DependentUpon>PaginaInicialClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaginaInicialGerente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaginaInicialGerente.Designer.cs">
+      <DependentUpon>PaginaInicialGerente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaginaInicialProfs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaginaInicialProfs.Designer.cs">
+      <DependentUpon>PaginaInicialProfs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaginaInicialRececionistas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaginaInicialRececionistas.Designer.cs">
+      <DependentUpon>PaginaInicialRececionistas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Staff.cs" />
+    <Compile Include="Cliente.cs" />
+    <Compile Include="VerClientesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerClientesForm.Designer.cs">
+      <DependentUpon>VerClientesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuForm.Designer.cs">
+      <DependentUpon>MenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StaffForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StaffForm.Designer.cs">
+      <DependentUpon>StaffForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UDFPlanoTreino.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UDFPlanoTreino.Designer.cs">
+      <DependentUpon>UDFPlanoTreino.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerFeedbackForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerFeedbackForm.Designer.cs">
+      <DependentUpon>VerFeedbackForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerPlanoTreino.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerPlanoTreino.Designer.cs">
+      <DependentUpon>VerPlanoTreino.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddPlanoTreino.resx">
+      <DependentUpon>AddPlanoTreino.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClassView.resx">
+      <DependentUpon>ClassView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CriarPlanoAdesao.resx">
+      <DependentUpon>CriarPlanoAdesao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DarFeedback.resx">
+      <DependentUpon>DarFeedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarPagamento.resx">
+      <DependentUpon>EditarPagamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarPlanoTreino.resx">
+      <DependentUpon>EditarPlanoTreino.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InscreverAula.resx">
+      <DependentUpon>InscreverAula.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pagamentos.resx">
+      <DependentUpon>Pagamentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaginaInicialClientes.resx">
+      <DependentUpon>PaginaInicialClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaginaInicialGerente.resx">
+      <DependentUpon>PaginaInicialGerente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaginaInicialProfs.resx">
+      <DependentUpon>PaginaInicialProfs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaginaInicialRececionistas.resx">
+      <DependentUpon>PaginaInicialRececionistas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerClientesForm.resx">
+      <DependentUpon>VerClientesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuForm.resx">
+      <DependentUpon>MenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="StaffForm.resx">
+      <DependentUpon>StaffForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UDFPlanoTreino.resx">
+      <DependentUpon>UDFPlanoTreino.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerFeedbackForm.resx">
+      <DependentUpon>VerFeedbackForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerPlanoTreino.resx">
+      <DependentUpon>VerPlanoTreino.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

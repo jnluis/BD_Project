@@ -21,8 +21,8 @@ Nesta entrega temos a análise de requisitos, o Diagrama Entidade-Relacionamento
 * O professor faz parte do staff, no entanto tem também de entregar as suas certificações.
 * O professor pode dar aulas no ginásio, que são identificadas por um ID. É registado em cada aula a sala onde se vai realizar. Cada aula pode ser realizada em vários horários diferentes. Cada horário é definido pela hora de início e fim e pelo dia da semana em que se vai realizar.
 * Cada sala é definida por um ID, número máximo de alunos e tipo.
-* O cliente pode inscrever-se em várias aulas desde que haja disponibilidade e a inscrição seja aceite.
-* O cliente tem a opção de fornecer feedback sobre o seu plano de treino ao treinador que o criou. Este feedback é caracterizado pela data e comentários associados.
+* O cliente pode inscrever-se em várias aulas desde que haja disponibilidade e a inscrição seja confirmada.
+* O cliente tem a opção de fornecer feedback aos treinadores do ginásio. Este feedback é caracterizado pela data e comentários associados.
 * Embora seja um membro do staff, o gerente tem a responsabilidade de gerir a equipa de funcionários.
 
 ## DER - Diagrama Entidade Relacionamento/Entity Relationship Diagram
@@ -39,7 +39,7 @@ Nesta entrega temos a análise de requisitos, o Diagrama Entidade-Relacionamento
 
 ### APFE
 
-As alterações em relação à última entrega incluiram a transformação do Feedback numa relação, em vez de uma entidade, e a definição do relacionamento 'is-a' como disjoint, no que diz respeito à entidade Staff, estabelecendo a exclusividade entre as especializações. Com isto, um membro do staff pode ser apenas um Professor, um Rececionista ou um Gerente, não podendo ser definido como duas ou mais dessas especializações simultaneamente.
+As alterações em relação à última entrega incluiram a transformação do Feedback numa relação, em vez de uma entidade, e a definição do relacionamento 'is-a' como disjoint, no que diz respeito à entidade Staff, estabelecendo a exclusividade entre as especializações. Com isto, um membro do staff pode ser apenas um Professor, um Rececionista ou um Gerente, não podendo ser definido com duas ou mais dessas especializações simultaneamente.
 Por último acrescentámos à relação Subscreve um atributo Data.
 
 ## ​SQL DDL - Data Definition Language
@@ -230,8 +230,7 @@ UPDATE Ginasio.Pagamento SET Estado = @estado, Data_Pagamento = @dataPag, Data_c
 
 ```sql
 --- Ver os dados relativos às aulas através de uma View
---- Foi feita a organização dos dados por número da sala
---- e por dia da semana, esta fora da View
+--- Foi feita a organização dos dados por número da sala e por dia da semana, esta fora da View
 SELECT * FROM Ginasio.Salas_AND_Aulas_VIEW ORDER BY [Número da Sala],
 CASE [Dia da semana] 
 WHEN 'Segunda-feira' THEN 1 
@@ -254,7 +253,7 @@ INSERT INTO Ginasio.Inscreve (ID_HAula, CC_Cliente, Estado) VALUES (@nAula, @cc,
 
 ## Normalização/Normalization
 
-Ao avaliarmos o nosso sistema, percebemos que ele já se encontrava na terceira forma normal. Isto deve-se ao facto de termos sido cuidadosos ao avaliar o Diagrama de Entidade e Relacionamento (DER) para criar o Esquema Relacional. Desde o início, tivemos o cuidado de garantir que as tabelas possuíssem atributos atómicos, não suportassem relações dentro de relações e não tivessem dependências parciais.
+Ao avaliarmos o nosso sistema, percebemos que ele já se encontrava na terceira forma normal. Isto deve-se ao facto de termos sido cuidadosos ao avaliar o Diagrama de Entidade e Relacionamento (DER) para criar o Esquema Relacional. Desde o início, tivemos o cuidado de garantir que as tabelas possuiam atributos atómicos, não suportavam relações dentro de relações e não tinham dependências parciais.
 
 ## Índices/Indexes
 
